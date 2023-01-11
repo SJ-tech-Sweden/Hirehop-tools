@@ -1,0 +1,69 @@
+{% extends "scanning/base.html" %}
+{% block content %}
+
+
+<div>
+    <h3>{{ job_name }}</h3>
+</div>
+
+<div id="reader" height="200px"></div>
+
+<script>
+    const queryString = window.location.search;
+    console.log('Query=' + queryString)
+    const urlParams = new URLSearchParams(queryString);
+    const job_nr = urlParams.get('job');
+    console.log('JOB=' + job_nr)
+
+    function onScanSuccess(decodedText, decodedResult) {
+        // handle the scanned code as you like, for example:
+        console.log(`Code matched = ${decodedText}`, decodedResult);
+        
+        //const url = '/scanning/checkout_barcode/?job=' + job_nr + '&barcode=' + decodedText
+        fetch('/scanning/checkout_barcode/?job=' + job_nr + '&barcode=' + decodedText);
+        //console.log(`URL = ${url}`, decodedResult);
+        console.log('URL=' + url, decodedResult)
+    }
+
+    function onScanFailure(error) {
+        // handle scan failure, usually better to ignore and keep scanning.
+        // for example:
+        console.warn(`Code scan error = ${error}`);
+    }
+
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 10, qrbox: {width: 250, height: 250} },
+    /* verbose= */ false);
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+</script>
+
+{% if items %}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Location</th>
+                    <th>Ordered</th>
+                    <th>Scanned</th>
+                    <!-- <th>Checka ut</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.location }}</td>
+                        <td>{{ item.ordered }}</td>
+                        <td>{{ item.scanned }}</td>
+                        <!-- <td><a class="btn btn-primary" href="/scanning/checkout/?action=checkout&barcode={{ item.item }}"
+                                role="button">Check out</a></td> -->
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+{% endblock %}
