@@ -25,6 +25,6 @@ USER appuser
 # File wsgi.py was not found. Please enter the Python path to wsgi file.
 CMD ["gunicorn", "--bind", "0.0.0.0:8010", "pythonPath.to.wsgi"]
 
-FROM ubuntu:latest
-RUN apt-get -y update
-RUN apt-get -y install git
+#FROM ubuntu:latest
+#RUN apt-get -y update
+#RUN apt-get -y install git

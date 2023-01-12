@@ -1,0 +1,76 @@
+{% extends "scanning/base.html" %}
+{% block content %}
+
+
+<div id="reader" height="200px"></div>
+
+<script>
+    //const queryString = window.location.search;
+    //console.log('Query=' + queryString)
+    //const urlParams = new URLSearchParams(queryString);
+    //const job_nr = urlParams.get('job');
+    //console.log('JOB=' + job_nr)
+
+    function onScanSuccess(decodedText, decodedResult) {
+        // handle the scanned code as you like, for example:
+        console.log(`Code matched = ${decodedText}`, decodedResult);
+        console.log('URL=' + '/scanning/checkin_barcode/?job=' + job_nr + '&barcode=' + decodedText, decodedResult)
+        fetch('/scanning/checkin_barcode/?job=' + job_nr + '&barcode=' + decodedText);
+        
+        location.reload();
+    }
+
+    function onScanFailure(error) {
+        // handle scan failure, usually better to ignore and keep scanning.
+        // for example:
+        console.warn(`Code scan error = ${error}`);
+    }
+
+    let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 1, qrbox: {width: 250, height: 250} },
+    /* verbose= */ false);
+    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+</script>
+
+{% if items %}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Location</th>
+                    <th>Ordered</th>
+                    <th>Scanned</th>
+                    <!-- <th>Check in</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    {% if item.scanned == item.ordered %}
+                        <tr class="table-success">
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.location }}</td>
+                            <td>{{ item.ordered }}</td>
+                            <td>{{ item.scanned }}</td>
+                            <!-- <td><a class="btn btn-primary" href="/scanning/checkout/?action=checkout&barcode={{ item.item }}"
+                                    role="button">Check out</a></td> -->
+
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.location }}</td>
+                            <td>{{ item.ordered }}</td>
+                            <td>{{ item.scanned }}</td>
+                            <!-- <td><a class="btn btn-primary" href="/scanning/checkout/?action=checkout&barcode={{ item.item }}"
+                                    role="button">Check out</a></td> -->
+
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+{% endblock %}

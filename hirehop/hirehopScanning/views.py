@@ -97,6 +97,28 @@ def checkout_barcode(request):
     return render(request, 'scanning/checkout.html', {'items': items_list, "job_name": job_name})
 
 
+def checkin(request):
+    url = "https://myhirehop.com/php_functions/check_all_in_list.php?token={}".format(api_token)
+
+
+    payload={}
+    headers={}
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    items = json.loads(response.text)['rows']
+
+    items_list = []
+
+    for item in items:
+        items_list.append(items[item])
+
+    #messages.info(request, items_list)
+
+
+    #Render index page
+    return render(request, 'scanning/checkin.html', {'items': items_list})
+
 
 def checkin_barcode(request):
     barcode = job_nr = request.GET.get('barcode', '')
