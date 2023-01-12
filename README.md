@@ -10,10 +10,10 @@ For now you should only use it on your local firewalled network because there is
 Clone the project  
 
 ~~~bash  
-  git clone https://link-to-project
+  git clone https://github.com/sjobergsson/Hirehop-tools
 ~~~
 
-Go to the project directory  
+Create a copy config-example.yaml to config.yaml and add your hirehop token find according to https://www.hirehop.co.uk/api_documentation/#header-api-token
 
 
 
