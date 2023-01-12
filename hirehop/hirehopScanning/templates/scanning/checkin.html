@@ -1,15 +1,18 @@
 {% extends "scanning/base.html" %}
 {% block content %}
 
+<div>
+    <h3>{{ job_name }}</h3>
+</div>
 
 <div id="reader" height="200px"></div>
 
 <script>
-    //const queryString = window.location.search;
-    //console.log('Query=' + queryString)
-    //const urlParams = new URLSearchParams(queryString);
-    //const job_nr = urlParams.get('job');
-    //console.log('JOB=' + job_nr)
+    const queryString = window.location.search;
+    console.log('Query=' + queryString)
+    const urlParams = new URLSearchParams(queryString);
+    const job_nr = urlParams.get('job');
+    console.log('JOB=' + job_nr)
 
     function onScanSuccess(decodedText, decodedResult) {
         // handle the scanned code as you like, for example:

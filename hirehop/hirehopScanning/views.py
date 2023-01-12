@@ -21,7 +21,12 @@ def index(request):
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    jobs = json.loads(response.text)['rows']
+    jobs = {}
+
+    try:
+        jobs = json.loads(response.text)['rows']
+    except:
+        jobs = {}
 
     #messages.info(request, jobs)
 
@@ -72,7 +77,7 @@ def checkout_barcode(request):
 
     response = requests.request("POST", url, headers=headers, data=payload)
 
-    messages.info(request, response.text)
+    #messages.info(request, response.text)
 
     url_list = "https://myhirehop.com/php_functions/check_out_list.php?token={}".format(api_token)
 
@@ -98,10 +103,15 @@ def checkout_barcode(request):
 
 
 def checkin(request):
-    url = "https://myhirehop.com/php_functions/check_all_in_list.php?token={}".format(api_token)
+    job_nr = request.GET.get('job', '')
+    job_name = request.GET.get('job_name', '')
+
+    url = "https://myhirehop.com/php_functions/check_in_list.php?token={}".format(api_token)
 
 
-    payload={}
+    payload={
+        'job': job_nr
+    }
     headers={}
 
     response = requests.request("POST", url, headers=headers, data=payload)
@@ -117,10 +127,54 @@ def checkin(request):
 
 
     #Render index page
-    return render(request, 'scanning/checkin.html', {'items': items_list})
+    return render(request, 'scanning/checkin.html', {'items': items_list, "job_name": job_name})
 
 
 def checkin_barcode(request):
-    barcode = job_nr = request.GET.get('barcode', '')
+    job_nr = request.GET.get('job', '')
+    job_name = request.GET.get('job_name', '')
+    barcode = request.GET.get('barcode', '')
+    data = {
+        "barcode": barcode
+        }
+    data_list = []
+    data_list.append(data)
+    data_list = json.dumps(data_list)
+    data_str = '{}'.format(data_list)
+
+    url = "https://myhirehop.com/php_functions/check.php?token={}".format(api_token)
+
+    payload={'job': job_nr,
+        'kind': '3',
+        'depot': 2,
+        'data': '{}'.format(data_str)}
+
+
+    headers = {}
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    #messages.info(request, response.text)
+
+    url_list = "https://myhirehop.com/php_functions/check_in_list.php?token={}".format(api_token)
+
+    job_nr = request.GET.get('job', '')
+    job_name = request.GET.get('job_name', '')
+
+    payload_list={
+        'job': job_nr
+    }
+    headers_list={}
+
+    response_list = requests.request("POST", url_list, headers=headers_list, data=payload_list)
+
+    items = json.loads(response_list.text)['rows']
+
+    items_list = []
+
+    for item in items:
+        items_list.append(items[item])
     
-    return HttpResponse(status=204)
+    
+    #Render index page
+    return render(request, 'scanning/checkin.html', {'items': items_list, "job_name": job_name})

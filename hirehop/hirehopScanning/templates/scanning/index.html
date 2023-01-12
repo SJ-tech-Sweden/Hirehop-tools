@@ -7,6 +7,7 @@
                     <th>Number</th>
                     <th>Name</th>
                     <th>Check out</th>
+                    <th>Check in</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,8 @@
                     <td>{{ job.cell.JOB_NAME }}</td>
                     <td><a class="btn btn-primary" href="/scanning/checkout/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
                             role="button">Check out</a></td>
+                    <td><a class="btn btn-primary" href="/scanning/checkin/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
+                        role="button">Check in</a></td>
 
                 </tr>
                 {% endfor %}
