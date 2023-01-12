@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 import yaml
 import json
@@ -13,6 +14,7 @@ with open('hirehopScanning/config.yaml') as f:
 api_token = config['hirehop']['api_token']
 
 # Create your views here.
+@login_required
 def index(request):
     url = "https://myhirehop.com/frames/search_field_results.php?status=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&rows=500&page=1&token={}".format(api_token)
 
@@ -34,7 +36,7 @@ def index(request):
     #Render index page
     return render(request, 'scanning/index.html', {'jobs': jobs})
 
-
+@login_required
 def checkout(request):
     url = "https://myhirehop.com/php_functions/check_out_list.php?token={}".format(api_token)
 
@@ -61,7 +63,7 @@ def checkout(request):
     #Render index page
     return render(request, 'scanning/checkout.html', {'items': items_list, "job_name": job_name})
 
-
+@login_required
 def checkout_barcode(request):
     job_nr = request.GET.get('job', '')
     barcode = request.GET.get('barcode', '')
@@ -101,7 +103,7 @@ def checkout_barcode(request):
     #return HttpResponse(status=204)
     return render(request, 'scanning/checkout.html', {'items': items_list, "job_name": job_name})
 
-
+@login_required
 def checkin(request):
     job_nr = request.GET.get('job', '')
     job_name = request.GET.get('job_name', '')
@@ -129,7 +131,7 @@ def checkin(request):
     #Render index page
     return render(request, 'scanning/checkin.html', {'items': items_list, "job_name": job_name})
 
-
+@login_required
 def checkin_barcode(request):
     job_nr = request.GET.get('job', '')
     job_name = request.GET.get('job_name', '')
