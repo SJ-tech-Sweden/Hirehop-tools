@@ -27,6 +27,6 @@ networks:
   nginx_network:
     driver: bridge
 
-volumes:
-  static_volume: /opt/hirehop/static:/app/hirehop/static # <-- declare the static volume
-  media_volume:  /opthirehop/media:/app/hirehop/media # <-- declare the media volume
+#volumes:
+#  static_volume: /opt/hirehop/static:/app/hirehop/static # <-- declare the static volume
+#  media_volume:  /opthirehop/media:/app/hirehop/media # <-- declare the media volume
