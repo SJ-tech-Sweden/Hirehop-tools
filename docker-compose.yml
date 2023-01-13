@@ -5,8 +5,8 @@ services:
     build: .
     volumes:
       - .:/app
-      - static_volume:/app/hirehop/static  # <-- bind the static volume
-      - media_volume:/app/hirehop/media  # <-- bind the media volume
+      - /opt/hirehop/static:/app/hirehop/static  # <-- bind the static volume
+      - /opt/hirehop/media:/app/hirehop/media  # <-- bind the media volume
     networks:
       - nginx_network
 
@@ -16,8 +16,8 @@ services:
       - 80:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - static_volume:/app/hirehop/static  # <-- bind the static volume
-      - media_volume:/app/hirehop/media  # <-- bind the media volume
+      - /opt/hirehop/static:/app/hirehop/static  # <-- bind the static volume
+      - /opt/hirehop/media:/app/hirehop/media  # <-- bind the media volume
     depends_on:
       - djangoapp
     networks:
