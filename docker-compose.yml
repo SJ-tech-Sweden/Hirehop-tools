@@ -1,10 +1,32 @@
-version: '3.4'
+version: '3'
 
 services:
-  hirehopscanning:
-    image: hirehopscanning
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  djangoapp:
+    build: .
+    volumes:
+      - .:/app
+      - static_volume:/app/hirehop/static  # <-- bind the static volume
+      - media_volume:/app/hirehop/media  # <-- bind the media volume
+    networks:
+      - nginx_network
+
+  nginx:
+    image: pagespeed/nginx-pagespeed:latest
     ports:
-      - 8010:8010
+      - 80:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/app/hirehop/static  # <-- bind the static volume
+      - media_volume:/app/hirehop/media  # <-- bind the media volume
+    depends_on:
+      - djangoapp
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge
+
+volumes:
+  static_volume: /opt/hirehop/static # <-- declare the static volume
+  media_volume:  /opthirehop/media # <-- declare the media volume

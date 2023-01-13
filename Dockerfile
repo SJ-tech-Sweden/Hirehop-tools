@@ -23,8 +23,5 @@ USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # File wsgi.py was not found. Please enter the Python path to wsgi file.
-CMD ["gunicorn", "--bind", "0.0.0.0:8010", "pythonPath.to.wsgi"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8010", "hirehop/wsqi.py"]
 
-#FROM ubuntu:latest
-#RUN apt-get -y update
-#RUN apt-get -y install git
