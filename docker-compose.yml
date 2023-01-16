@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-    command: gunicorn --bind 0.0.0.0:8000 hirehop.wsgi --workers=4
+    command: gunicorn --bind 0.0.0.0:8000 hirehop.wsgi:application --workers=4
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
