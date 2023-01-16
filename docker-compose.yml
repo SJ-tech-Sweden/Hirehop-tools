@@ -1,26 +1,31 @@
-version: '3'
-
+version: '3.8'
 services:
-  djangoapp:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+  web:
+    build:
+      context: .
+    command: gunicorn --bind 0.0.0.0:8000 hirehop.wsgi --workers=4
     volumes:
-      - .:/app
-      - /opt/hirehop/static:/app/hirehop/static  # <-- bind the static volume
-      - /opt/hirehop/media:/app/hirehop/media  # <-- bind the media volume
-
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    networks:
+      - django-network
   nginx:
-    image: pagespeed/nginx-pagespeed:latest
-    ports:
-      - 80:80
+    build: nginx
+    restart: always
     volumes:
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - /opt/hirehop/static:/app/hirehop/static  # <-- bind the static volume
-      - /opt/hirehop/media:/app/hirehop/media  # <-- bind the media volume
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "80:80"
     depends_on:
-      - djangoapp
-
-
-#volumes:
-#  static_volume: /opt/hirehop/static:/app/hirehop/static # <-- declare the static volume
-#  media_volume:  /opthirehop/media:/app/hirehop/media # <-- declare the media volume
+      - web
+    networks:
+      - django-network
+networks:
+  django-network:
+    name: django-network
+volumes:
+  media_volume:
+  static_volume:
