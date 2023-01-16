@@ -3,7 +3,7 @@ version: '3'
 services:
   djangoapp:
     build: .
-    command: gunicorn hirehop.wsgi:application --bind 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
       - /opt/hirehop/static:/app/hirehop/static  # <-- bind the static volume
