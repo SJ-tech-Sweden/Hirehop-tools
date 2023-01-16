@@ -2,7 +2,7 @@ version: '3.5'
 services:
   web:
     build:
-      context: hirehop
+      context: .
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
