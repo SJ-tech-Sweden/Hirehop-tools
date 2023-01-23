@@ -8,7 +8,7 @@ import json
 import requests
 
 #Open configuration file
-with open('hirehopScanning/config.yaml') as f:
+with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
 
 api_token = config['hirehop']['api_token']
