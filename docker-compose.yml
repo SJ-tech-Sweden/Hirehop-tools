@@ -1,30 +1,23 @@
-version: '3.5'
+version: '3'
 services:
   web:
     build:
       context: .
+      dockerfile: Dockerfile
+    command: gunicorn hirehop_tools.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/app/static
-      - media_volume:/app/media
-    expose:
-      - "8000"
-    networks:
-      - django-network
-  nginx:
-    build: nginx
-    restart: always
-    volumes:
-      - static_volume:/app/static
-      - media_volume:/app/media
+      - .:/code
     ports:
-      - "80:80"
+      - "8000:8000"
     depends_on:
-      - web
-    networks:
-      - django-network
-networks:
-  django-network:
-    name: django-network
+      - db
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hirehop_tools
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
 volumes:
-  media_volume:
-  static_volume:
+  postgres_data:
