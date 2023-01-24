@@ -19,7 +19,9 @@ Create a django settings file
 
 Migrate and create the superuser in the docker container, then restart the docker.
 ~~~bash  
-  
+  docker exec -it hirehop_web_1 bash
+  python manage.py migrate
+  python manage.py createsuperuser
   docker-compose down
   docker-compose up -d
 ~~~
