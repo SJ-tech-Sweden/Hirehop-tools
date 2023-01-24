@@ -15,6 +15,15 @@ Clone the project
 
 Create a copy config-example.yaml to config.yaml and add your hirehop token find according to https://www.hirehop.co.uk/api_documentation/#header-api-token
 
+Create a django settings file
+
+Migrate and create the superuser in the docker container, then restart the docker.
+~~~bash  
+  
+  docker-compose down
+  docker-compose up -d
+~~~
+
 
 
 ## Contributing  
