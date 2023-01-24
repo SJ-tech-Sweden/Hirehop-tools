@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: hirehop_db
       POSTGRES_PASSWORD: db_password
-      POSTGRES_DB: hirehop_db
+      POSTGRES_DB: hirehop_tools
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
