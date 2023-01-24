@@ -3,11 +3,11 @@
 This project is for extending hirehop, I start with a new interface that works great to scan for check out on phones.
 I will also add functionality to check in equipment and add other features.
 
-For now you should only use it on your local firewalled network because there is no authentication whatsoever, that is something that I will add but wanted to get the basics to work first.
+I have implemented django:s user authentication, if I continue work on the gui in this and not only using it for API and dashboards I will add possibility to authentocate with azuread saml.
 
 ## Run Locally  
 
-Clone the project  
+### Clone the project  
 
 ~~~bash  
   git clone https://github.com/sjobergsson/Hirehop-tools
@@ -15,13 +15,18 @@ Clone the project
 
 Create a copy config-example.yaml to config.yaml and add your hirehop token find according to https://www.hirehop.co.uk/api_documentation/#header-api-token
 
-Create a django settings file
+### Create a django settings file
 
-Migrate and create the superuser in the docker container, then restart the docker.
-~~~bash  
+### Migrate and create the superuser in the docker container, then restart the docker.
+~~~bash
+  docker-compose up -d  
   docker exec -it hirehop_web_1 bash
+
   python manage.py migrate
   python manage.py createsuperuser
+
+  exit
+
   docker-compose down
   docker-compose up -d
 ~~~
