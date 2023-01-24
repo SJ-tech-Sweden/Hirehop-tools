@@ -15,12 +15,20 @@
     const job_nr = urlParams.get('job');
     console.log('JOB=' + job_nr)
 
+    function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+            currentDate = Date.now();
+        } while (currentDate - date < milliseconds);
+    }
+
     function onScanSuccess(decodedText, decodedResult) {
         // handle the scanned code as you like, for example:
         console.log(`Code matched = ${decodedText}`, decodedResult);
         console.log('URL=' + '/scanning/checkout_barcode/?job=' + job_nr + '&barcode=' + decodedText, decodedResult)
         fetch('/scanning/checkout_barcode/?job=' + job_nr + '&barcode=' + decodedText);
-        
+        sleep(1000);
         location.reload();
     }
 
