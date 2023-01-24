@@ -3,7 +3,7 @@
 This project is for extending hirehop, I start with a new interface that works great to scan for check out on phones.
 I will also add functionality to check in equipment and add other features.
 
-I have implemented django:s user authentication, if I continue work on the gui in this and not only using it for API and dashboards I will add possibility to authentocate with azuread saml.
+I have implemented django:s user authentication, if I continue work on the gui in this and not only using it for API and dashboards I will add possibility to authenticate with azuread saml.
 
 ## Run Locally  
 
