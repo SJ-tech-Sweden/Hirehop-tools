@@ -5,6 +5,6 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
-      - /opt/hirehop:app/ext:rw
+      - /opt/hirehop:/app/ext:rw
     ports:
       - "8000:8000"
