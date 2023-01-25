@@ -20,7 +20,7 @@ api_token = config['hirehop']['api_token']
 def new_job(request):
     if request.method == 'POST':
         data = request.POST.dict()
-        data_raw = request.POST
+        data_raw = request.body
         # process the webhook data here
         print(data)
         logging.info(data)
