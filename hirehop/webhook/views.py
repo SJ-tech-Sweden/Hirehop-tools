@@ -19,7 +19,7 @@ def new_job(request):
         data = request.POST.dict()
         # process the webhook data here
         print(data)
-        logging.info(info)
+        logging.info(data)
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'error': 'Invalid request method'})
@@ -29,6 +29,7 @@ def invoice_created(request):
         data = request.POST.dict()
         # process the webhook data here
         print(data)
+        logging.info(data)
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'error': 'Invalid request method'})
