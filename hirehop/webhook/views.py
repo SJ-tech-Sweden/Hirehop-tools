@@ -5,8 +5,8 @@ import yaml
 
 #Logging to a speciefied file
 import logging
-#logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
-#                    filename='/app/logs/webhook.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
+                    filename='/app/logs/webhook.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
 with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
