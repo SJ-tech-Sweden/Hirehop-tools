@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 import yaml
 
@@ -14,6 +15,8 @@ with open('/app/hirehopScanning/config.yaml') as f:
 api_token = config['hirehop']['api_token']
 # Create your views here.
 
+
+@csrf_exempt
 def new_job(request):
     if request.method == 'POST':
         data = request.POST.dict()
@@ -25,6 +28,7 @@ def new_job(request):
         logging.info('No data')
         return JsonResponse({'error': 'Invalid request method'})
 
+@csrf_exempt
 def invoice_created(request):
     if request.method == 'POST':
         data = request.POST.dict()
