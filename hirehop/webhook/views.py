@@ -20,9 +20,11 @@ api_token = config['hirehop']['api_token']
 def new_job(request):
     if request.method == 'POST':
         data = request.POST.dict()
+        data_raw = request.POST
         # process the webhook data here
         print(data)
         logging.info(data)
+        logging.info(data_raw)
         return JsonResponse({'status': 'success'})
     else:
         logging.info('No data')
@@ -32,9 +34,11 @@ def new_job(request):
 def invoice_created(request):
     if request.method == 'POST':
         data = request.POST.dict()
+        data_raw = request.POST
         # process the webhook data here
         print(data)
         logging.info(data)
+        logging.info(data_raw)
         return JsonResponse({'status': 'success'})
     else:
         logging.info('No data')
