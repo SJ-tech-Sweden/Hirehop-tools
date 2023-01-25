@@ -213,3 +213,4 @@ cython_debug/
 *config.yaml
 .devcontainer/docker-compose.yml
 .DS_Store
+.devcontainer/devcontainer.json
