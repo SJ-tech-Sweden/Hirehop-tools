@@ -22,7 +22,7 @@ def new_job(request):
         logging.info(data)
         return JsonResponse({'status': 'success'})
     else:
-        logging.info(data)
+        logging.info('No data')
         return JsonResponse({'error': 'Invalid request method'})
 
 def invoice_created(request):
@@ -33,5 +33,5 @@ def invoice_created(request):
         logging.info(data)
         return JsonResponse({'status': 'success'})
     else:
-        logging.info(data)
+        logging.info('No data')
         return JsonResponse({'error': 'Invalid request method'})
