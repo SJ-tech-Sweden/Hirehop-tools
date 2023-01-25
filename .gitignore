@@ -214,3 +214,5 @@ cython_debug/
 .devcontainer/docker-compose.yml
 .DS_Store
 .devcontainer/devcontainer.json
+hirehop/.devcontainer/devcontainer.json
+hirehop/.devcontainer/docker-compose.yml
