@@ -6,7 +6,7 @@
 </div>
 
 <div>
-    <button type="button" class="btn btn-primary" id="fullscreen-button" onclick="requestFullscreen1()">Fullscreen</button>
+    <button type="button" class="btn btn-primary" id="fullscreen-button">Fullscreen</button>
 </div>
 
 <div id="reader" height="200px"></div>
@@ -18,29 +18,30 @@
     const job_nr = urlParams.get('job');
     console.log('JOB=' + job_nr)
 
-    function requestFullScreen1() {
-
-        var el = document.getElementById("container");
-
-        // Supports most browsers and their versions.
-        var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
-        || el.mozRequestFullScreen || el.msRequestFullScreen;
-
-        if (requestMethod) {
-
-        // Native full screen.
-        requestMethod.call(el);
-
-        } else if (typeof window.ActiveXObject !== "undefined") {
-
-        // Older IE.
-        var wscript = new ActiveXObject("WScript.Shell");
-
-        if (wscript !== null) {
-            wscript.SendKeys("{F11}");
+    document.addEventListener("fullscreenchange", function() {
+        if (document.fullscreenElement) {
+            console.log("Entered fullscreen mode");
+        } else {
+            console.log("Exited fullscreen mode");
         }
+    });
+
+    document.addEventListener("fullscreenerror", function() {
+        console.log("Error trying to enter fullscreen mode");
+    });
+
+
+    document.getElementById("fullscreen-button").addEventListener("click", function() {
+        var container = document.getElementById("container");
+        if (container.requestFullscreen) {
+            container.requestFullscreen({ lockOrientation: true });
+        } else if (container.webkitRequestFullScreen) {
+            container.webkitRequestFullScreen({ lockOrientation: true });
+        } else if (container.mozRequestFullScreen) {
+            container.mozRequestFullScreen({ lockOrientation: true });
         }
-    }
+    }, false);
+
 
     function sleep(milliseconds) {
         const date = Date.now();
