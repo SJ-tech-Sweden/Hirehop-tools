@@ -47,8 +47,9 @@ def new_job(request):
         create_sharepoint_folder = bool(job_data['CUSTOM_FIELDS']['sharepoint_project']['value'])
 
         if create_sharepoint_folder:
+            pass
 
-            folder = site.Folder('{}/{}/{}'.format(sharepoint_library, current_year, job_name))
+            #folder = site.Folder('{}/{}/{}'.format(sharepoint_library, current_year, job_name))
 
         # process the webhook data here
         logging.info(data_json)

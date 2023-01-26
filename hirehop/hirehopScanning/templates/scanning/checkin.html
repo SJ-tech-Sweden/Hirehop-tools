@@ -5,6 +5,10 @@
     <h3>{{ job_name }}</h3>
 </div>
 
+<div>
+    <button type="button" class="btn btn-primary" id="fullscreen-button">Fullscreen</button>
+</div>
+
 <div id="reader" height="200px"></div>
 
 <script>
@@ -13,6 +17,12 @@
     const urlParams = new URLSearchParams(queryString);
     const job_nr = urlParams.get('job');
     console.log('JOB=' + job_nr)
+
+    document.getElementById("fullscreen-button").addEventListener("click", function() {
+        document.documentElement.requestFullScreen();
+        screen.orientation.lock("portrait");
+
+    }, false);
 
     function sleep(milliseconds) {
         const date = Date.now();
