@@ -19,9 +19,7 @@
     console.log('JOB=' + job_nr)
 
     document.getElementById("fullscreen-button").addEventListener("click", function() {
-        document.documentElement.requestFullScreen();
-        screen.orientation.lock("portrait");
-
+        document.documentElement.requestFullscreen();
     }, false);
 
     function sleep(milliseconds) {
