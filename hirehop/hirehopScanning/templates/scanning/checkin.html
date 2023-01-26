@@ -6,7 +6,7 @@
 </div>
 
 <div>
-    <button type="button" class="btn btn-primary" id="fullscreen-button" onclick="openFullscreen();">Fullscreen</button>
+    <button type="button" class="btn btn-primary" id="fullscreen-button">Fullscreen</button>
 </div>
 
 <div id="reader" height="200px"></div>
@@ -31,31 +31,19 @@
     });
 
 
-    document.getElementById("fullscreen-button").addEventListener("click", function() {
-        var container = document.getElementById("container");
-        if (container.requestFullscreen()) {
-            container.requestFullscreen({ lockOrientation: true });
-        } else if (container.webkitRequestFullScreen) {
-            container.webkitRequestFullScreen({ lockOrientation: true });
-        } else if (container.mozRequestFullScreen) {
-            container.mozRequestFullScreen({ lockOrientation: true });
-        }
-    }, false);
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("fullscreen-button").addEventListener("click", function() {
+            var container = document.getElementById("container");
+            if (container.requestFullscreen) {
+                container.requestFullscreen({ lockOrientation: true });
+            } else if (container.webkitRequestFullScreen) {
+                container.webkitRequestFullScreen({ lockOrientation: true });
+            } else if (container.mozRequestFullScreen) {
+                container.mozRequestFullScreen({ lockOrientation: true });
+            }
+        }, false);
+    });
 
-
-    /* Get the element you want displayed in fullscreen */ 
-    var elem = document.getElementById("container");
-
-    /* Function to open fullscreen mode */
-    function openFullscreen() {
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-            elem.msRequestFullscreen();
-        }
-    }
 
 
     function sleep(milliseconds) {
