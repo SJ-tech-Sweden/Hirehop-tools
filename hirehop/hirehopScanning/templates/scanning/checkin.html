@@ -33,7 +33,7 @@
 
     document.getElementById("fullscreen-button").addEventListener("click", function() {
         var container = document.getElementById("container");
-        if (container.requestFullscreen) {
+        if (container.requestFullscreen()) {
             container.requestFullscreen({ lockOrientation: true });
         } else if (container.webkitRequestFullScreen) {
             container.webkitRequestFullScreen({ lockOrientation: true });
