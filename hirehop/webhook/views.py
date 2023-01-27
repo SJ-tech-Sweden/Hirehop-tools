@@ -54,7 +54,11 @@ def new_job(request):
 
         if create_sharepoint_folder:
             #pass
-            target_folder_url = "/{}/{}/{}".format(sharepoint_library, current_year, job_name)
+            target_folder_url = "/{}/{}/{}/Ljud".format(sharepoint_library, current_year, job_name)
+            target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
+            target_folder_url = "/{}/{}/{}/Ljus".format(sharepoint_library, current_year, job_name)
+            target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
+            target_folder_url = "/{}/{}/{}/Grafik".format(sharepoint_library, current_year, job_name)
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
 
 
