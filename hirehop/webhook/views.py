@@ -29,7 +29,7 @@ sharepoint_library = config['sharepoint']['document_library']
 
 
 # Connect to the SharePoint site
-account = Account(credentials=(sharepoint_client_id, sharepoint_client_secret), , scopes=['sharepoint_dl', 'user.read', 'offline_access'])
+account = Account(credentials=(sharepoint_client_id, sharepoint_client_secret), scopes=['sharepoint_dl', 'user.read', 'offline_access'])
 sp = account.sharepoint()
 
 @csrf_exempt
