@@ -48,8 +48,10 @@ def new_job(request):
 
         if create_sharepoint_folder:
             #pass
+            #Get the site
+            site = sp.get_site(sharepoint_site)
             # Get the root folder of the "MyDocs" library
-            root_folder = sp.site(sharepoint_site).folder("Projekt").root_folder()
+            root_folder = site.get_folder("Projekt").root_folder()
 
             # Create a new folder named "NewFolder" in the root folder
             new_folder = root_folder.create_folder("NewFolder")
