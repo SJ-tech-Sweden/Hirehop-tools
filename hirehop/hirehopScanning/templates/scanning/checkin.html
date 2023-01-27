@@ -10,7 +10,7 @@
     <div style="height: 10px;"></div>
 </div>
 
-<div id="reader" style="height: 100px;"></div>
+<div id="reader"></div>
 
 <script>
     const queryString = window.location.search;
@@ -44,7 +44,6 @@
             if (container.requestFullscreen) {
                 container.requestFullscreen({ lockOrientation: true });
                 screen.orientation.lock("portrait");
-                document.getElementById('fullscreen_button_div').style.display = 'none';
             } else if (container.webkitRequestFullScreen) {
                 container.webkitRequestFullScreen({ lockOrientation: true });
             } else if (container.mozRequestFullScreen) {
