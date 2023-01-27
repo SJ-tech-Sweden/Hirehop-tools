@@ -54,12 +54,9 @@ def new_job(request):
 
         if create_sharepoint_folder:
             #pass
-            # Get the root folder of the "MyDocs" library
-            root_folder = client.web.get_folder_by_server_relative_url(sharepoint_library)
+            target_folder_url = "/{}/{}/{}".format(sharepoint_library, current_year, job_name)
+            target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
 
-            # Create a new folder named "NewFolder" in the root folder
-            new_folder = File.create_folder(client, root_folder, "NewFolder")
-            client.execute_query()
 
             #folder = site.Folder('{}/{}/{}'.format(sharepoint_library, current_year, job_name))
 
