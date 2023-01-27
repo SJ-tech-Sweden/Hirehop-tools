@@ -11,7 +11,7 @@
     <div style="height: 10px;"></div>
 </div>
 
-<div id="reader" style="height: 200px;"></div>
+<div id="reader"></div>
 
 <script>
     const queryString = window.location.search;
@@ -80,7 +80,7 @@
 
     let html5QrcodeScanner = new Html5QrcodeScanner(
     "reader",
-    { fps: 1, qrbox: {width: 250, height: 200} },
+    { fps: 1, qrbox: {width: 250, height: 250} },
     /* verbose= */ false);
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
 </script>
