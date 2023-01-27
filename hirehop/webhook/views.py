@@ -23,13 +23,13 @@ api_token = config['hirehop']['api_token']
 sharepoint_user = config['sharepoint']['username']
 sharepoint_password = config['sharepoint']['password']
 sharepoint_client_id = config['sharepoint']['client_id']
-sharepoint_client_id = config['sharepoint']['client_secret']
+sharepoint_client_secret = config['sharepoint']['client_secret']
 sharepoint_site = config['sharepoint']['site']
 sharepoint_library = config['sharepoint']['document_library']
 
 
 # Connect to the SharePoint site
-account = Account(credentials=("client_id", "client_secret"))
+account = Account(credentials=(sharepoint_client_id, sharepoint_client_secret))
 
 @csrf_exempt
 def new_job(request):
@@ -46,7 +46,7 @@ def new_job(request):
         create_sharepoint_folder = bool(job_data['CUSTOM_FIELDS']['sharepoint_project']['value'])
 
         if create_sharepoint_folder:
-            pass
+            #pass
             # Get the root folder of the "MyDocs" library
             root_folder = account.folder(sharepoint_library).children
 
