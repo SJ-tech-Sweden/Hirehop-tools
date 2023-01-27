@@ -7,6 +7,7 @@ from datetime import datetime
 
 from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
+from office365.sharepoint.utilities.move_copy_util import MoveCopyUtil
 from office365.sharepoint.files.file import File
 
 import yaml
@@ -29,6 +30,7 @@ sharepoint_client_id = config['sharepoint']['client_id']
 sharepoint_client_secret = config['sharepoint']['client_secret']
 sharepoint_site = config['sharepoint']['site']
 sharepoint_library = config['sharepoint']['document_library']
+sharepoint_template_folder = config['sharepoint']['template_folder']
 
 
 # Authenticate to SharePoint
@@ -55,12 +57,19 @@ def new_job(request):
         create_sharepoint_folder = bool(job_data['CUSTOM_FIELDS']['sharepoint_project']['value'])
 
         if create_sharepoint_folder:
-            target_folder_url = "/{}/{}/{}/Ljud".format(sharepoint_library, job_year, job_name)
-            target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
-            target_folder_url = "/{}/{}/{}/Ljus".format(sharepoint_library, job_year, job_name)
-            target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
-            target_folder_url = "/{}/{}/{}/Grafik".format(sharepoint_library, job_year, job_name)
-            target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
+          
+          
+            source_folder_url = sharepoint_template_folder
+            target_folder_url = "/{}/{}/{}".format(sharepoint_library, job_year, job_name)"
+            source_folder = ctx.web.get_folder_by_server_relative_url(source_folder_url)
+            target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
+            
+            #target_folder_url = "/{}/{}/{}/Ljud".format(sharepoint_library, job_year, job_name)
+            #target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
+            #target_folder_url = "/{}/{}/{}/Ljus".format(sharepoint_library, job_year, job_name)
+            #target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
+            #target_folder_url = "/{}/{}/{}/Grafik".format(sharepoint_library, job_year, job_name)
+            #target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
 
 
         # process the webhook data here
