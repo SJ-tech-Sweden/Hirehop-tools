@@ -34,7 +34,7 @@ sharepoint_library = config['sharepoint']['document_library']
 client_credentials = UserCredential(sharepoint_user, sharepoint_password)
 
 # Connect to the SharePoint site
-client = ClientContext(sharepoint_site).with_user_credentials(client_credentials)
+client = ClientContext(sharepoint_site).with_credentials(client_credentials)
 
 
 
