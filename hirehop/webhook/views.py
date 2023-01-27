@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from datetime import date
+from datetime import datetime
 
 from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
@@ -49,20 +50,20 @@ def new_job(request):
         job_name = job_data['JOB_NAME']
 
         current_year = date.today().year
+        job_year = job_data['JOB_NAME']
+        job_year = datetime.strptime(job_year, "%Y-%m-%d %H:%M:%S").year
 
         create_sharepoint_folder = bool(job_data['CUSTOM_FIELDS']['sharepoint_project']['value'])
 
         if create_sharepoint_folder:
-            #pass
-            target_folder_url = "/{}/{}/{}/Ljud".format(sharepoint_library, current_year, job_name)
+            target_folder_url = "/{}/{}/{}/Ljud".format(sharepoint_library, job_year, job_name)
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
-            target_folder_url = "/{}/{}/{}/Ljus".format(sharepoint_library, current_year, job_name)
+            target_folder_url = "/{}/{}/{}/Ljus".format(sharepoint_library, job_year, job_name)
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
-            target_folder_url = "/{}/{}/{}/Grafik".format(sharepoint_library, current_year, job_name)
+            target_folder_url = "/{}/{}/{}/Grafik".format(sharepoint_library, job_year, job_name)
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
 
 
-            #folder = site.Folder('{}/{}/{}'.format(sharepoint_library, current_year, job_name))
 
         # process the webhook data here
         logging.info(data_json)
