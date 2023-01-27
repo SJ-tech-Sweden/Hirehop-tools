@@ -30,6 +30,7 @@ sharepoint_library = config['sharepoint']['document_library']
 
 # Connect to the SharePoint site
 account = Account(credentials=(sharepoint_client_id, sharepoint_client_secret))
+sp = account.sharepoint()
 
 @csrf_exempt
 def new_job(request):
@@ -48,10 +49,10 @@ def new_job(request):
         if create_sharepoint_folder:
             #pass
             # Get the root folder of the "MyDocs" library
-            root_folder = account.folder(sharepoint_library).children
+            root_folder = sp.site(sharepoint_site).folder("Projekt").root_folder()
 
             # Create a new folder named "NewFolder" in the root folder
-            new_folder = root_folder.new_folder(job_name)
+            new_folder = root_folder.create_folder("NewFolder")
 
             # Save the new folder to SharePoint
             new_folder.save()
