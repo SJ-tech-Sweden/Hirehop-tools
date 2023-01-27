@@ -5,7 +5,7 @@
     <h3>{{ job_name }}</h3>
 </div>
 
-<div>
+<div id=fullscreen_button_div>
     <button type="button" class="btn btn-primary" id="fullscreen-button">Fullscreen</button>
     <br>
 </div>
@@ -38,6 +38,7 @@
             if (container.requestFullscreen) {
                 container.requestFullscreen({ lockOrientation: true });
                 screen.orientation.lock("portrait");
+                document.getElementById('fullscreen_button_div').style.display = 'none';
             } else if (container.webkitRequestFullScreen) {
                 container.webkitRequestFullScreen({ lockOrientation: true });
             } else if (container.mozRequestFullScreen) {
