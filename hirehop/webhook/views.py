@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import date
 
-from office365.runtime.auth.authentication_context import AuthenticationContext
+from office365.runtime.auth.client_credential import ClientCredential
 from office365.sharepoint.client_context import ClientContext
 from office365.sharepoint.files.file import File
 
