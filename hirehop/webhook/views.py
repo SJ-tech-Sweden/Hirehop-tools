@@ -49,7 +49,6 @@ def new_job(request):
         job_data = data_json['data']
         job_name = job_data['JOB_NAME']
 
-        current_year = date.today().year
         job_year = job_data['JOB_DATE']
         job_year = datetime.strptime(job_year, "%Y-%m-%d %H:%M:%S").year
 
@@ -62,7 +61,6 @@ def new_job(request):
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
             target_folder_url = "/{}/{}/{}/Grafik".format(sharepoint_library, job_year, job_name)
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
-
 
 
         # process the webhook data here
