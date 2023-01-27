@@ -4,9 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import date
 
-from shareplum import Site
-from shareplum import Office365
-from shareplum.site import Version
+from O365 import Account
 
 import yaml
 import json
@@ -24,13 +22,14 @@ api_token = config['hirehop']['api_token']
 #Sharepoint config
 sharepoint_user = config['sharepoint']['username']
 sharepoint_password = config['sharepoint']['password']
+sharepoint_client_id = config['sharepoint']['client_id']
+sharepoint_client_id = config['sharepoint']['client_secret']
 sharepoint_site = config['sharepoint']['site']
 sharepoint_library = config['sharepoint']['document_library']
 
-authcookie = Office365(sharepoint_site, username=sharepoint_user, password=sharepoint_password).GetCookies()
-site = Site(sharepoint_site, version=Version.v365, authcookie=authcookie)
 
-
+# Connect to the SharePoint site
+account = Account(credentials=("client_id", "client_secret"))
 
 @csrf_exempt
 def new_job(request):
@@ -48,6 +47,14 @@ def new_job(request):
 
         if create_sharepoint_folder:
             pass
+            # Get the root folder of the "MyDocs" library
+            root_folder = account.folder(sharepoint_library).children
+
+            # Create a new folder named "NewFolder" in the root folder
+            new_folder = root_folder.new_folder(job_name)
+
+            # Save the new folder to SharePoint
+            new_folder.save()
 
             #folder = site.Folder('{}/{}/{}'.format(sharepoint_library, current_year, job_name))
 
