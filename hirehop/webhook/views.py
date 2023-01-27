@@ -50,7 +50,7 @@ def new_job(request):
         job_name = job_data['JOB_NAME']
 
         current_year = date.today().year
-        job_year = job_data['JOB_NAME']
+        job_year = job_data['JOB_DATE']
         job_year = datetime.strptime(job_year, "%Y-%m-%d %H:%M:%S").year
 
         create_sharepoint_folder = bool(job_data['CUSTOM_FIELDS']['sharepoint_project']['value'])
