@@ -16,6 +16,29 @@
         {% bootstrap_javascript %}
         
         <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+        
+        <style>
+            /* For Chrome */
+            #container::-webkit-full-screen {
+                overflow: auto;
+            }
+
+            /* For Firefox */
+            #container:-moz-full-screen {
+                overflow: auto;
+            }
+
+            /* For Edge */
+            #container:-ms-fullscreen {
+                overflow: auto;
+            }
+
+            /* For standard */
+            #container:fullscreen {
+                overflow: auto;
+            }
+        </style>
+
 
 
     </head>
