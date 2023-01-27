@@ -4,7 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import date
 
-from O365 import Account
+from office365.runtime.auth.authentication_context import AuthenticationContext
+from office365.sharepoint.client_context import ClientContext
+from office365.sharepoint.files.file import File
 
 import yaml
 import json
@@ -28,9 +30,13 @@ sharepoint_site = config['sharepoint']['site']
 sharepoint_library = config['sharepoint']['document_library']
 
 
+# Authenticate to SharePoint
+context = AuthenticationContext(sharepoint_site, client_id=sharepoint_client_id, client_secret=sharepoint_client_secret)
+
 # Connect to the SharePoint site
-account = Account(credentials=(sharepoint_client_id, sharepoint_client_secret), scopes=['sharepoint_dl', 'user.read', 'offline_access'])
-sp = account.sharepoint()
+client = ClientContext(site_url, context)
+
+
 
 @csrf_exempt
 def new_job(request):
@@ -48,16 +54,12 @@ def new_job(request):
 
         if create_sharepoint_folder:
             #pass
-            #Get the site
-            site = sp.get_site(sharepoint_site)
             # Get the root folder of the "MyDocs" library
-            root_folder = site.get_folder("Projekt").root_folder()
+            root_folder = client.web.get_folder_by_server_relative_url(sharepoint_library)
 
             # Create a new folder named "NewFolder" in the root folder
-            new_folder = root_folder.create_folder("NewFolder")
-
-            # Save the new folder to SharePoint
-            new_folder.save()
+            new_folder = File.create_folder(client, root_folder, "NewFolder")
+            client.execute_query()
 
             #folder = site.Folder('{}/{}/{}'.format(sharepoint_library, current_year, job_name))
 
