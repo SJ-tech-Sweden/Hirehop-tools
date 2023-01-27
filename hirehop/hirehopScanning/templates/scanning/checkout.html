@@ -20,16 +20,22 @@
     const job_nr = urlParams.get('job');
     console.log('JOB=' + job_nr)
 
-    document.addEventListener("fullscreenchange", function() {
-        if (document.fullscreenElement) {
-            console.log("Entered fullscreen mode");
-        } else {
-            console.log("Exited fullscreen mode");
-        }
-    });
+    document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("fullscreenchange", function() {
+            if (document.fullscreenElement) {
+                // The document is in fullscreen mode
+                fullscreen_button_div.style.display = "none";
+                console.log("Entered fullscreen mode");
+            } else {
+                // The document is not in fullscreen mode
+                fullscreen_button_div.style.display = "block";
+                console.log("Exited fullscreen mode");
+            }
+        });
 
-    document.addEventListener("fullscreenerror", function() {
-        console.log("Error trying to enter fullscreen mode");
+        document.addEventListener("fullscreenerror", function() {
+            console.log("Error trying to enter fullscreen mode");
+        });
     });
 
 
