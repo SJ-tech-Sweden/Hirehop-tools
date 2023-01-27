@@ -36,6 +36,7 @@
             var container = document.getElementById("container");
             if (container.requestFullscreen) {
                 container.requestFullscreen({ lockOrientation: true });
+                screen.orientation.lock("portrait");
             } else if (container.webkitRequestFullScreen) {
                 container.webkitRequestFullScreen({ lockOrientation: true });
             } else if (container.mozRequestFullScreen) {
