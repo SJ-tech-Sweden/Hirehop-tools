@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from datetime import date
 
-from office365.runtime.auth.client_credential import ClientCredential
+from office365.runtime.auth.user_credential import UserCredential
 from office365.sharepoint.client_context import ClientContext
 from office365.sharepoint.files.file import File
 
@@ -31,7 +31,7 @@ sharepoint_library = config['sharepoint']['document_library']
 
 
 # Authenticate to SharePoint
-client_credentials = ClientCredential(sharepoint_client_id, sharepoint_client_secret)
+client_credentials = UserCredential(sharepoint_user, sharepoint_password)
 
 # Connect to the SharePoint site
 client = ClientContext(sharepoint_site).with_credentials(client_credentials)
