@@ -21,6 +21,11 @@
     console.log('JOB=' + job_nr)
 
     document.addEventListener("DOMContentLoaded", function() {
+        if (navigator.userAgent.match(/iPhone/i) && navigator.userAgent.match(/Safari/i)) {
+            fullscreen_button_div.style.display = "none";
+        }
+
+
         document.addEventListener("fullscreenchange", function() {
             if (document.fullscreenElement) {
                 // The document is in fullscreen mode
