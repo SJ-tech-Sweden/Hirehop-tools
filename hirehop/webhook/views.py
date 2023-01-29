@@ -59,8 +59,8 @@ def new_job(request):
         if create_sharepoint_folder:
           
           
-            source_folder_url = sharepoint_site + sharepoint_template_folder
-            target_folder_url = "{}/{}/{}/{}".format(sharepoint_site, sharepoint_library, job_year, job_name)
+            source_folder_url = sharepoint_template_folder
+            target_folder_url = "{}/{}/{}".format(sharepoint_library, job_year, job_name)
             source_folder = client.web.get_folder_by_server_relative_url(source_folder_url)
             target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
             
