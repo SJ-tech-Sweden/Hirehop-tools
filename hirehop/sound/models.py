@@ -18,10 +18,10 @@ class channel_lists(models.Model):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse("sound_channel-lists_detail", args=(self.ID,))
+        return reverse("sound_channel_lists_detail", args=(self.ID,))
 
     def get_update_url(self):
-        return reverse("sound_channel-lists_update", args=(self.ID,))
+        return reverse("sound_channel_lists_update", args=(self.ID,))
 
 
 
@@ -35,7 +35,7 @@ class channel_list_inputs(channel_lists):
     instrument = models.TextField(max_length=100)
     stage_input = models.TextField(max_length=100)
     console_channel = models.IntegerField()
-    channel_list = models.GenericForeignKey("channel-lists", "ID")
+    channel_list = models.GenericForeignKey("channel_lists", "ID")
     mic_di = models.TextField(max_length=100)
 
     class Meta:
@@ -52,7 +52,7 @@ class channel_list_inputs(channel_lists):
 
 
 
-class channel_list_outputs(channel-lists):
+class channel_list_outputs(channel_lists):
 
     # Fields
     last_updated = models.DateTimeField(auto_now=True, editable=False)
