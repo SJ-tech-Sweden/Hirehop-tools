@@ -1,2 +1,8 @@
 hirehop:
   api_token:
+sharepoint:
+  username:
+  password:
+  site:
+  document_library:
+  template_folder:
