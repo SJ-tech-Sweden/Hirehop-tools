@@ -28,8 +28,6 @@ api_token = config['hirehop']['api_token']
 #Sharepoint config
 sharepoint_user = config['sharepoint']['username']
 sharepoint_password = config['sharepoint']['password']
-sharepoint_client_id = config['sharepoint']['client_id']
-sharepoint_client_secret = config['sharepoint']['client_secret']
 sharepoint_site = config['sharepoint']['site']
 sharepoint_library = config['sharepoint']['document_library']
 sharepoint_template_folder = config['sharepoint']['template_folder']
