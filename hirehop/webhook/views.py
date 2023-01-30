@@ -65,7 +65,7 @@ def new_job(request):
             target_folder_url = "{}/{}/{}".format(sharepoint_library, job_year, job_name)
             logging.info(target_folder_url)
             # Encode the target folder URL
-            target_folder_url = quote(target_folder_url)
+            # target_folder_url = quote(target_folder_url)
             logging.info(target_folder_url)
             source_folder = client.web.get_folder_by_server_relative_url(source_folder_url)
             logging.info(source_folder)
