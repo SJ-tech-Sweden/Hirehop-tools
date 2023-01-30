@@ -10,6 +10,8 @@ from office365.sharepoint.client_context import ClientContext
 from office365.sharepoint.utilities.move_copy_util import MoveCopyUtil
 from office365.sharepoint.files.file import File
 
+from urllib.parse import quote
+
 import yaml
 import json
 
@@ -61,6 +63,8 @@ def new_job(request):
           
             source_folder_url = sharepoint_template_folder
             target_folder_url = "{}/{}/{}".format(sharepoint_library, job_year, job_name)
+            # Encode the target folder URL
+            target_folder_url = quote(target_folder_url)
             source_folder = client.web.get_folder_by_server_relative_url(source_folder_url)
             target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
             
