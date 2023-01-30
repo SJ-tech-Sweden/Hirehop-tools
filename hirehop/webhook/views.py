@@ -63,9 +63,12 @@ def new_job(request):
           
             source_folder_url = sharepoint_template_folder
             target_folder_url = "{}/{}/{}".format(sharepoint_library, job_year, job_name)
+            logging.info(target_folder_url)
             # Encode the target folder URL
             target_folder_url = quote(target_folder_url)
+            logging.info(target_folder_url)
             source_folder = client.web.get_folder_by_server_relative_url(source_folder_url)
+            logging.info(source_folder)
             target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
             
             #target_folder_url = "/{}/{}/{}/Ljud".format(sharepoint_library, job_year, job_name)
