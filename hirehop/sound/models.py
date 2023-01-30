@@ -29,9 +29,9 @@ class channel_list_inputs(channel_lists):
 
     # Fields
     musician = models.TextField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    #created = models.DateTimeField(auto_now_add=True, editable=False)
     notes = models.TextField(max_length=500)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    #last_updated = models.DateTimeField(auto_now=True, editable=False)
     instrument = models.TextField(max_length=100)
     stage_input = models.TextField(max_length=100)
     console_channel = models.IntegerField()
@@ -55,14 +55,14 @@ class channel_list_inputs(channel_lists):
 class channel_list_outputs(channel_lists):
 
     # Fields
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    #last_updated = models.DateTimeField(auto_now=True, editable=False)
     instrument = models.TextField(max_length=100)
     person = models.TextField(max_length=100)
     output_type = models.TextField(max_length=100)
     console_output = models.IntegerField()
     notes = models.TextField(max_length=500)
     channel_list = models.ForeignKey(channel_lists, on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    #created = models.DateTimeField(auto_now_add=True, editable=False)
     mix = models.TextField(max_length=100)
 
     class Meta:
