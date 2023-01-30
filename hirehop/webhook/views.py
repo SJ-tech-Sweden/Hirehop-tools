@@ -63,18 +63,20 @@ def new_job(request):
           
             source_folder_url = sharepoint_template_folder
             target_folder_url = "{}/{}/{}".format(sharepoint_library, job_year, job_name)
-            logging.info(target_folder_url)
-            # Encode the target folder URL
-            # target_folder_url = quote(target_folder_url)
-            logging.info(target_folder_url)
+            
             source_folder = client.web.get_folder_by_server_relative_url(source_folder_url)
-            logging.info(source_folder)
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
+            
             target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
+            # Delete the newly created folder to only keep the copied folder
             client.web.get_folder_by_server_relative_path(target_folder_url).delete_object().execute_query()
+            
+            #Delete the last number from the name
+            source_folder_url_rename = "{}1".format(target_folder_url)
+            source_folder = client.web.get_folder_by_server_relative_url(source_folder_url_rename)
+            source_folder.move_to(target_folder_url).execute_query()
 
 
-        # process the webhook data here
         logging.info(data_json)
         print(create_sharepoint_folder)
         return JsonResponse({'status': 'success', 'data': data_json['data']})
