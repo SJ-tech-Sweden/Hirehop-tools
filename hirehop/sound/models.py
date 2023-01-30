@@ -35,7 +35,7 @@ class channel_list_inputs(channel_lists):
     instrument = models.TextField(max_length=100)
     stage_input = models.TextField(max_length=100)
     console_channel = models.IntegerField()
-    channel_list = models.GenericForeignKey("channel_lists", "ID")
+    channel_list = models.ForeignKey(channel_lists)
     mic_di = models.TextField(max_length=100)
 
     class Meta:
@@ -61,7 +61,7 @@ class channel_list_outputs(channel_lists):
     output_type = models.TextField(max_length=100)
     console_output = models.IntegerField()
     notes = models.TextField(max_length=500)
-    channel_list = models.GenericForeignKey("channel_lists", "ID")
+    channel_list = models.ForeignKey(channel_lists)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     mix = models.TextField(max_length=100)
 
