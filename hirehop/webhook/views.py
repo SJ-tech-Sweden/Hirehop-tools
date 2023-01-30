@@ -66,6 +66,7 @@ def new_job(request):
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
             
             target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
+            
             # Delete the newly created folder to only keep the copied folder
             client.web.get_folder_by_server_relative_path(target_folder_url).delete_object().execute_query()
             
