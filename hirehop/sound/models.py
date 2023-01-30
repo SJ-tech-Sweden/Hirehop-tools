@@ -36,7 +36,7 @@ class channel_list_inputs(channel_lists):
     stage_input = models.TextField(max_length=100)
     console_channel = models.IntegerField()
     channel_list = models.GenericForeignKey("channel-lists", "ID")
-    mic-di = models.TextField(max_length=100)
+    mic_di = models.TextField(max_length=100)
 
     class Meta:
         pass
