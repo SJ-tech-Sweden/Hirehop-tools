@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
-class channel-lists(models.Model):
+class channel_lists(models.Model):
 
     # Fields
     Name = models.TextField(max_length=100)
@@ -25,7 +25,7 @@ class channel-lists(models.Model):
 
 
 
-class channel-list-inputs(channel-lists):
+class channel_list_inputs(channel_lists):
 
     # Fields
     musician = models.TextField(max_length=100)
@@ -34,8 +34,8 @@ class channel-list-inputs(channel-lists):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     instrument = models.TextField(max_length=100)
     stage_input = models.TextField(max_length=100)
-    console-channel = models.IntegerField()
-    channel-list = models.GenericForeignKey("channel-lists", "ID")
+    console_channel = models.IntegerField()
+    channel_list = models.GenericForeignKey("channel-lists", "ID")
     mic-di = models.TextField(max_length=100)
 
     class Meta:
@@ -45,14 +45,14 @@ class channel-list-inputs(channel-lists):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse("sound_channel-list-inputs_detail", args=(self.pk,))
+        return reverse("sound_channel_list_inputs_detail", args=(self.pk,))
 
     def get_update_url(self):
-        return reverse("sound_channel-list-inputs_update", args=(self.pk,))
+        return reverse("sound_channel_list_inputs_update", args=(self.pk,))
 
 
 
-class channel-list-outputs(channel-lists):
+class channel_list_outputs(channel-lists):
 
     # Fields
     last_updated = models.DateTimeField(auto_now=True, editable=False)
@@ -61,7 +61,7 @@ class channel-list-outputs(channel-lists):
     type = models.TextField(max_length=100)
     console-output = models.IntegerField()
     notes = models.TextField(max_length=500)
-    channel-list = models.GenericForeignKey("channel-lists", "ID")
+    channel_list = models.GenericForeignKey("channel_lists", "ID")
     created = models.DateTimeField(auto_now_add=True, editable=False)
     mix = models.TextField(max_length=100)
 
@@ -72,8 +72,8 @@ class channel-list-outputs(channel-lists):
         return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse("sound_channel-list-outputs_detail", args=(self.pk,))
+        return reverse("sound_channel_list_outputs_detail", args=(self.pk,))
 
     def get_update_url(self):
-        return reverse("sound_channel-list-outputs_update", args=(self.pk,))
+        return reverse("sound_channel_list_outputs_update", args=(self.pk,))
 
