@@ -21,5 +21,6 @@ urlpatterns = [
     path('scanning/', include('hirehopScanning.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('webhook/', include('webhook.urls')),
+    path('projects/', include('projects.urls')),
     path('', include('projects.urls')),
 ]
