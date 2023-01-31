@@ -31,7 +31,7 @@ def index(request):
 
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
 
-    log_message = "Queryset contents: {}".format(channel_lists_dict))
+    log_message = "Queryset contents: {}".format(channel_lists_dict)
 
     if not channel_lists_dict:
         logging.info('There are no channellists')
