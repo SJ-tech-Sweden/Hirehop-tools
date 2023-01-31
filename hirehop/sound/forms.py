@@ -36,14 +36,20 @@ def get_mixers():
         mixers = {}
 
     logging.info(mixers)
+    logging.info('---------------')
 
     mixers_df = pd.DataFrame(mixers)
 
     mixers_list = mixers_df['cell'].tolist()
 
+    mixers_result = mixers_df.set_index('id')['TITLE'].to_dict()
+
     #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
     logging.info(mixers_list)
+    logging.info('---------------')
+    logging.info('--- Result ---')
+    logging.info(mixers_result)
 
     return "{ ilive: 134 }"
 
