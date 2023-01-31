@@ -15,6 +15,7 @@ import logging
 logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
                     filename='/app/logs/sound.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
+
 #Open configuration file
 with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
