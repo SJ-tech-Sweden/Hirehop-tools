@@ -30,10 +30,11 @@ def index(request):
     job_nr = request.GET.get('job', '')
 
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
+    channel_lists_list = list(channel_lists_dict)
 
-    log_message = "Queryset contents: {}".format(channel_lists_dict)
+    log_message = "Channellists: {}".format(channel_lists_list)
 
-    if not channel_lists_dict:
+    if not channel_lists_list:
         logging.info('There are no channellists')
 
         parameters = {'job_nr': job_nr}
@@ -45,7 +46,7 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'sound/index.html', {'channel_lists': channel_lists_dict})
+    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list})
 
 @login_required
 def create_channellist(request):
