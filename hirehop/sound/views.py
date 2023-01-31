@@ -29,7 +29,9 @@ def index(request):
 
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values('ID', 'Name', 'projectID', 'mixerID')
 
-    logging.info(channel_lists_dict)
+    log_message = "Queryset contents: " + ", ".join([str(item) for item in channel_lists_dict])
+
+    logging.info(log_message)
 
     if False:
         # example parameters
