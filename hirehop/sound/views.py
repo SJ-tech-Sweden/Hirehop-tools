@@ -28,9 +28,12 @@ api_token = config['hirehop']['api_token']
 def index(request):
     job_nr = request.GET.get('job', '')
 
-    channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values('ID', 'Name', 'projectID', 'mixerID')
+    channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
 
     log_message = "Queryset contents: " + ", ".join([str(item) for item in channel_lists_dict])
+
+    if not channel_lists_dict:
+        logging.info('There are no channellists')
 
     logging.info(log_message)
 
