@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 import yaml
 import json
@@ -29,6 +30,16 @@ def index(request):
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
 
     logging.info(channel_lists_dict)
+
+    if False:
+        # example parameters
+        parameters = {'job_nr': job_nr}
+
+        # build the URL with the parameters and redirect
+        url = '/sound/create_channellist?' + urlencode(parameters)
+        return redirect(url)
+
+
 
 
     #Render index page
