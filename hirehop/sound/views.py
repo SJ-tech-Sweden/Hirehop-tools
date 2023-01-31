@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 import yaml
 import json
 import requests
+import urlencode
 
 from .models import channel_lists
 
@@ -30,22 +31,17 @@ def index(request):
 
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
 
-    log_message = "Queryset contents: " + ", ".join([str(item) for item in channel_lists_dict])
+    log_message = "Queryset contents: {}".format(channel_lists_dict))
 
     if not channel_lists_dict:
         logging.info('There are no channellists')
 
-    logging.info(log_message)
-
-    if False:
-        # example parameters
         parameters = {'job_nr': job_nr}
-
         # build the URL with the parameters and redirect
         url = '/sound/create_channellist?' + urlencode(parameters)
         return redirect(url)
 
-
+    logging.info(log_message)
 
 
     #Render index page
@@ -55,7 +51,7 @@ def index(request):
 def create_channellist(request):
     job_nr = request.GET.get('job', '')
 
-    #channel_lists_dict = channel_lists.objects.filter(projectID=job_nr)
+    logging.info('Create new channellist')
 
 
     #Render index page
