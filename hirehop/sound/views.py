@@ -10,6 +10,7 @@ import requests
 from urllib.parse import urlencode
 
 from .models import channel_lists
+from .forms import ChannelListsForm
 
 #Logging to a speciefied file
 import logging
