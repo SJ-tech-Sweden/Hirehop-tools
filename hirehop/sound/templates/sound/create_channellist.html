@@ -1,18 +1,35 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
 
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            <label for="{{ form.channel_list_name.id_for_label }}">Channel list name:</label>
-            {{ form.channel_list_name }}
-        </div>
-        <div>
-            <label for="{{ form.projectID.id_for_label }}">Project ID:</label>
-            {{ form.projectID }}
-        </div>
-        <button type="submit">Create</button>
-    </form>
+{% load crispy_forms_tags %}
+
+    {{ formset.errors }}
+    {{ formset.non_field_errors }}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+                <legend>
+                    <h1>Create channellist</h1>
+                </legend>
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <div class="mb-3">
+                    <label for="{{ form.channel_list_name.id_for_label }}">Channel list name:</label>
+                    {{ form.channel_list_name }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.projectID.id_for_label }}">Project ID:</label>
+                    {{ form.projectID }}
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id=btnSubmit>
+                        Create
+                    </button>
+                </div>
+
+        </form>
+    </div>
         
 
 {% endblock %}
