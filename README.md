@@ -20,15 +20,6 @@ Create a copy config-example.yaml to config.yaml and add your hirehop token find
 ### Migrate and create the superuser in the docker container, then restart the docker.
 ~~~bash
   docker-compose up -d  
-  docker exec -it hirehop_web_1 bash
-
-  python manage.py migrate
-  python manage.py createsuperuser
-
-  exit
-
-  docker-compose down
-  docker-compose up -d
 ~~~
 
 
