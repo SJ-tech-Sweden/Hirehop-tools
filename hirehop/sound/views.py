@@ -27,7 +27,7 @@ api_token = config['hirehop']['api_token']
 def index(request):
     job_nr = request.GET.get('job', '')
 
-    channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
+    channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values('ID', 'Name', 'projectID', 'mixerID')
 
     logging.info(channel_lists_dict)
 
