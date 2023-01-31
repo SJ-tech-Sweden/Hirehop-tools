@@ -42,7 +42,7 @@ def get_mixers():
 
     mixers_list = mixers_df['cell'].tolist()
 
-    mixers_result = mixers_df.set_index('id')['TITLE'].to_dict()
+    mixers_result = mixers_df['cell'].set_index('id')['TITLE'].to_dict()
 
     #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
