@@ -5,7 +5,7 @@ from django.urls import reverse
 class channel_lists(models.Model):
 
     # Fields
-    channel_list_name = models.TextField(max_length=100)
+    Name = models.TextField(max_length=100)
     ID = models.AutoField(primary_key=True)
     projectID = models.CharField(max_length=30)
     created = models.DateTimeField(auto_now_add=True, editable=False)
