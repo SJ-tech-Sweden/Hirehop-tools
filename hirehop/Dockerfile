@@ -21,7 +21,7 @@ COPY . /app
 #RUN python manage.py makemigrations
 #RUN python manage.py migrate
 
-RUN chmod -R 777 /app
+#RUN chmod -R 777 /app
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
