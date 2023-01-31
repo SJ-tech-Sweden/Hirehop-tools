@@ -8,7 +8,7 @@ class channel_lists(models.Model):
     Name = models.TextField(max_length=100)
     ID = models.AutoField(primary_key=True)
     projectID = models.CharField(max_length=30)
-    mixerID = models.IntegerField()
+    mixerID = models.IntegerField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
 
@@ -35,7 +35,7 @@ class channel_list_inputs(channel_lists):
     #last_updated = models.DateTimeField(auto_now=True, editable=False)
     instrument = models.TextField(max_length=100)
     stage_input = models.TextField(max_length=100)
-    console_channel = models.IntegerField()
+    console_channel = models.IntegerField(blank=True, null=True)
     #channel_list = models.ForeignKey(channel_lists, on_delete=models.CASCADE)
     mic_di = models.TextField(max_length=100)
 
@@ -60,7 +60,7 @@ class channel_list_outputs(channel_lists):
     instrument = models.TextField(max_length=100)
     person = models.TextField(max_length=100)
     output_type = models.TextField(max_length=100)
-    console_output = models.IntegerField()
+    console_output = models.IntegerField(blank=True, null=True)
     notes = models.TextField(max_length=500)
     #channel_list = models.ForeignKey(channel_lists, on_delete=models.CASCADE)
     #created = models.DateTimeField(auto_now_add=True, editable=False)
