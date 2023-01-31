@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 import yaml
 import json
 import requests
-import urlencode
+from urllib.parse import urlencode
 
 from .models import channel_lists
 
