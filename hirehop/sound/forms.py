@@ -4,6 +4,7 @@ import yaml
 import json
 import requests
 
+import pandas as pd
 
 from .models import channel_lists
 
@@ -34,9 +35,15 @@ def get_mixers():
     except:
         mixers = {}
 
-    mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
-
     logging.info(mixers)
+
+    mixers_df = pd.DataFrame(mixers)
+
+    mixers_list = mixers_df['cell'].tolist()
+
+    #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
+
+    logging.info(mixers_list)
 
     return "{ ilive: 134 }"
 
