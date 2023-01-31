@@ -22,5 +22,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('webhook/', include('webhook.urls')),
     path('projects/', include('projects.urls')),
+    path('sound/', include('sound.urls')),
+    path('light/', include('light.urls')),
+    path('video/', include('video.urls')),
     path('', include('projects.urls')),
 ]

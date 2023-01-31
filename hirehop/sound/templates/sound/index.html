@@ -1,0 +1,28 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+{% if channel_lists %}
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for channel_list in channel_lists %}
+                <tr>
+                    <td>{{ channel_list.channel_list_name }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/sound/channel_lists?channel_list={{ channel_list.ID }}"
+                        role="button">Edit</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% endif %}
+
+
+{% endblock %}
