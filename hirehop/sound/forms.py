@@ -37,7 +37,7 @@ def get_mixers():
 
     return "{ ilive: 134 }"
 
-class ChannelListForm(forms.Form):
+class ChannelListsForm(forms.Form):
     channel_list_name = forms.CharField(max_length=100)
     projectID = forms.CharField(max_length=30)
     mixerID = forms.ChoiceField()
