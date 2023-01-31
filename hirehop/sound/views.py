@@ -25,4 +25,4 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'projects/index.html', {'channel_lists': channel_lists_dict})
+    return render(request, 'sound/index.html', {'channel_lists': channel_lists_dict})
