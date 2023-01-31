@@ -18,10 +18,6 @@ RUN python -m pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 
-#RUN python manage.py makemigrations
-#RUN python manage.py migrate
-
-#RUN chmod -R 777 /app
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
@@ -34,5 +30,4 @@ RUN chmod -R 777 logs/
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # File wsgi.py was not found. Please enter the Python path to wsgi file.
-# CMD ["gunicorn", "--chdir", "hirehop", "--bind", "0.0.0.0:8000", "hirehop.wsqi:application"]
 
