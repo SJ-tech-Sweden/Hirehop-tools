@@ -9,6 +9,11 @@ import requests
 
 from .models import channel_lists
 
+#Logging to a speciefied file
+import logging
+logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
+                    filename='/app/logs/webhook.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
+
 #Open configuration file
 with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
@@ -23,6 +28,18 @@ def index(request):
 
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr)
 
+    logging.info(channel_lists_dict)
+
 
     #Render index page
     return render(request, 'sound/index.html', {'channel_lists': channel_lists_dict})
+
+@login_required
+def create_channellist(request):
+    job_nr = request.GET.get('job', '')
+
+    #channel_lists_dict = channel_lists.objects.filter(projectID=job_nr)
+
+
+    #Render index page
+    return render(request, 'sound/create_channellist.html', {'job': job_nr})

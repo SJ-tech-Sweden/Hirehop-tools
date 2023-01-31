@@ -8,6 +8,7 @@ class channel_lists(models.Model):
     Name = models.TextField(max_length=100)
     ID = models.AutoField(primary_key=True)
     projectID = models.CharField(max_length=30)
+    mixerID = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
 
