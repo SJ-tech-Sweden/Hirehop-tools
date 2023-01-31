@@ -4,6 +4,7 @@ import yaml
 import json
 import requests
 
+
 from .models import channel_lists
 
 #Logging to a speciefied file
@@ -32,6 +33,8 @@ def get_mixers():
         mixers = json.loads(response.text)['rows']
     except:
         mixers = {}
+
+    mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
     logging.info(mixers)
 
