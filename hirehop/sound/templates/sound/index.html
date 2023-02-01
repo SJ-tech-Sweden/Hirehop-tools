@@ -12,15 +12,7 @@
                 {% for channel_list in channel_lists %}
                 <tr>
                     <td>{{ channel_list.Name }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="/sound/channellist?channel_list={{ channel_list.ID }}&action=edit"
-                        role="button">Edit</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger" href="/sound/?channel_list={{ channel_list.ID }}&action=delete&job={{ job_nr }}"
-                        role="button">Delete</a>
-                    </td>
-                    <td>
+                    <td class="text-end">
                         <ul class="list-inline m-0">
                             <li class="list-inline-item">
                                 <a class="btn btn-primary" href="/sound/channellist?channel_list={{ channel_list.ID }}&action=edit"
