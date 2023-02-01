@@ -29,7 +29,7 @@ def add_equipment(request, job_nr, id):
 
     payload={
         'job': job_nr,
-        "items": '{"{}":1}'.format(id)
+        "items": '{"b{}":1}'.format(id)
         }
 
 
