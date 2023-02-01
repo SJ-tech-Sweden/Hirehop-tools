@@ -61,9 +61,9 @@
                             <li class="nav-item"><a class="nav-link" href="/projects/">Project-planning</a></li>
                             <li class="nav-item"><a class="nav-link" href="/scanning/">Scan new job</a></li>
                             {% if job %}
-                                <li class="nav-item"><a class="nav-link" href="/sound?project={{ job }}">Sound <i class="fa-solid fa-microphone"></i></a></li>
-                                <li class="nav-item"><a class="nav-link" href="/light?project={{ job }}">Light <i class="fa-regular fa-lightbulb"></i></a></li>
-                                <li class="nav-item"><a class="nav-link" href="/video?project={{ job }}">Video <i class="fa-solid fa-video"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/sound?job={{ job }}">Sound <i class="fa-solid fa-microphone"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/light?job={{ job }}">Light <i class="fa-regular fa-lightbulb"></i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/video?job={{ job }}">Video <i class="fa-solid fa-video"></i></a></li>
                             {% endif %}
                             <li class="nav-item"><a class="nav-link disabled">User: {{ user.get_username }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
