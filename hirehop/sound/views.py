@@ -40,6 +40,24 @@ def add_equipment(request, job_nr, id):
     messages.info(response.text)
 
 
+def create_channellist_function(request, channellist_name, project_id, mixer_id):
+    # create a channel_lists item
+    channel_list = channel_lists.objects.create(Name=channellist_name, projectID=project_id, mixerID=mixer_id)
+
+    # create 24 channel_list_inputs
+    for i in range(24):
+        channel_list_input = channel_list_input.objects.create(channel_lists=channel_list, musician="Musician {}".format(i+1), 
+                                                                notes="Input notes {}".format(i+1), instrument="Instrument {}".format(i+1),
+                                                                stage_input="Stage Input {}".format(i+1), console_channel=i+1, 
+                                                                mic_di="Mic DI {}".format(i+1))
+
+    # create 12 channel_list_outputs
+    for i in range(12):
+        channel_list_output = channel_list_output.objects.create(channel_lists=channel_list, instrument="Instrument {}".format(i+1),
+                                                                person="Person {}".format(i+1), output_type="Output Type {}".format(i+1),
+                                                                console_output=i+1, notes="Output notes {}".format(i+1), mix="Mix {}".format(i+1))
+
+
 
 @login_required
 def index(request):
