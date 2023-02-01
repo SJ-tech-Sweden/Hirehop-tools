@@ -60,10 +60,10 @@
                         {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="/projects/">Project-planning</a></li>
                             <li class="nav-item"><a class="nav-link" href="/scanning/">Scan new job</a></li>
-                            {% if job.cell.NUMBER %}
-                                <li class="nav-item"><a class="nav-link" href="/sound?project={{ job.cell.NUMBER }}">Sound</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/light?project={{ job.cell.NUMBER }}">Light</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/video?project={{ job.cell.NUMBER }}">Video</a></li>
+                            {% if job %}
+                                <li class="nav-item"><a class="nav-link" href="/sound?project={{ job }}"><i class="fa-solid fa-microphone">Sound</i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/light?project={{ job }}"><i class="fa-regular fa-lightbulb">Light</i></a></li>
+                                <li class="nav-item"><a class="nav-link" href="/video?project={{ job }}"><i class="fa-solid fa-video">Video</i></a></li>
                             {% endif %}
                             <li class="nav-item"><a class="nav-link disabled">User: {{ user.get_username }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
