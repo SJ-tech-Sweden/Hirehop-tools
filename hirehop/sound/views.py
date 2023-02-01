@@ -157,6 +157,7 @@ def edit_channellist(request):
             cd = form.cleaned_data
             #update channellist with the form data
             logging.info(cd)
+            
             #messages.info(request, cd)
 
             mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))

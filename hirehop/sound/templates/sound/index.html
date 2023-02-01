@@ -6,8 +6,6 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th class="text-nowrap">Edit</th>
-                    <th class="text-nowrap">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +19,17 @@
                     <td>
                         <a class="btn btn-danger" href="/sound/?channel_list={{ channel_list.ID }}&action=delete&job={{ job_nr }}"
                         role="button">Delete</a>
+                    </td>
+                    <td>
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <a class="btn btn-primary" href="/sound/channellist?channel_list={{ channel_list.ID }}&action=edit"
+                                    role="button"><i class="fa fa-edit"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                            </li>
+                        </ul>
                     </td>
 
                 </tr>
