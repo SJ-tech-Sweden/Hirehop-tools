@@ -38,7 +38,7 @@ def index(request):
     if not channel_lists_list:
         logging.info('There are no channellists')
 
-        parameters = {'job_nr': job_nr}
+        parameters = {'job': job_nr}
         # build the URL with the parameters and redirect
         url = '/sound/create_channellist?' + urlencode(parameters)
         return redirect(url)
