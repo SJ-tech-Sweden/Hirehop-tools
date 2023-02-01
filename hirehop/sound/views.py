@@ -102,7 +102,7 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list, 'job_nr': job_nr})
+    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list, 'job': job_nr})
 
 @login_required
 def create_channellist(request):
@@ -157,7 +157,7 @@ def edit_channellist(request):
             cd = form.cleaned_data
             #update channellist with the form data
             logging.info(cd)
-            
+
             #messages.info(request, cd)
 
             mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
