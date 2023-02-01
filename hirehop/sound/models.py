@@ -9,8 +9,8 @@ class channel_lists(models.Model):
     ID = models.AutoField(primary_key=True)
     projectID = models.CharField(max_length=30)
     mixerID = models.IntegerField(blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False, default="2023-01-01 00:00:00")
+    last_updated = models.DateTimeField(auto_now=True, editable=False, default="2023-01-01 00:00:00")
 
     class Meta:
         pass
@@ -30,9 +30,9 @@ class channel_list_inputs(models.Model):
 
     # Fields
     musician = models.TextField(max_length=100, blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False, default="2023-01-01 00:00:00")
     notes = models.TextField(max_length=500, blank=True, null=True)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False, default="2023-01-01 00:00:00")
     instrument = models.TextField(max_length=100, blank=True, null=True)
     stage_input = models.TextField(max_length=100, blank=True, null=True)
     console_channel = models.IntegerField(blank=True, null=True)
