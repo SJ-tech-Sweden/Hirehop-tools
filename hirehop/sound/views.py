@@ -43,7 +43,10 @@ def add_equipment(request, job_nr, id):
 
     mixer = json.loads(response.text)['items']['itms']
 
-    messages.info(request, mixer)
+    inputs = mixer[0]['CUSTOM_FIELDS']['inputs']['value']
+    outputs = mixer[0]['CUSTOM_FIELDS']['outputs']['value']
+
+    messages.info(request, "Inputs: {} - Outputs: {}".format(inputs, outputs))
 
     return mixer
 
