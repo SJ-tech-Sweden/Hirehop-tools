@@ -10,6 +10,7 @@
     <div class="container">
         <form action="" method="post">
             {% csrf_token %}
+            {{ form.projectID }}
                 <legend>
                     <h1>Create channellist</h1>
                 </legend>
@@ -19,8 +20,8 @@
                     {{ form.channel_list_name }}
                 </div>
                 <div class="mb-3">
-                    <label for="{{ form.projectID.id_for_label }}">Project ID:</label>
-                    {{ form.projectID }}
+                    <label for="{{ form.mixerID.id_for_label }}">Project ID:</label>
+                    {{ form.mixerID }}
                 </div>
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary" id=btnSubmit>

@@ -55,7 +55,7 @@ def create_channellist(request):
 
     logging.info('Create new channellist')
 
-    form = ChannelListsForm()
+    form = ChannelListsForm(initial={'projectID': job_nr})
 
     #If there is a POST-request
     if request.method == 'POST':
