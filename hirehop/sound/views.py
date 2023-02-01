@@ -88,8 +88,6 @@ def index(request):
 
     if action == 'delete':
         channel_lists.objects.filter(ID=channel_list_id).delete()
-    elif action == 'edit':
-        pass
 
     if not channel_lists_list:
         logging.info('There are no channellists')
@@ -107,6 +105,39 @@ def index(request):
 
 @login_required
 def create_channellist(request):
+    job_nr = request.GET.get('job', '')
+
+    logging.info('Create new channellist')
+
+    form = ChannelListsForm(initial={'projectID': job_nr})
+
+    #If there is a POST-request
+    if request.method == 'POST':
+        form = ChannelListsForm(request.POST)
+        #Check if form is valid
+        if form.is_valid():
+            cd = form.cleaned_data
+            #update channellist with the form data
+            logging.info(cd)
+            messages.info(request, cd)
+
+            mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
+
+            create_channellist_function(request, cd.get('channel_list_name'), cd.get('projectID'), cd.get('mixerID'), mixer)
+
+            #Update the page
+            return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
+        else:
+            #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
+            messages.error(request, 'This shouldnt be able to happen...')
+    #Before any POST-action render the page from this template
+
+    #Render index page
+    return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
+
+
+@login_required
+def edit_channellist(request):
     job_nr = request.GET.get('job', '')
 
     logging.info('Create new channellist')
