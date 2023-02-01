@@ -11,6 +11,7 @@ services:
 
   web:
     build: .
+    #When sll migrations are working as they should I can again run migration here but till then I will manually makemigrations and migrate
     #command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
     user: appuser
