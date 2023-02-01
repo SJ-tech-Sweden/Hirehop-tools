@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from django.utils import timezone
+
 
 class channel_lists(models.Model):
 
@@ -9,8 +11,8 @@ class channel_lists(models.Model):
     ID = models.AutoField(primary_key=True)
     projectID = models.CharField(max_length=30)
     mixerID = models.IntegerField(blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    created = models.DateTimeField(default=timezone.now, editable=False)
+    last_updated = models.DateTimeField(default=timezone.now, editable=False)
 
     class Meta:
         pass
@@ -30,9 +32,9 @@ class channel_list_inputs(models.Model):
 
     # Fields
     musician = models.TextField(max_length=100, blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=timezone.now, editable=False)
     notes = models.TextField(max_length=500, blank=True, null=True)
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    last_updated = models.DateTimeField(default=timezone.now, editable=False)
     instrument = models.TextField(max_length=100, blank=True, null=True)
     stage_input = models.TextField(max_length=100, blank=True, null=True)
     console_channel = models.IntegerField(blank=True, null=True)
@@ -56,14 +58,14 @@ class channel_list_inputs(models.Model):
 class channel_list_outputs(models.Model):
 
     # Fields
-    last_updated = models.DateTimeField(auto_now=True, editable=False)
+    last_updated = models.DateTimeField(default=timezone.now, editable=False)
     instrument = models.TextField(max_length=100, blank=True, null=True)
     person = models.TextField(max_length=100, blank=True, null=True)
     output_type = models.TextField(max_length=100, blank=True, null=True)
     console_output = models.IntegerField(blank=True, null=True)
     notes = models.TextField(max_length=500, blank=True, null=True)
     channel_list = models.ForeignKey(channel_lists, on_delete=models.CASCADE, default="0")
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=timezone.now, editable=False)
     mix = models.TextField(max_length=100, blank=True, null=True)
 
     class Meta:
