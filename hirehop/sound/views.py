@@ -91,8 +91,7 @@ def index(request):
         channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
         channel_lists_list = list(channel_lists_dict)
 
-    if not channel_lists_list or action == 'new':
-        logging.info('There are no channellists')
+    if action == 'new' or not channel_lists_list:
 
         parameters = {'job': job_nr}
         # build the URL with the parameters and redirect
