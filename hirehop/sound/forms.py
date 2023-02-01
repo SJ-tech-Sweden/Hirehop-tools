@@ -48,7 +48,7 @@ def get_mixers():
     logging.info('--- Result ---')
     logging.info(mixers_result)
 
-    return mixers_result
+    return [(m.keys()[0], m.values()[0]) for m in mixers_result]
 
 class ChannelListsForm(forms.Form):
     channel_list_name = forms.CharField(max_length=100)
