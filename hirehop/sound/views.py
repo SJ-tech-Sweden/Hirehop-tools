@@ -103,7 +103,7 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list, 'job_nr'=job_nr})
+    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list, 'job_nr': job_nr})
 
 @login_required
 def create_channellist(request):
@@ -142,7 +142,7 @@ def create_channellist(request):
 def edit_channellist(request):
     job_nr = request.GET.get('job', '')
 
-    logging.info('Create new channellist')
+    logging.info('Edit channellist')
 
     form = ChannelListsForm(initial={'projectID': job_nr})
 
@@ -161,11 +161,11 @@ def edit_channellist(request):
             create_channellist_function(request, cd.get('channel_list_name'), cd.get('projectID'), cd.get('mixerID'), mixer)
 
             #Update the page
-            return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
+            return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
         else:
             #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
             messages.error(request, 'This shouldnt be able to happen...')
     #Before any POST-action render the page from this template
 
     #Render index page
-    return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
+    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
