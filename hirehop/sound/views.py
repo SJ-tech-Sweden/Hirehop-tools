@@ -87,7 +87,7 @@ def index(request):
     log_message = "Channellists: {}".format(channel_lists_list)
 
     if action == 'delete':
-        channel_lists.objects.filter(id=channel_list_id).delete()
+        channel_lists.objects.filter(ID=channel_list_id).delete()
     elif action == 'edit':
         pass
 

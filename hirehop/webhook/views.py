@@ -63,10 +63,13 @@ def new_job(request):
             target_folder_url = "{}/{}/{}".format(sharepoint_library, job_year, job_name)
             
             source_folder = client.web.get_folder_by_server_relative_url(source_folder_url)
+
+            #Make sure all folders exists
             target_folder = client.web.ensure_folder_path(target_folder_url).execute_query()
-            
+
+            #Copy folder with everythin in it
             target_folder = source_folder.copy_to_using_path(target_folder_url, True).get().execute_query()
-            
+
             # Delete the newly created folder to only keep the copied folder
             client.web.get_folder_by_server_relative_path(target_folder_url).delete_object().execute_query()
             
