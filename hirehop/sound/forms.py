@@ -4,8 +4,6 @@ import yaml
 import json
 import requests
 
-import pandas as pd
-
 from .models import channel_lists
 
 #Logging to a speciefied file
@@ -38,14 +36,8 @@ def get_mixers():
     logging.info(mixers)
     logging.info('---------------')
 
-    mixers_df = pd.DataFrame(mixers)
 
-    mixers_list = mixers_df['cell'].tolist()
-
-    logging.info(mixers_list)
-    logging.info('---------------')
-
-    mixers_result = [{'id': item['id'], 'TITLE': item['cell']['TITLE']} for item in mixers]
+    mixers_result = [{item['id']: item['cell']['TITLE']} for item in mixers]
 
     #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
@@ -53,7 +45,7 @@ def get_mixers():
     logging.info('--- Result ---')
     logging.info(mixers_result)
 
-    return "{ ilive: 134 }"
+    return mixers_result
 
 class ChannelListsForm(forms.Form):
     channel_list_name = forms.CharField(max_length=100)
