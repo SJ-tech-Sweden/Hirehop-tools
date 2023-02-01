@@ -24,7 +24,7 @@ with open('/app/hirehopScanning/config.yaml') as f:
 
 api_token = config['hirehop']['api_token']
 
-def add_equipment(job_nr, id):
+def add_equipment(request, job_nr, id):
     url = "https://myhirehop.com/api/save_job.php?token={}".format(api_token)
 
     payload={
@@ -36,6 +36,8 @@ def add_equipment(job_nr, id):
     headers = {}
 
     response = requests.request("POST", url, headers=headers, data=payload)
+
+    messages.info(response.text)
 
 
 
@@ -79,6 +81,8 @@ def create_channellist(request):
             #update channellist with the form data
             logging.info(cd)
             messages.info(request, cd)
+
+            add_equipment(request, cd.projectID, cd.mixerID)
 
             #Update the page
             return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
