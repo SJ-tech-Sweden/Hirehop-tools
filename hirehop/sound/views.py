@@ -118,7 +118,7 @@ def create_channellist(request):
             logging.info(cd)
             messages.info(request, cd)
 
-            mixer = add_equipment(request, cd['projectID'], cd['mixerID'])
+            mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
 
             #Update the page
             return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
