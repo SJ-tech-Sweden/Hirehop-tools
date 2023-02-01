@@ -39,7 +39,7 @@ def add_equipment(request, job_nr, id):
 
     response = requests.request("POST", url, headers=headers, data=payload)
 
-    messages.info(request, response.text)
+    #messages.info(request, response.text)
 
     mixer = json.loads(response.text)['items']['itms']
 
@@ -51,32 +51,23 @@ def add_equipment(request, job_nr, id):
     return mixer
 
 
-def create_channellist_function(request, channellist_name, project_id, mixer_id):
+def create_channellist_function(request, channellist_name, project_id, mixer_id, mixer):
     # create a channel_lists item
     channel_list = channel_lists.objects.create(Name=channellist_name, projectID=project_id, mixerID=mixer_id)
 
-    url_list = "https://myhirehop.com/php_functions/check_in_list.php?token={}".format(api_token)
-
-    job_nr = request.GET.get('job', '')
-    job_name = request.GET.get('job_name', '')
-
-    payload_list={
-        'job': job_nr
-    }
-    headers_list={}
-
-    response_list = requests.request("POST", url_list, headers=headers_list, data=payload_list)
+    inputs = mixer[0]['CUSTOM_FIELDS']['inputs']['value']
+    outputs = mixer[0]['CUSTOM_FIELDS']['outputs']['value']
 
     # create 24 channel_list_inputs
-    for i in range(24):
-        channel_list_input = channel_list_input.objects.create(channel_lists=channel_list, musician="Musician {}".format(i+1), 
+    for i in range(inputs):
+        channel_list_input = channel_list_input.objects.create(channel_list=channel_list, musician="Musician {}".format(i+1), 
                                                                 notes="Input notes {}".format(i+1), instrument="Instrument {}".format(i+1),
                                                                 stage_input="Stage Input {}".format(i+1), console_channel=i+1, 
                                                                 mic_di="Mic DI {}".format(i+1))
 
     # create 12 channel_list_outputs
-    for i in range(12):
-        channel_list_output = channel_list_output.objects.create(channel_lists=channel_list, instrument="Instrument {}".format(i+1),
+    for i in range(outputs):
+        channel_list_output = channel_list_output.objects.create(channel_list=channel_list, instrument="Instrument {}".format(i+1),
                                                                 person="Person {}".format(i+1), output_type="Output Type {}".format(i+1),
                                                                 console_output=i+1, notes="Output notes {}".format(i+1), mix="Mix {}".format(i+1))
 
@@ -124,6 +115,8 @@ def create_channellist(request):
             messages.info(request, cd)
 
             mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
+
+            create_channellist_function(request, cd.get('channel_list_name'), cd.get('projectID'), cd.get('mixerID'), mixer)
 
             #Update the page
             return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
