@@ -60,11 +60,12 @@ def create_channellist(request):
     #If there is a POST-request
     if request.method == 'POST':
         form = ChannelListsForm(request.POST)
-        #Check if orm is valid
+        #Check if form is valid
         if form.is_valid():
             cd = form.cleaned_data
             #update channellist with the form data
-            #
+            logging.info(cd)
+            messages.info(request, cd)
             #Update the page
             return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
         else:
