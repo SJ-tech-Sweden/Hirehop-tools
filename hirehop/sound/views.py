@@ -27,10 +27,12 @@ api_token = config['hirehop']['api_token']
 def add_equipment(request, job_nr, id):
     url = "https://myhirehop.com/api/save_job.php?token={}".format(api_token)
 
-    payload={
+    payload = {
         'job': job_nr,
-        "items": '{"b{}":1}'.format(id)
-        }
+        "items": {"b{}".format(id):1}
+    }
+
+    payload = json.dumps(payload)
 
 
     headers = {}
