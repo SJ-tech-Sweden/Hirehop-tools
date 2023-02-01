@@ -11,10 +11,14 @@
             <tbody>
                 {% for channel_list in channel_lists %}
                 <tr>
-                    <td>{{ channel_list.channel_list_name }}</td>
+                    <td>{{ channel_list.Name }}</td>
                     <td>
-                        <a class="btn btn-primary" href="/sound/channel_lists?channel_list={{ channel_list.ID }}"
+                        <a class="btn btn-primary" href="/sound/channel_lists?channel_list={{ channel_list.ID }}&action=edit"
                         role="button">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" href="/sound/channel_lists?channel_list={{ channel_list.ID }}&action=delete"
+                        role="button">Delete</a>
                     </td>
 
                 </tr>

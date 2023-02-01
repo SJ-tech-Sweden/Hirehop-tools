@@ -55,6 +55,7 @@ def create_channellist_function(request, channellist_name, project_id, mixer_id,
     # create a channel_lists item
     channel_list = channel_lists.objects.create(Name=channellist_name, projectID=project_id, mixerID=mixer_id)
 
+
     inputs = int(mixer[0]['CUSTOM_FIELDS']['inputs']['value'])
     outputs = int(mixer[0]['CUSTOM_FIELDS']['outputs']['value'])
 
