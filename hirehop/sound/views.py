@@ -77,11 +77,19 @@ def create_channellist_function(request, channellist_name, project_id, mixer_id,
 @login_required
 def index(request):
     job_nr = request.GET.get('job', '')
+    channel_list_id = request.GET.get('channel_list', '')
+    action = request.GET.get('action', '')
+
 
     channel_lists_dict = channel_lists.objects.filter(projectID=job_nr).values()
     channel_lists_list = list(channel_lists_dict)
 
     log_message = "Channellists: {}".format(channel_lists_list)
+
+    if action == 'delete':
+        channel_lists.objects.filter(id=channel_list_id).delete()
+    elif action == 'edit':
+        pass
 
     if not channel_lists_list:
         logging.info('There are no channellists')
