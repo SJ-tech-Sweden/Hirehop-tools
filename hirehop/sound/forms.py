@@ -48,13 +48,12 @@ def get_mixers():
     logging.info('--- Result ---')
     logging.info(mixers_result)
 
-    return mixers_result
+    return [(m.keys(), m.values()) for m in mixers_result]
 
 class ChannelListsForm(forms.Form):
     channel_list_name = forms.CharField(max_length=100)
     projectID = forms.CharField(widget=forms.HiddenInput)
-    mixer_choices = [ (v, k) for k, v in get_mixers().items() ]
-    mixerID = forms.ChoiceField(choices=(mixer_choices))
+    mixerID = forms.ChoiceField(choices=(get_mixers()))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
