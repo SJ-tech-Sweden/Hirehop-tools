@@ -39,7 +39,7 @@ def add_equipment(request, job_nr, id):
 
     response = requests.request("POST", url, headers=headers, data=payload)
 
-    messages.info(response.text)
+    messages.info(request, response.text)
 
     mixer = json.loads(response.text)['items']['itms']
 
