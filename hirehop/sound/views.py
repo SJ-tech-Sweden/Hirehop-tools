@@ -44,6 +44,18 @@ def create_channellist_function(request, channellist_name, project_id, mixer_id)
     # create a channel_lists item
     channel_list = channel_lists.objects.create(Name=channellist_name, projectID=project_id, mixerID=mixer_id)
 
+    url_list = "https://myhirehop.com/php_functions/check_in_list.php?token={}".format(api_token)
+
+    job_nr = request.GET.get('job', '')
+    job_name = request.GET.get('job_name', '')
+
+    payload_list={
+        'job': job_nr
+    }
+    headers_list={}
+
+    response_list = requests.request("POST", url_list, headers=headers_list, data=payload_list)
+
     # create 24 channel_list_inputs
     for i in range(24):
         channel_list_input = channel_list_input.objects.create(channel_lists=channel_list, musician="Musician {}".format(i+1), 
