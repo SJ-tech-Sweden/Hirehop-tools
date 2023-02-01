@@ -39,6 +39,12 @@ def add_equipment(request, job_nr, id):
 
     messages.info(response.text)
 
+    mixer = json.loads(response.text)['items']['itms']
+
+    messages.info(request, mixer)
+
+    return mixer
+
 
 def create_channellist_function(request, channellist_name, project_id, mixer_id):
     # create a channel_lists item
@@ -112,7 +118,7 @@ def create_channellist(request):
             logging.info(cd)
             messages.info(request, cd)
 
-            add_equipment(request, cd.projectID, cd.mixerID)
+            mixer = add_equipment(request, cd['projectID'], cd['mixerID'])
 
             #Update the page
             return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
