@@ -45,7 +45,7 @@ def get_mixers():
     logging.info(mixers_list)
     logging.info('---------------')
 
-    mixers_result = mixers_list.set_index('id')['TITLE'].to_dict()
+    mixers_result = [{'id': item['id'], 'TITLE': item['cell']['TITLE']} for item in mixers_list]
 
     #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
