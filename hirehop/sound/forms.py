@@ -40,7 +40,7 @@ def get_mixers():
     logging.info('---------------')
 
 
-    mixers_result = [(item['id']: item['cell']['TITLE']) for item in mixers]
+    mixers_result = [(item['id'], item['cell']['TITLE']) for item in mixers]
 
     #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
