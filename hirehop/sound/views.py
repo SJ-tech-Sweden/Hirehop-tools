@@ -129,7 +129,7 @@ def create_channellist(request):
             #Update the page
             parameters = {'job': job_nr}
             # build the URL with the parameters and redirect
-            url = '/sound/create_channellist?' + urlencode(parameters)
+            url = '/sound/?' + urlencode(parameters)
             return redirect(url)
         else:
             #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
