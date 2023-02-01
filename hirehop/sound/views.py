@@ -103,7 +103,7 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list})
+    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list, 'job_nr'=job_nr})
 
 @login_required
 def create_channellist(request):
