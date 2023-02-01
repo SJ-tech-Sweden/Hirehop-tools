@@ -40,7 +40,7 @@ def get_mixers():
     logging.info('---------------')
 
 
-    mixers_result = [{item['id']: item['cell']['TITLE']} for item in mixers]
+    mixers_result = [(item['id']: item['cell']['TITLE']) for item in mixers]
 
     #mixers_dict = {row['ID']: row['TITLE'] for index, row in df.iterrows()}
 
@@ -48,7 +48,7 @@ def get_mixers():
     logging.info('--- Result ---')
     logging.info(mixers_result)
 
-    return [(m.keys(), m.values()) for m in mixers_result]
+    return mixers_result
 
 class ChannelListsForm(forms.Form):
     channel_list_name = forms.CharField(max_length=100)
