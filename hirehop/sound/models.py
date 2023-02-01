@@ -30,10 +30,10 @@ class channel_lists(models.Model):
 
 
 
-class channel_list_inputs(models.Model):
+class channel_list_input(models.Model):
 
     # Fields
-    #ID = models.CharField(max_length=36, default=uuid.uuid4, editable=False, primary_key=True)
+    ID = models.CharField(max_length=36, default=uuid.uuid4, editable=False, primary_key=True)
     musician = models.TextField(max_length=100, blank=True, null=True)
     created = models.DateTimeField(default=timezone.now, editable=False)
     notes = models.TextField(max_length=500, blank=True, null=True)
@@ -58,10 +58,10 @@ class channel_list_inputs(models.Model):
 
 
 
-class channel_list_outputs(models.Model):
+class channel_list_output(models.Model):
 
     # Fields
-    #ID = models.CharField(max_length=36, default=uuid.uuid4, editable=False, primary_key=True)
+    ID = models.CharField(max_length=36, default=uuid.uuid4, editable=False, primary_key=True)
     last_updated = models.DateTimeField(default=timezone.now, editable=False)
     instrument = models.TextField(max_length=100, blank=True, null=True)
     person = models.TextField(max_length=100, blank=True, null=True)
