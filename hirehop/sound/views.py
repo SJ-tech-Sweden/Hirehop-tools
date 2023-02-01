@@ -127,7 +127,10 @@ def create_channellist(request):
             create_channellist_function(request, cd.get('channel_list_name'), cd.get('projectID'), cd.get('mixerID'), mixer)
 
             #Update the page
-            return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
+            parameters = {'job': job_nr}
+            # build the URL with the parameters and redirect
+            url = '/sound/create_channellist?' + urlencode(parameters)
+            return redirect(url)
         else:
             #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
             messages.error(request, 'This shouldnt be able to happen...')
