@@ -46,7 +46,7 @@ def add_equipment(request, job_nr, id):
     inputs = mixer[0]['CUSTOM_FIELDS']['inputs']['value']
     outputs = mixer[0]['CUSTOM_FIELDS']['outputs']['value']
 
-    messages.info(request, "Inputs: {} - Outputs: {}".format(inputs, outputs))
+    #messages.info(request, "Inputs: {} - Outputs: {}".format(inputs, outputs))
 
     return mixer
 
@@ -120,7 +120,8 @@ def create_channellist(request):
             cd = form.cleaned_data
             #update channellist with the form data
             logging.info(cd)
-            messages.info(request, cd)
+
+            #messages.info(request, cd)
 
             mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
 
@@ -156,7 +157,7 @@ def edit_channellist(request):
             cd = form.cleaned_data
             #update channellist with the form data
             logging.info(cd)
-            messages.info(request, cd)
+            #messages.info(request, cd)
 
             mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
 
