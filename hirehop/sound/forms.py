@@ -53,13 +53,10 @@ def get_mixers():
 
 class ChannelListsForm(ModelForm):
 
-    model = channel_lists
+    class Meta:
 
-    channel_list_name = forms.CharField(max_length=100)
-    projectID = forms.CharField(widget=forms.HiddenInput)
-    mixerID = forms.ChoiceField(choices=(get_mixers()))
+        model = channel_lists
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.fields['mixerID'].label = ""
+        channel_list_name = forms.CharField(max_length=100)
+        projectID = forms.CharField(widget=forms.HiddenInput)
+        mixerID = forms.ChoiceField(choices=(get_mixers()))
