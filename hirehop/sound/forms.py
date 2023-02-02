@@ -60,10 +60,10 @@ class ChannelListsForm(ModelForm):
         fields = ['Name', 'projectID', 'mixerID']
 
         widgets = {
-            'Name': forms.CharField(max_length=100),
-            'projectID': forms.CharField(widget=forms.HiddenInput),
-            'mixerID': forms.ChoiceField(choices=(get_mixers())),
+            'Name': forms.CharField(attrs={'label': ''}),
+            'projectID': forms.HiddenInput(),
+            'mixerID': forms.ChoiceField(attrs={'label': ''}),
         }
-        channel_list_name = forms.CharField(max_length=100)
-        projectID = forms.CharField(widget=forms.HiddenInput)
+        #channel_list_name = forms.CharField(max_length=100)
+        #projectID = forms.CharField(widget=forms.HiddenInput)
         mixerID = forms.ChoiceField(choices=(get_mixers()))
