@@ -1,5 +1,5 @@
 from django import forms
-
+from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
@@ -51,7 +51,7 @@ def get_mixers():
 
     return mixers_result
 
-class ChannelListsForm(forms.Form):
+class ChannelListsForm(ModelForm):
 
     model = channel_lists
 
