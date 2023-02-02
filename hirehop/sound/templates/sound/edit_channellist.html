@@ -27,7 +27,7 @@
                         <div class="form-check">
                             <label for="{{ form.channel_list_name.id_for_label }}" class="col-sm-4">Channellist name:</label>
                             <div class="col-sm-20">
-                                {{ form.channel_list_name }}
+                                {{ form.channel_list_name | as_crispy_field }}
                             </div>
                             
                         </div>
@@ -36,7 +36,7 @@
                         <div class="form-check">
                             <label for="{{ form.mixerID.id_for_label }}" class="col-sm-4">Mixer:</label>
                             <div class="col-sm-20">
-                                {{ form.mixerID }}
+                                {{ form.mixerID | as_crispy_field }}
                             </div>
                             
                         </div>
