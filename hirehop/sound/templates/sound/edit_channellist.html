@@ -11,15 +11,15 @@
     {{ form.errors }}
     {{ form.non_field_errors }}
     <div class="container">
+        <legend class="text-center">
+            <h1>Edit channellist</h1>
+          </legend>
         <div class="row">
             <div class="col-sm-6">
                 <fieldset class="form-group">
                     <form action="" method="post">
                       {% csrf_token %}
                       {{ form.projectID }}
-                      <legend class="text-center">
-                        <h1>Edit channellist</h1>
-                      </legend>
                       {% if error_message %}
                       <p class="text-danger text-center">{{ error_message }}</p>
                       {% endif %}
@@ -49,31 +49,31 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-header">
-                      <h1 class="text-center">Job information</h1>
+                      <h3 class="text-center">Job information</h3>
                     </div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
-                        <h3>Job name:</h3>
+                        Job name:
                         <p>{{ job_data.JOB_NAME }}</p>
                       </li>
                       <li class="list-group-item">
-                        <h3>Address:</h3>
+                        Address:
                         <p>{{ job_data.ADDRESS }}</p>
                       </li>
                       <li class="list-group-item">
-                        <h3>Customer:</h3>
+                        Customer:
                         <p>{{ job_data.COMPANY }}</p>
                       </li>
                       <li class="list-group-item">
-                        <h3>Start date:</h3>
+                        Start date:
                         <p>{{ job_data.JOB_DATE}}</p>
                       </li>
                       <li class="list-group-item">
-                          <h3>End date:</h3>
+                          End date:
                           <p>{{ job_data.JOB_END}}</p>
                       </li>
                       <li class="list-group-item">
-                          <h3>Venue:</h3>
+                          Venue:
                           <p>{{ job_data.VENUE}}</p>
                       </li>
       
