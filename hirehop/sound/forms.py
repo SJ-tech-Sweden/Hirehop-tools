@@ -1,5 +1,6 @@
 from django import forms
 
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 
@@ -7,7 +8,7 @@ import yaml
 import json
 import requests
 
-from .models import channel_lists
+from .models import channel_lists, channel_list_input, channel_list_output
 
 #Logging to a speciefied file
 import logging
@@ -51,6 +52,9 @@ def get_mixers():
     return mixers_result
 
 class ChannelListsForm(forms.Form):
+
+    model = channel_lists
+
     channel_list_name = forms.CharField(max_length=100)
     projectID = forms.CharField(widget=forms.HiddenInput)
     mixerID = forms.ChoiceField(choices=(get_mixers()))
