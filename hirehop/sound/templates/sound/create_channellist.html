@@ -8,7 +8,7 @@
     {{ form.errors }}
     {{ form.non_field_errors }}
     <div class="container">
-        <div class="container my-5">
+        <fieldset class="form-group">
             <form action="" method="post">
               {% csrf_token %}
               {{ form.projectID }}
@@ -18,17 +18,20 @@
               {% if error_message %}
               <p class="text-danger text-center">{{ error_message }}</p>
               {% endif %}
-              <div class="form-group">
-                <label for="{{ form.channel_list_name.id_for_label }}">Channel List Name:</label>
-                {{ form.channel_list_name }}
+              <div class="row mb-3">
+                <div class="form-check">
+                    <label for="{{ form.channel_list_name.id_for_label }}">Channel List Name:</label>
+                    {{ form.channel_list_name }}
+                </div>
               </div>
-              <div class="form-group">
-                <label for="{{ form.mixerID.id_for_label }}">Project ID:</label>
-                {{ form.mixerID }}
+              <div class="row mb-3">
+                <div class="form-check">
+                    <label for="{{ form.mixerID.id_for_label }}">Project ID:</label>
+                    {{ form.mixerID }}
+                </div>
               </div>
-              <div class="text-center">
                 <button type="submit" class="btn btn-primary" id="btnSubmit">Update</button>
-              </div>
+            </fieldset>
             </form>
           </div>
           
