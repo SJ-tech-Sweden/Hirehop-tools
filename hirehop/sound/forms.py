@@ -60,9 +60,9 @@ class ChannelListsForm(ModelForm):
         fields = ['Name', 'projectID', 'mixerID']
 
         widgets = {
-            'Name': forms.CharField(attrs={'label': ''}),
+            'Name': forms.CharField(),
             'projectID': forms.HiddenInput(),
-            'mixerID': forms.ChoiceField(attrs={'label': ''}),
+            'mixerID': forms.ChoiceField(),
         }
         #channel_list_name = forms.CharField(max_length=100)
         #projectID = forms.CharField(widget=forms.HiddenInput)
