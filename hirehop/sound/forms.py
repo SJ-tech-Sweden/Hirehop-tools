@@ -61,7 +61,6 @@ class ChannelListsForm(ModelForm):
 
         widgets = {
             'projectID': forms.HiddenInput(),
-            'mixerID': forms.ChoiceField(),
         }
         #channel_list_name = forms.CharField(max_length=100)
         #projectID = forms.CharField(widget=forms.HiddenInput)
