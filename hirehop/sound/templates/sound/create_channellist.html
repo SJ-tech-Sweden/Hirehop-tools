@@ -11,7 +11,7 @@
         <fieldset class="form-group">
             <form action="" method="post">
               {% csrf_token %}
-              {{ form.projectID }}
+              <div class="d-none">{{ form.projectID }}</div>
               <legend class="text-center">
                 <h1>Create channellist</h1>
               </legend>
