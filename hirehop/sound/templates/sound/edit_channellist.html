@@ -25,8 +25,8 @@
                       {% endif %}
                       <div class="row mb-3">
                         <div class="form-check">
-                            <label for="{{ form.channel_list_name.id_for_label }}" class="col-sm-2">Channellist name:</label>
-                            <div class="col-sm-10">
+                            <label for="{{ form.channel_list_name.id_for_label }}" class="col-sm-4">Channellist name:</label>
+                            <div class="col-sm-20">
                                 {{ form.channel_list_name }}
                             </div>
                             
@@ -34,8 +34,8 @@
                       </div>
                       <div class="row mb-3">
                         <div class="form-check">
-                            <label for="{{ form.mixerID.id_for_label }}" class="col-sm-2">Mixer:</label>
-                            <div class="col-sm-10">
+                            <label for="{{ form.mixerID.id_for_label }}" class="col-sm-4">Mixer:</label>
+                            <div class="col-sm-20">
                                 {{ form.mixerID }}
                             </div>
                             
@@ -53,28 +53,22 @@
                     </div>
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item">
-                        Job name:
-                        <p>{{ job_data.JOB_NAME }}</p>
+                        Job name: {{ job_data.JOB_NAME }}
                       </li>
                       <li class="list-group-item">
-                        Address:
-                        <p>{{ job_data.ADDRESS }}</p>
+                        Address: {{ job_data.ADDRESS }}
                       </li>
                       <li class="list-group-item">
-                        Customer:
-                        <p>{{ job_data.COMPANY }}</p>
+                        Customer: {{ job_data.COMPANY }}
                       </li>
                       <li class="list-group-item">
-                        Start date:
-                        <p>{{ job_data.JOB_DATE}}</p>
+                        Start date: {{ job_data.JOB_DATE}}
                       </li>
                       <li class="list-group-item">
-                          End date:
-                          <p>{{ job_data.JOB_END}}</p>
+                          End date: {{ job_data.JOB_END}}
                       </li>
                       <li class="list-group-item">
-                          Venue:
-                          <p>{{ job_data.VENUE}}</p>
+                          Venue: {{ job_data.VENUE}}
                       </li>
       
                     </ul>
