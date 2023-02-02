@@ -50,6 +50,18 @@ def add_equipment(request, job_nr, id):
 
     return mixer
 
+def get_job_data(request, job_nr):
+    url = "https://myhirehop.com/api/job_data.php?token={}&job={}".format(api_token, job_nr)
+
+    payload={}
+    headers={}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    job = json.load(response.text)
+    return job
+
+
 
 def create_channellist_function(request, channellist_name, project_id, mixer_id, mixer):
     # create a channel_lists item
@@ -144,6 +156,10 @@ def create_channellist(request):
 @login_required
 def edit_channellist(request):
     job_nr = request.GET.get('job', '')
+
+    job = get_job_data(request, job_nr)
+    
+    messages.info(request, job)
 
     logging.info('Edit channellist')
 
