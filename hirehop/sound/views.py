@@ -58,7 +58,7 @@ def get_job_data(request, job_nr):
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    job = json.load(response.text)
+    job = json.loads(response.text)
     return job
 
 
