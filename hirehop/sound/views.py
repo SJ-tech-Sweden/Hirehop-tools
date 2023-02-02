@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 import yaml
 import json
@@ -156,10 +156,13 @@ def create_channellist(request):
 @login_required
 def edit_channellist(request):
     job_nr = request.GET.get('job', '')
+    channel_list_ID = request.GET.get('channel_list', '')
 
     job = get_job_data(request, job_nr)
     
     #messages.info(request, job)
+
+    channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
 
     logging.info('Edit channellist')
 
@@ -167,25 +170,21 @@ def edit_channellist(request):
 
     #If there is a POST-request
     if request.method == 'POST':
-        form = ChannelListsForm(request.POST)
+        form = ChannelListsForm(request.POST, instance=channel_lists_obj)
         #Check if form is valid
         if form.is_valid():
-            cd = form.cleaned_data
-            #update channellist with the form data
-            logging.info(cd)
-
-            #messages.info(request, cd)
-
-            mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
-
-            create_channellist_function(request, cd.get('channel_list_name'), cd.get('projectID'), cd.get('mixerID'), mixer)
+            form.save()
+            return redirect(edit_channellist, channel_list_ID=channel_list_ID)
 
             #Update the page
             return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
         else:
             #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
             messages.error(request, 'This shouldnt be able to happen...')
+    else:
+        form = ChannelListsForm(instance=channel_lists_obj)
     #Before any POST-action render the page from this template
+
 
     #Render page
     return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job})
