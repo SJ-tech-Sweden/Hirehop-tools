@@ -57,6 +57,8 @@ class ChannelListsForm(ModelForm):
 
         model = channel_lists
 
+        fields = ['Name', 'projectID', 'mixerID']
+
         channel_list_name = forms.CharField(max_length=100)
         projectID = forms.CharField(widget=forms.HiddenInput)
         mixerID = forms.ChoiceField(choices=(get_mixers()))
