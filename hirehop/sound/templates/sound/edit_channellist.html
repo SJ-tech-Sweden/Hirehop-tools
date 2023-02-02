@@ -1,6 +1,9 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
 
+
+
+
 {% load crispy_forms_tags %}
 
     {{ formset.errors }}
@@ -8,28 +11,71 @@
     {{ form.errors }}
     {{ form.non_field_errors }}
     <div class="container">
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.projectID }}
-                <legend>
-                    <h1>Create channellist</h1>
-                </legend>
-                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-                <div class="mb-3">
-                    <label for="{{ form.channel_list_name.id_for_label }}">Channel list name:</label>
+        <div class="row">
+            <div class="container my-5">
+                <form action="" method="post">
+                  {% csrf_token %}
+                  {{ form.projectID }}
+                  <legend class="text-center">
+                    <h1>Create Channel List</h1>
+                  </legend>
+                  {% if error_message %}
+                  <p class="text-danger text-center">{{ error_message }}</p>
+                  {% endif %}
+                  <div class="form-group">
+                    <label for="{{ form.channel_list_name.id_for_label }}">Channel List Name:</label>
                     {{ form.channel_list_name }}
-                </div>
-                <div class="mb-3">
+                  </div>
+                  <div class="form-group">
                     <label for="{{ form.mixerID.id_for_label }}">Project ID:</label>
                     {{ form.mixerID }}
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary" id=btnSubmit>
-                        Update
-                    </button>
-                </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">Update</button>
+                  </div>
+                </form>
+              </div>
+              
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                      <h1 class="text-center">Job information</h1>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <h3>Job name:</h3>
+                        <p>{{ job_data.JOB_NAME }}</p>
+                      </li>
+                      <li class="list-group-item">
+                        <h3>Address:</h3>
+                        <p>{{ job_data.ADDRESS }}</p>
+                      </li>
+                      <li class="list-group-item">
+                        <h3>Customer:</h3>
+                        <p>{{ job_data.COMPANY }}</p>
+                      </li>
+                      <li class="list-group-item">
+                        <h3>Start date:</h3>
+                        <p>{{ job_data.JOB_DATE}}</p>
+                      </li>
+                      <li class="list-group-item">
+                          <h3>End date:</h3>
+                          <p>{{ job_data.JOB_END}}</p>
+                      </li>
+                      <li class="list-group-item">
+                          <h3>Venue:</h3>
+                          <p>{{ job_data.VENUE}}</p>
+                      </li>
+      
+                    </ul>
+                  </div>
+            </div>
+        </div>
 
-        </form>
+            
+
+        
+
     </div>
         
 

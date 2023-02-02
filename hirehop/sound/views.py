@@ -159,7 +159,7 @@ def edit_channellist(request):
 
     job = get_job_data(request, job_nr)
     
-    messages.info(request, job)
+    #messages.info(request, job)
 
     logging.info('Edit channellist')
 
@@ -187,5 +187,5 @@ def edit_channellist(request):
             messages.error(request, 'This shouldnt be able to happen...')
     #Before any POST-action render the page from this template
 
-    #Render index page
-    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
+    #Render page
+    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job})
