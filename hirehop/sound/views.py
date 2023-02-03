@@ -195,3 +195,6 @@ def edit_channellist(request):
 @login_required
 def channel_list_input_update(request, pk):
     channel_list_input = get_object_or_404
+    job_nr = request.GET.get('job', '')
+    channel_list_ID = request.GET.get('channel_list', '')
+    return redirect(edit_channellist, channel_list_ID=channel_list_ID, job=job_nr)
