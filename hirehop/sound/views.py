@@ -164,7 +164,7 @@ def edit_channellist(request):
 
     channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
 
-    channel_list_inputs = channel_list_input.objects.all()
+    channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID)
 
 
     logging.info('Edit channellist')
