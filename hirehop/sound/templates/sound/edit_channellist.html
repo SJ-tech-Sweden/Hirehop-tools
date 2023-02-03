@@ -2,7 +2,7 @@
 {% block content %}
 
 
-
+{% load inlineedit %}
 
 {% load crispy_forms_tags %}
 
@@ -93,12 +93,12 @@
                 <tr>
                   <form method="post" action="{% url 'sound_channel_list_inputs_update' channel_list_input.pk  %}">
                     {% csrf_token %}
-                    <td>{{ channel_list_input.musician }}</td>
-                    <td>{{ channel_list_input.notes }}</td>
-                    <td>{{ channel_list_input.instrument }}</td>
-                    <td>{{ channel_list_input.stage_input }}</td>
-                    <td>{{ channel_list_input.console_channel }}</td>
-                    <td>{{ channel_list_input.mic_di }}</td>
+                    <td>{% inlineedit "channel_list_input.musician" %}{{ channel_list_input.musician }}</td>
+                    <td>{% inlineedit "channel_list_input.notes" %}{{ channel_list_input.notes }}</td>
+                    <td>{% inlineedit "channel_list_input.instrument" %}{{ channel_list_input.instrument }}</td>
+                    <td>{% inlineedit "channel_list_input.stage_input" %}{{ channel_list_input.stage_input }}</td>
+                    <td>{% inlineedit "channel_list_input.console_channel" %}{{ channel_list_input.console_channel }}</td>
+                    <td>{% inlineedit "channel_list_input.mic_di" %}{{ channel_list_input.mic_di }}</td>
                     <td>
                       <button type="submit">Save</button>
                     </td>
@@ -115,6 +115,6 @@
     </div>
         
 
-
+    {% inlineedit_default_script %}
 
 {% endblock %}
