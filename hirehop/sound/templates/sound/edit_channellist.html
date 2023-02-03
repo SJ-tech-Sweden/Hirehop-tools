@@ -93,12 +93,12 @@
                 <tr>
                   <form method="post" action="{% url 'sound_channel_list_inputs_update' channel_list_input.pk  %}">
                     {% csrf_token %}
-                    <td>{{ channel_list_input.musician }}</td>
-                    <td>{{ channel_list_input.notes }}</td>
-                    <td>{{ channel_list_input.instrument }}</td>
-                    <td>{{ channel_list_input.stage_input }}</td>
-                    <td>{{ channel_list_input.console_channel }}</td>
-                    <td>{{ channel_list_input.mic_di }}</td>
+                    <td>{{ ChannelListInputForm.musician | as_crispy_field  }}</td>
+                    <td>{{ ChannelListInputForm.notes | as_crispy_field  }}</td>
+                    <td>{{ ChannelListInputForm.instrument | as_crispy_field  }}</td>
+                    <td>{{ ChannelListInputForm.stage_input | as_crispy_field  }}</td>
+                    <td>{{ ChannelListInputForm.console_channel | as_crispy_field  }}</td>
+                    <td>{{ ChannelListInputForm.micID | as_crispy_field }}</td>
                     <td>
                       <button type="submit">Save</button>
                     </td>
