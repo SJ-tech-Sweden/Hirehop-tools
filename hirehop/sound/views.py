@@ -190,7 +190,7 @@ def edit_channellist(request):
 
 
     #Render page
-    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, "channel_list_inputs": channel_list_inputs})
+    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, "channel_list_inputs": channel_list_inputs, "channel_list_input_form": ChannelListInputForm})
 
 @login_required
 def channel_list_input_update(request, pk):
