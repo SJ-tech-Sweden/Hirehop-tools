@@ -91,7 +91,7 @@
             <tbody>
               {% for channel_list_input in channel_list_inputs %}
                 <tr>
-                  <form method="post" action="{% url 'sound_channel_list_inputs_update' channel_list_input.pk job form.projectID.value()  %}">
+                  <form method="post" action="{% url 'sound_channel_list_inputs_update' channel_list_input.pk job form.projectID.value  %}">
                     {% csrf_token %}
                     {% for field in channel_list_input_form %}
                         <td>{{ field }}</td>
