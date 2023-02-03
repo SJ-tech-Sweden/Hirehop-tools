@@ -112,7 +112,7 @@ class ChannelListInputForm(forms.ModelForm):
     instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     stage_input = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    mic_di = forms.ChoiceField(choices=(get_mixers()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
+    mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
 
     class Meta:
         model = channel_list_input
