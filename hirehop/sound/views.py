@@ -193,8 +193,6 @@ def edit_channellist(request):
     return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, "channel_list_inputs": channel_list_inputs, "channel_list_input_form": ChannelListInputForm})
 
 @login_required
-def channel_list_input_update(request, pk):
+def channel_list_input_update(request, pk, job_nr, channel_list_ID):
     channel_list_input = get_object_or_404
-    job_nr = request.GET.get('job', '')
-    channel_list_ID = request.GET.get('channel_list', '')
     return redirect(edit_channellist, channel_list_ID=channel_list_ID, job=job_nr)
