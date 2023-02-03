@@ -164,6 +164,9 @@ def edit_channellist(request):
 
     channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
 
+    channel_list_inputs = channel_list_input.objects.all()
+
+
     logging.info('Edit channellist')
 
     form = ChannelListsForm(initial={'projectID': job_nr})
@@ -187,4 +190,8 @@ def edit_channellist(request):
 
 
     #Render page
-    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job})
+    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, "channel_list_inputs": channel_list_inputs})
+
+@login_required
+def channel_list_input_update(request, pk):
+    channel_list_input = get_object_or_404

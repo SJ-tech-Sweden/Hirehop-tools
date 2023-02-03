@@ -72,3 +72,16 @@ class ChannelListsForm(ModelForm):
         if instance:
             kwargs.update(initial={'mixerID': instance.mixerID})
         super().__init__(*args, **kwargs)
+
+
+class ChannelListInputForm(forms.ModelForm):
+    class Meta:
+        model = channel_list_input
+        fields = [
+            "musician",
+            "notes",
+            "instrument",
+            "stage_input",
+            "console_channel",
+            "mic_di",
+        ]

@@ -76,7 +76,33 @@
             </div>
         </div>
 
-            
+        <table>
+            <thead>
+              <tr>
+                <th>Musician</th>
+                <th>Notes</th>
+                <th>Instrument</th>
+                <th>Stage Input</th>
+                <th>Console Channel</th>
+                <th>Mic/DI</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for channel_list_input in channel_list_inputs %}
+                <tr>
+                  <form method="post" action="{% url 'sound_channel_list_inputs_update' channel_list_input.pk %}">
+                    {% csrf_token %}
+                    {{ channel_list_input_form.as_table }}
+                    <td>
+                      <button type="submit">Save</button>
+                    </td>
+                  </form>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          
 
         
 
