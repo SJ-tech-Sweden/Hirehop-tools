@@ -25,6 +25,6 @@ urlpatterns = [
     path('sound/', include('sound.urls')),
     path('light/', include('light.urls')),
     path('video/', include('video.urls')),
-    path('inlineedit/', include('inlineedit.urls')),
+    #path('inlineedit/', include('inlineedit.urls')),
     path('', include('projects.urls')),
 ]
