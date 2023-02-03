@@ -55,7 +55,7 @@ def get_mixers():
 
 
 def get_mics():
-    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, microphone_category)
+    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, mic_category)
 
     payload={}
     headers={}
