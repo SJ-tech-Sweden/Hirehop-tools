@@ -52,7 +52,9 @@ def get_mixers():
     return mixers_result
 
 class ChannelListsForm(ModelForm):
-    mixerID = forms.ChoiceField(choices=get_mixers())
+    channel_list_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    projectID = forms.CharField(widget=forms.HiddenInput)
+    mixerID = forms.ChoiceField(choices=(get_mixers()), widget=forms.Select(attrs={'class': 'form-select'}))
 
     class Meta:
 
@@ -65,7 +67,7 @@ class ChannelListsForm(ModelForm):
         }
         #channel_list_name = forms.CharField(max_length=100)
         #projectID = forms.CharField(widget=forms.HiddenInput)
-        
+
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance')
         if instance:
