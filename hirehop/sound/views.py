@@ -137,7 +137,7 @@ def create_channellist(request):
 
             mixer = add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
 
-            create_channellist_function(request, cd.get('channel_list_name'), cd.get('projectID'), cd.get('mixerID'), mixer)
+            create_channellist_function(request, cd.get('Name'), cd.get('projectID'), cd.get('mixerID'), mixer)
 
             #Update the page
             parameters = {'job': job_nr}
