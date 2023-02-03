@@ -117,8 +117,8 @@ class ChannelListInputForm(forms.ModelForm):
     class Meta:
         model = channel_list_input
         fields = [
-            "stage_input",
             "console_channel",
+            "stage_input",
             "instrument",
             "mic_di",
             "musician",
