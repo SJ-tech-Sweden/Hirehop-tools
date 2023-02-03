@@ -52,6 +52,7 @@ def get_mixers():
     return mixers_result
 
 class ChannelListsForm(ModelForm):
+    mixerID = forms.ChoiceField(choices=get_mixers())
 
     class Meta:
 
@@ -64,4 +65,9 @@ class ChannelListsForm(ModelForm):
         }
         #channel_list_name = forms.CharField(max_length=100)
         #projectID = forms.CharField(widget=forms.HiddenInput)
-        mixerID = forms.ChoiceField(choices=(get_mixers()))
+        
+    def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance')
+        if instance:
+            kwargs.update(initial={'mixerID': instance.mixerID})
+        super().__init__(*args, **kwargs)
