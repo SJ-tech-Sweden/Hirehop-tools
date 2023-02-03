@@ -194,5 +194,12 @@ def edit_channellist(request):
 
 @login_required
 def channel_list_input_update(request, pk, job_nr, channel_list_ID):
-    channel_list_input = get_object_or_404
-    #return redirect(edit_channellist, channel_list_ID=channel_list_ID, job=job_nr)
+    channel_list_input = get_object_or_404(channel_list_input, pk=pk)
+    if request.method == 'POST':
+        form = ChannelListInputForm(request.POST, instance=channel_list_input)
+        if form.is_valid():
+            form.save()
+            return redirect('sound_channel_list_inputs', job_nr=job_nr, channel_list_ID=channel_list_ID)
+    else:
+        form = ChannelListInputForm(instance=channel_list_input)
+    return render(request, 'sound_channel_list_inputs_update.html', {'form': form, 'channel_list_input': channel_list_input})
