@@ -6,6 +6,6 @@ urlpatterns = [
     path('', views.index, name='List channellists'),
     path('create_channellist', views.create_channellist, name='Create channellist'),
     path('channellist', views.edit_channellist, name='Edit channellist'),
-    path("channel_list_inputs/<int:pk>/update/", channel_list_input_update, name="sound_channel_list_inputs_update"),
+    path("channel_list_inputs/<int:pk>/update/", views.channel_list_input_update, name="sound_channel_list_inputs_update"),
 
 ]
