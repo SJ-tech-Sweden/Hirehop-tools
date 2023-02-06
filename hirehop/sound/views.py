@@ -154,7 +154,7 @@ def create_channellist(request):
 
 
 @login_required
-def edit_channellist(request):
+def edit_channellist(request, channel_list_ID):
     job_nr = request.GET.get('job', '')
     channel_list_ID = request.GET.get('channel_list', '')
 
@@ -177,7 +177,7 @@ def edit_channellist(request):
         #Check if form is valid
         if form.is_valid():
             form.save()
-            return redirect(edit_channellist, channel_list=channel_list_ID)
+            return redirect(edit_channellist, channel_list_ID=channel_list_ID)
 
             #Update the page
             return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
