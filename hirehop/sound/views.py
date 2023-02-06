@@ -177,7 +177,7 @@ def edit_channellist(request):
         #Check if form is valid
         if form.is_valid():
             form.save()
-            return redirect('/sound/channellist?channel_list{}&action=edit&job={}'.format(channel_list_ID, job_nr))
+            return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
 
             #Update the page
             return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
