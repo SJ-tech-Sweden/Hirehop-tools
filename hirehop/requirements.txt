@@ -28,4 +28,4 @@ pandas
 fontawesomefree==6.2.1
 
 django-inlineedit
-django-ckeditor==5.9.0
+django-ckeditor==6.5.1
