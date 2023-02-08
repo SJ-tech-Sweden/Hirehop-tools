@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
+from django import forms
+
 
 import yaml
 import json
