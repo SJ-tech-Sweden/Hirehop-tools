@@ -75,16 +75,16 @@ def create_channellist_function(request, channellist_name, project_id, mixer_id,
 
     # create channel_list_inputs
     for i in range(inputs):
-        channel_list_input_1 = channel_list_input.objects.create(channel_list=channel_list, musician="Musician {}".format(i+1), 
-                                                                notes="Input notes {}".format(i+1), instrument="Instrument {}".format(i+1),
-                                                                stage_input="Stage Input {}".format(i+1), console_channel=i+1, 
-                                                                mic_di="Mic DI {}".format(i+1))
+        channel_list_input_1 = channel_list_input.objects.create(channel_list=channel_list, musician="Musician", 
+                                                                notes="", instrument="Instrument",
+                                                                stage_input="{}".format(i+1), console_channel=i+1, 
+                                                                mic_di="")
 
     # create channel_list_outputs
     for i in range(outputs):
-        channel_list_output_1 = channel_list_output.objects.create(channel_list=channel_list, instrument="Instrument {}".format(i+1),
-                                                                person="Person {}".format(i+1), output_type="Output Type {}".format(i+1),
-                                                                console_output=i+1, notes="Output notes {}".format(i+1), mix="Mix {}".format(i+1))
+        channel_list_output_1 = channel_list_output.objects.create(channel_list=channel_list, instrument="Instrument",
+                                                                person="Person", output_type="Output Type",
+                                                                console_output=i+1, notes="Output notes", mix="Mix {}".format(i+1))
 
 
 
