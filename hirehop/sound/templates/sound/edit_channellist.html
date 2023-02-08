@@ -96,7 +96,7 @@
             <tbody>
               {% for form in formset %}
                 <tr>
-                  <form method="post" action="channel_list_inputs/{{ form.pk }}/update/">
+                  <form method="post" action="channel_list_inputs/{{ form.id }}/update/">
                     {% csrf_token %}
                     <input type="hidden" name="job_nr" value="{{ job_nr }}">
                     <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
