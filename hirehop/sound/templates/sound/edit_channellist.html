@@ -24,6 +24,7 @@
                       <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
                       {% csrf_token %}
                       {{ form.projectID }}
+                      {{ form.form_identifier }}
                       {% if error_message %}
                       <p class="text-danger text-center">{{ error_message }}</p>
                       {% endif %}
@@ -98,6 +99,7 @@
             <!-- table body -->
             <form method="post">
             {% csrf_token %}
+            {{ form.form_identifier }}
             <input type="hidden" name="job_nr" value="{{ job_nr }}">
             <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
             <tbody>
