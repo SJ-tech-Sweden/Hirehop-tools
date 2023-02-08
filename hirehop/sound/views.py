@@ -163,7 +163,7 @@ def edit_channellist(request):
     job = get_job_data(request, job_nr)
 
     channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
-    channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID).order_by('console_channel')
+    channel_list_input_obj = channel_list_input.objects.filter(channel_list=channel_list_ID).order_by('console_channel')
 
     ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0)
     formset = ChannelListInputFormSet(queryset=channel_list_inputs)
