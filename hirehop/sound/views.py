@@ -163,15 +163,12 @@ def edit_channellist(request):
     job = get_job_data(request, job_nr)
 
     channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
-
     channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID).order_by('console_channel')
 
     ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0)
     formset = ChannelListInputFormSet(queryset=channel_list_inputs)
 
     logging.info('Edit channellist')
-
-    form = ChannelListsForm(initial={'projectID': job_nr})
 
     if request.method == 'POST':
         form = ChannelListsForm(request.POST, instance=channel_lists_obj)
@@ -184,9 +181,10 @@ def edit_channellist(request):
         else:
             messages.error(request, 'Form data is not valid.')
     else:
-        form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
+        form = ChannelListsForm(instance=channel_lists_obj)
 
     return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset': formset})
+
 
 
 @login_required
