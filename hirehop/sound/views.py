@@ -191,7 +191,9 @@ def edit_channellist(request):
 
 
 @login_required
-def channel_list_input_update(request, pk, job_nr, channel_list_ID):
+def channel_list_input_update(request, pk):
+    job_nr = request.GET.get('job', '')
+    channel_list_ID = request.GET.get('channel_list', '')
     channel_list_input = get_object_or_404(channel_list_input, pk=pk)
     if request.method == 'POST':
         form = ChannelListInputForm(request.POST, instance=channel_list_input)
