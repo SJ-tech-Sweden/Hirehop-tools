@@ -78,24 +78,27 @@
         <table class="table table-striped table-hover">
             <thead>
               <tr>
+                <th>Console Channel</th>
+                <th>Stage Input</th>
+                <th>Instrument</th>
+                <th>Mic/DI</th>
+                <td>48V Phantom</td>
                 <th>Musician</th>
                 <th>Notes</th>
-                <th>Instrument</th>
-                <th>Stage Input</th>
-                <th>Console Channel</th>
-                <th>Mic/DI</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {% for form in formset %}
                 <tr>
+                  <td>{{ form.console_channel }}</td>
+                  <td>{{ form.stage_input }}</td>
+                  <td>{{ form.instrument }}</td>
+                  <td>{{ form.mic_di }}</td>
+                  <td></td>
                   <td>{{ form.musician }}</td>
                   <td>{{ form.notes }}</td>
-                  <td>{{ form.instrument }}</td>
-                  <td>{{ form.stage_input }}</td>
-                  <td>{{ form.console_channel }}</td>
-                  <td>{{ form.mic_di }}</td>
+                  
                   <td><a class="btn btn-primary" href="{% url 'sound_channel_list_inputs_update' form.instance.pk %}?job_nr={{ job_nr }}&channel_list_ID={{ channel_list_ID }}" role="button">Update</a></td>
                 </tr>
               {% endfor %}
