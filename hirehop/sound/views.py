@@ -201,5 +201,6 @@ def channel_list_input_update(request, pk):
             form.save()
             return redirect('sound_channel_list_inputs', job_nr=job_nr, channel_list_ID=channel_list_ID)
     else:
-        form = ChannelListInputForm(instance=channel_list_input)
-    return render(request, 'sound_channel_list_inputs_update.html', {'form': form, 'channel_list_input': channel_list_input})
+        form = ChannelListInputForm(instance=channel_list_input_obj)
+        messages.warning(request, 'Request type not POST')
+    return redirect('sound_channel_list_inputs', job_nr=job_nr, channel_list_ID=channel_list_ID)
