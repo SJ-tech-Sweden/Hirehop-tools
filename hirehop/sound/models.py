@@ -43,6 +43,7 @@ class channel_list_input(models.Model):
     console_channel = models.IntegerField(blank=True, null=True)
     channel_list = models.ForeignKey(channel_lists, on_delete=models.CASCADE, default="0")
     mic_di = models.TextField(max_length=100, blank=True, null=True)
+    phantom_power = models.BooleanField()
 
     class Meta:
         pass
