@@ -26,6 +26,3 @@ django-crispy-forms
 crispy-bootstrap5
 pandas
 fontawesomefree==6.2.1
-
-django-inlineedit
-django-ckeditor==6.5.1
