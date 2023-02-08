@@ -19,6 +19,8 @@
             <div class="col-sm-6">
                 <fieldset class="form-group">
                     <form action="" method="post">
+                      <input type="hidden" name="job_nr" value="{{ job_nr }}">
+                      <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
                       {% csrf_token %}
                       {{ form.projectID }}
                       {% if error_message %}
@@ -93,13 +95,13 @@
               </tr>
             </thead>
             <!-- table body -->
+            <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="job_nr" value="{{ job_nr }}">
+            <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
             <tbody>
               {% for form in formset %}
                 <tr>
-                  <form method="post" action="channel_list_inputs/{{ form.id }}/update/">
-                    {% csrf_token %}
-                    <input type="hidden" name="job_nr" value="{{ job_nr }}">
-                    <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
                   <td>{{ form.console_channel }}</td>
                   <td>{{ form.stage_input }}</td>
                   <td>{{ form.instrument }}</td>
@@ -108,11 +110,11 @@
                   <td>{{ form.musician }}</td>
                   <td>{{ form.notes }}</td>
                   <td>
-                    <button type="submit" class="btn btn-primary" name="channel_list_input_pk" value="{{ form.instance.pk }}">Update</button>
-                  </form>
+                    <button type="submit" class="btn btn-primary" name="channel_list_input_pk" value="{{ form.instance.pk }}">Update</button>                 
                   </td>
                 </tr>
               {% endfor %}
+            </form>
             </tbody>
           </table>
         </form>

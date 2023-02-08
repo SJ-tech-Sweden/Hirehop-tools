@@ -184,10 +184,9 @@ def edit_channellist(request):
         else:
             messages.error(request, 'Form data is not valid.')
     else:
-        form = ChannelListsForm(instance=channel_lists_obj)
+        form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
 
     return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset': formset})
-
 
 
 @login_required
