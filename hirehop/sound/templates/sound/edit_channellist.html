@@ -96,7 +96,7 @@
                   <td>{{ form.stage_input }}</td>
                   <td>{{ form.console_channel }}</td>
                   <td>{{ form.mic_di }}</td>
-                  <td><a href="{% url 'sound_channel_list_inputs_update' form.instance.pk %}">Edit</a></td>
+                  <td><a class="btn btn-primary" href="{% url 'sound_channel_list_inputs_update' form.instance.pk %}?job_nr={{ job_nr }}&channel_list_ID={{ channel_list_ID }}" role="button">Update</a></td>
                 </tr>
               {% endfor %}
             </tbody>
