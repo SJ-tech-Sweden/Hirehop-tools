@@ -88,20 +88,15 @@
               </tr>
             </thead>
             <tbody>
-              {% for channel_list_input in channel_list_inputs %}
+              {% for form in forms %}
                 <tr>
-                  <form method="post" action="{% url 'sound_channel_list_inputs_update' channel_list_input.pk  %}">
-                    {% csrf_token %}
-                    <td>{{ channel_list_input.musician }}</td>
-                    <td>{{ channel_list_input.notes }}</td>
-                    <td>{{ channel_list_input.instrument }}</td>
-                    <td>{{ channel_list_input.stage_input }}</td>
-                    <td>{{ channel_list_input.console_channel }}</td>
-                    <td>{{ channel_list_input.mic_di }}</td>
-                    <td>
-                      <button type="submit">Save</button>
-                    </td>
-                  </form>
+                  <td>{{ form.musician }}</td>
+                  <td>{{ form.notes }}</td>
+                  <td>{{ form.instrument }}</td>
+                  <td>{{ form.stage_input }}</td>
+                  <td>{{ form.console_channel }}</td>
+                  <td>{{ form.mic_di }}</td>
+                  <td><a href="{% url 'sound_channel_list_inputs_update' form.instance.pk %}">Edit</a></td>
                 </tr>
               {% endfor %}
             </tbody>

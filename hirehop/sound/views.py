@@ -159,38 +159,34 @@ def edit_channellist(request):
     channel_list_ID = request.GET.get('channel_list', '')
 
     job = get_job_data(request, job_nr)
-    
-    #messages.info(request, job)
 
     channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
 
     channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID)
 
+    ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0)
+    formset = ChannelListInputFormSet(queryset=channel_list_inputs)
 
     logging.info('Edit channellist')
 
     form = ChannelListsForm(initial={'projectID': job_nr})
 
-    #If there is a POST-request
     if request.method == 'POST':
         form = ChannelListsForm(request.POST, instance=channel_lists_obj)
-        #Check if form is valid
-        if form.is_valid():
-            form.save()
-            return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
+        formset = ChannelListInputFormSet(request.POST)
 
-            #Update the page
-            return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form})
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            instances = formset.save()
+            return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
         else:
-            #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
-            messages.error(request, 'This shouldnt be able to happen...')
+            messages.error(request, 'Form data is not valid.')
     else:
         form = ChannelListsForm(instance=channel_lists_obj)
-    #Before any POST-action render the page from this template
+
+    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset': formset})
 
 
-    #Render page
-    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, "channel_list_inputs": channel_list_inputs, "channel_list_input_form": ChannelListInputForm})
 
 @login_required
 def channel_list_input_update(request, pk, job_nr, channel_list_ID):
