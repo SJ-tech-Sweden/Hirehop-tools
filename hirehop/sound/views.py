@@ -167,7 +167,7 @@ def edit_channellist(request):
     channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID).order_by('console_channel')
 
     ChannelListInputFormSet = forms.formset_factory(ChannelListInputForm, extra=1)
-    formset = ChannelListInputFormSet
+    formset = ChannelListInputFormSet(queryset=channel_list_inputs)
 
 
     logging.info('Edit channellist')
@@ -176,7 +176,7 @@ def edit_channellist(request):
         form_identifier = request.POST.get('form_identifier', '')
         if form_identifier == "ChannelListInputForm":
             # Update channel_list_input data
-            form = ChannelListInputForm(request.POST, instance=channel_list_inputs)
+            form = ChannelListInputForm(request.POST, queryset=channel_list_inputs)
             if form.is_valid():
                 form.save()
                 return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
