@@ -165,16 +165,15 @@ def edit_channellist(request):
 
     channel_lists_obj = get_object_or_404(channel_lists, ID=channel_list_ID)
     channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID).order_by('console_channel')
-
-    ChannelListInputFormSet = forms.formset_factory(ChannelListInputForm, extra=1)
+    ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0)
     formset = ChannelListInputFormSet(queryset=channel_list_inputs)
+
 
 
     logging.info('Edit channellist')
 
     if request.method == 'POST':
-        form_identifier = request.POST.get('form_identifier', '')
-        if form_identifier == "ChannelListInputForm":
+        if 'submit_channel_list_input_pk' in request.POST:
             # Update channel_list_input data
             form = ChannelListInputForm(request.POST, queryset=channel_list_inputs)
             if form.is_valid():
@@ -183,7 +182,6 @@ def edit_channellist(request):
         else:
             # Update channel_lists data
             form = ChannelListsForm(request.POST, instance=channel_lists_obj)
-            formset = ChannelListInputFormSet(request.POST)
 
             if form.is_valid() and formset.is_valid():
                 form.save()

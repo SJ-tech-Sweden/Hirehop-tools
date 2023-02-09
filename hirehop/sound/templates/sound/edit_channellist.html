@@ -46,7 +46,7 @@
                             
                         </div>
                       </div>
-                        <button type="submit" class="btn btn-primary" id="btnSubmit">Update</button>
+                        <button type="submit" name="submit_channel_list" class="btn btn-primary" id="btnSubmit">Update</button>
                     </fieldset>
                     </form>
               </div>
@@ -113,7 +113,7 @@
                   <td>{{ form.musician }}</td>
                   <td>{{ form.notes }}</td>
                   <td>
-                    <button type="submit" class="btn btn-primary" name="channel_list_input_pk" value="{{ form.instance.pk }}">Update</button>                 
+                    <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form.instance.pk }}">Update</button>                 
                   </td>
                 </tr>
               {% endfor %}
