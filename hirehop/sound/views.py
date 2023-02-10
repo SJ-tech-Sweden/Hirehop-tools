@@ -178,7 +178,6 @@ def edit_channellist(request):
         form = ChannelListsForm(request.POST, instance=channel_lists_obj)
 
         if 'submit_channel_list_input_pk' in request.POST:
-            channel_list_input_obj = get_object_or_404(channel_list_input, pk=request.POST.get('pk'))
             # Update channel_list_input data
             messages.info(request, 'Updating Channellist input')
             if formset.is_valid():
