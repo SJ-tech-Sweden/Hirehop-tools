@@ -19,11 +19,10 @@
             <div class="col-sm-6">
                 <fieldset class="form-group">
                     <form action="" method="post">
-                      <input type="hidden" name="job_nr" value="{{ job_nr }}">
-                      <input type="hidden" name="projectID" value="{{ job_nr }}">
-                      <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
+
                       {% csrf_token %}
                       {{ form.projectID }}
+                      {{ form.ID }}
                       {{ form.form_identifier }}
                       {% if error_message %}
                       <p class="text-danger text-center">{{ error_message }}</p>
