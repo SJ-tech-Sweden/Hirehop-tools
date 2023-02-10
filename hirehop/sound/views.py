@@ -179,17 +179,19 @@ def edit_channellist(request):
         formset = ChannelListInputFormSet(request.POST)
         if 'submit_channel_list_input_pk' in request.POST:
             # Update channel_list_input data
+            messages.info(request, 'Updating Channellist input')
             form = ChannelListInputForm(request.POST, queryset=channel_list_inputs)
-            if form.is_valid():
-                form.save()
+            if formset.is_valid():
+                formset.save()
                 return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
         else:
             # Update channel_lists data
+            messages.info(request, 'Updating Channellist data')
             form = ChannelListsForm(request.POST, instance=channel_lists_obj)
 
             if form.is_valid() and formset.is_valid():
                 form.save()
-                instances = formset.save()
+
                 return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
             else:
                 messages.error(request, 'Form data is not valid.')
