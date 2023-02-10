@@ -176,14 +176,13 @@ def edit_channellist(request):
 
     if request.method == 'POST':
         form = ChannelListsForm(request.POST, instance=channel_lists_obj)
-        formset = ChannelListInputFormSet(request.POST)
+
         if 'submit_channel_list_input_pk' in request.POST:
             channel_list_input_obj = get_object_or_404(channel_list_input, pk=request.POST.get('pk'))
             # Update channel_list_input data
             messages.info(request, 'Updating Channellist input')
-            form = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
-            if form.is_valid():
-                form.save()
+            if formset.is_valid():
+                formset.save()
                 return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
         else:
             # Update channel_lists data
