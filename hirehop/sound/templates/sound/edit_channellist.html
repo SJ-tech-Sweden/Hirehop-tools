@@ -102,14 +102,14 @@
             <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
             <tbody>
               {% for form_input in formset %}
-                <tr>{{ form.ID }}
-                  <td>{{ form.console_channel }}</td>
-                  <td>{{ form.stage_input }}</td>
-                  <td>{{ form.instrument }}</td>
-                  <td>{{ form.mic_di }}</td>
+                <tr>{{ form_input.ID }}
+                  <td>{{ form_input.console_channel }}</td>
+                  <td>{{ form_input.stage_input }}</td>
+                  <td>{{ form_input.instrument }}</td>
+                  <td>{{ form_input.mic_di }}</td>
                   <td></td>
-                  <td>{{ form.musician }}</td>
-                  <td>{{ form.notes }}</td>
+                  <td>{{ form_input.musician }}</td>
+                  <td>{{ form_input.notes }}</td>
                   <td>
                     <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form.instance.pk }}">Update</button>                 
                   </td>
