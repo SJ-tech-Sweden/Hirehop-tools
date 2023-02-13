@@ -133,7 +133,7 @@ class ChannelListsForm(ModelForm):
 
 
 class ChannelListInputForm(forms.ModelForm):
-    form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListInputForm")
+    #form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListInputForm")
     musician = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
