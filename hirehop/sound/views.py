@@ -180,13 +180,15 @@ def edit_channellist(request):
         if 'submit_channel_list_input_pk' in request.POST:
             # Update channel_list_input data
             messages.info(request, 'Updating Channellist input')
-            messages.info(request, formset.cleaned_data)
+            
             if formset.is_valid():
+                messages.info(request, formset.cleaned_data)
                 formset.save()
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
 
             else:
                 messages.error(request, 'Form data is not valid.')
+                messages.error(request, formset.data)
                 for field, errors in formset.errors.items():
                     for error in errors:
                         messages.info(request, "{}: {}".format(field, error))
@@ -194,13 +196,15 @@ def edit_channellist(request):
             # Update channel_lists data
             messages.info(request, 'Updating Channellist data')
             form = ChannelListsForm(request.POST, instance=channel_lists_obj)
-            messages.info(request, form.cleaned_data)
+            
             if form.is_valid():
+                messages.info(request, form.cleaned_data)
                 form.save()
 
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             else:
                 messages.error(request, 'Form data is not valid.')
+                messages.error(request, form.data)
                 for field, errors in form.errors.items():
                     for error in errors:
                         messages.info(request, "{}: {}".format(field, error))
