@@ -164,6 +164,8 @@ def edit_channellist(request):
 
     ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0)
     formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+    form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
+
 
 
 
