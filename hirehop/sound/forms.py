@@ -107,10 +107,10 @@ def get_mics():
     return mics_result
 
 class ChannelListsForm(ModelForm):
-    form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListForm")
+    #form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListForm")
     Name = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     projectID = forms.CharField(widget=forms.HiddenInput)
-    ID = forms.CharField(widget=forms.HiddenInput)
+    #ID = forms.CharField(widget=forms.HiddenInput)
     mixerID = forms.ChoiceField(choices=(get_mixers()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
 
     class Meta:
