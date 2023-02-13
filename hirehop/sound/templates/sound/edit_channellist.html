@@ -98,8 +98,8 @@
             <!-- table body -->
             <form method="post">
             {% csrf_token %}
-            <input type="hidden" name="job_nr" value="{{ job_nr }}">
-            <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
+            <input type="hidden" name="job_nr" value="{{ job }}">
+            <input type="hidden" name="channel_list_ID" value="{{ channel_list }}">
             <tbody>
               {% for form_input in formset %}
                 <tr>{{ form_input.ID }}{{ form_input.ChannelListInputForm }}
