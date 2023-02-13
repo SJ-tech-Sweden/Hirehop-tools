@@ -170,10 +170,11 @@ def edit_channellist(request):
     logging.info('Edit channellist')
 
     if request.method == 'POST':
-        form = ChannelListsForm(request.POST, instance=channel_lists_obj)
+        
 
         if 'submit_channel_list_input_pk' in request.POST:
             # Update channel_list_input data
+            formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
             messages.info(request, 'Updating Channellist input')
             
             if formset.is_valid():
