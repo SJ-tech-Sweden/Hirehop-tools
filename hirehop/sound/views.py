@@ -188,6 +188,7 @@ def edit_channellist(request):
                 messages.error(request, 'Form data is not valid.')
                 messages.error(request, formset.data)
                 messages.error(request, formset.errors)
+                messages.error(request, form.errors)
                 #for field, errors in formset.errors.items():
                     #for error in errors:
                         #messages.info(request, "{}: {}".format(field, error))
