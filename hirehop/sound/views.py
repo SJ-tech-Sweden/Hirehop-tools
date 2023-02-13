@@ -189,9 +189,9 @@ def edit_channellist(request):
             else:
                 messages.error(request, 'Form data is not valid.')
                 messages.error(request, formset.data)
-                for field, errors in formset.errors.items():
-                    for error in errors:
-                        messages.info(request, "{}: {}".format(field, error))
+                #for field, errors in formset.errors.items():
+                    #for error in errors:
+                        #messages.info(request, "{}: {}".format(field, error))
         else:
             # Update channel_lists data
             messages.info(request, 'Updating Channellist data')
