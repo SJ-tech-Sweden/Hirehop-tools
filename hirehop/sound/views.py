@@ -184,6 +184,12 @@ def edit_channellist(request):
             if formset.is_valid():
                 formset.save()
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
+
+            else:
+                messages.error(request, 'Form data is not valid.')
+                for field, errors in formset.errors.items():
+                    for error in errors:
+                        messages.info(request, "{}: {}".format(field, error))
         else:
             # Update channel_lists data
             messages.info(request, 'Updating Channellist data')
@@ -195,6 +201,9 @@ def edit_channellist(request):
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             else:
                 messages.error(request, 'Form data is not valid.')
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.info(request, "{}: {}".format(field, error))
     else:
         # Display the forms
         form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
