@@ -44,14 +44,9 @@ def add_equipment(request, job_nr, id):
 
     #messages.info(request, response.text)
 
-    mixer = json.loads(response.text)['items']['itms']
+    device = json.loads(response.text)['items']['itms']
 
-    inputs = mixer[0]['CUSTOM_FIELDS']['inputs']['value']
-    outputs = mixer[0]['CUSTOM_FIELDS']['outputs']['value']
-
-    #messages.info(request, "Inputs: {} - Outputs: {}".format(inputs, outputs))
-
-    return mixer
+    return device
 
 def get_job_data(request, job_nr):
     url = "https://myhirehop.com/api/job_data.php?token={}&job={}".format(api_token, job_nr)
