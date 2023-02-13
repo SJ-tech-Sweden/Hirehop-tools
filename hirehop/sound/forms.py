@@ -107,6 +107,7 @@ def get_mics():
     return mics_result
 
 class ChannelListsForm(ModelForm):
+    ChannelListForm = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     #form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListForm")
     Name = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     projectID = forms.CharField(widget=forms.HiddenInput)
@@ -134,6 +135,7 @@ class ChannelListsForm(ModelForm):
 
 class ChannelListInputForm(forms.ModelForm):
     #form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListInputForm")
+    ChannelListInputForm = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     musician = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))

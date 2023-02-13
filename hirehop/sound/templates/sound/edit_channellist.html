@@ -23,7 +23,7 @@
                       {% csrf_token %}
                       {{ form.projectID }}
                       {{ form.ID }}
-                      {{ form.form_identifier }}
+                      {{ form_input.ChannelListForm }}
                       {% if error_message %}
                       <p class="text-danger text-center">{{ error_message }}</p>
                       {% endif %}
@@ -102,7 +102,7 @@
             <input type="hidden" name="channel_list_ID" value="{{ channel_list_ID }}">
             <tbody>
               {% for form_input in formset %}
-                <tr>{{ form_input.ID }}
+                <tr>{{ form_input.ID }}{{ form_input.ChannelListInputForm }}
                   <td>{{ form_input.console_channel }}</td>
                   <td>{{ form_input.stage_input }}</td>
                   <td>{{ form_input.instrument }}</td>
