@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404
 from django import forms
 from django.forms.models import model_to_dict
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 import yaml
@@ -175,19 +177,20 @@ def edit_channellist(request):
         
 
         if 'submit_channel_list_input_pk' in request.POST:
-            # Update channel_list_input data
-            formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+            pk = request.POST['submit_channel_list_input_pk']
+            channel_list_input_obj = get_object_or_404(channel_list_input, pk=pk)
+            form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
             messages.info(request, 'Updating Channellist input')
-            
-            if formset.is_valid():
-                messages.info(request, formset.cleaned_data)
-                formset.save()
+                    
+            if form_input.is_valid():
+                form_input.save()
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
-
+            
             else:
                 messages.error(request, 'Form data is not valid.')
                 messages.error(request, formset.data)
                 messages.error(request, formset.errors)
+                messages.error(request, form_input.errors)
                 messages.error(request, form.errors)
                 #for field, errors in formset.errors.items():
                     #for error in errors:
@@ -228,3 +231,28 @@ def channel_list_input_update(request, pk):
         form = ChannelListInputForm(instance=channel_list_input_obj)
         messages.warning(request, 'Request type not POST')
     return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
+
+@csrf_exempt
+def update_record(request, record_id):
+  record = get_object_or_404(channel_list_input, pk=record_id)
+
+  if request.method == 'POST':
+    form = ChannelListInputForm(request.POST, instance=record)
+
+    if form.is_valid():
+      form.save()
+
+      # Return the updated record data (in HTML format)
+      return JsonResponse({
+        'console_channel': record.console_channel,
+        'stage_input': record.stage_input,
+        'instrument': record.instrument,
+        'mic_di': record.mic_di,
+        'musician': record.musician,
+        'notes': record.notes
+      })
+
+  # Return an error response if the form is not valid
+  return JsonResponse({
+    'error': 'Invalid form data'
+  })

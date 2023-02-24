@@ -143,6 +143,7 @@ class ChannelListInputForm(forms.ModelForm):
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     channel_list = forms.CharField(widget=forms.HiddenInput)
+    id = forms.IntegerField(widget=forms.HiddenInput, required=False)
     
 
     class Meta:
@@ -155,4 +156,5 @@ class ChannelListInputForm(forms.ModelForm):
             "musician",
             "notes",
             "channel_list",
+            "id",
         ]
