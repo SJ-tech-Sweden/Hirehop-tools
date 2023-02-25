@@ -221,3 +221,4 @@ hirehop/sound/migrations/0001_initial.py
 hirehop/sound/migrations/0002_channel_lists_mixerid_and_more.py
 hirehop/sound/migrations/0003_channel_list_input_channel_list_output_and_more.py
 hirehop/sound/migrations/0004_channel_list_input_phantom_power.py
+hirehop/update_without_git.sh

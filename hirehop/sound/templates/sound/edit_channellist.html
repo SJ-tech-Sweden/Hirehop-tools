@@ -102,12 +102,12 @@
             <input type="hidden" name="channel_list_ID" value="{{ channel_list }}">
             <tbody>
               {% for form_input in formset %}
-                <tr>{{ form_input.id }}{{ form_input.ChannelListInputForm }}
+                <tr>{{ form_input.id }}
                   <td>{{ form_input.console_channel }}</td>
                   <td>{{ form_input.stage_input }}</td>
                   <td>{{ form_input.instrument }}</td>
                   <td>{{ form_input.mic_di }}</td>
-                  <td></td>
+                  <td>{{ form_input.phantom_power }}</td>
                   <td>{{ form_input.musician }}</td>
                   <td>{{ form_input.notes }}</td>
                   <td>
