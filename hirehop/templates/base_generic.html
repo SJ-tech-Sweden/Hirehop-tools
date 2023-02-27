@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0 minimal-ui"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Hirehop-Tools {{ APPTITLE }}</title>
+        <!-- Adding CSS and Javascript for bootstrap 5 -->
+        {% load bootstrap5 %}
+
+        {% bootstrap_css %}
+        
+        {% bootstrap_javascript %}
+
+    </head>
+    <body>
+                <!-- Adding Messages -->
+                <div class="container" id="container">
+                    <div id="banner" class="page-header">
+                        <h1>{% block title %}{{ APPTITLE }}{% endblock %}</h1>
+                    </div>
+                        <div class="messages">
+                            {% bootstrap_messages %}
+                        </div>
+        
+                    {% block content %}{% endblock %}
+                </div>
+            </body>
+        </html>
