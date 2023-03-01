@@ -21,10 +21,7 @@
     {% csrf_token %}
     <div class="form-group">
       <div class="mb-3">
-        <label for="{{ form.username  }}" class="col-sm-4">Username:</label>
-          <div class="col-sm-20">
-              {{ form.username  | as_crispy_field }}
-          </div>
+        {{ form.username  | as_crispy_field }}
       </div>
       <div class="mb-3">
         {{ form.password | as_crispy_field }}
