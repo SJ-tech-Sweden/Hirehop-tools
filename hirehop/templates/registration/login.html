@@ -20,11 +20,11 @@
     <div class="form-group">
       <div class="mb-3">
         {{ form.username.label_tag }}
-        {{ form.username|add_class:"form-control" }}
+        {% render_field form.username class+="form-control" %}
       </div>
       <div class="mb-3">
         {{ form.password.label_tag }}
-        {{ form.password|add_class:"form-control" }}
+        {% render_field form.password class+="form-control" %}
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
