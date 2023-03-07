@@ -81,6 +81,10 @@
         </div>
 
         
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="job_nr" value="{{ job }}">
+          <input type="hidden" name="channel_list_ID" value="{{ channel_list }}">
           <table class="table table-striped table-hover">
             <!-- table header -->
             <thead>
@@ -96,13 +100,9 @@
               </tr>
             </thead>
             <!-- table body -->
-            <form method="post">
-            {% csrf_token %}
-            <input type="hidden" name="job_nr" value="{{ job }}">
-            <input type="hidden" name="channel_list_ID" value="{{ channel_list }}">
             <tbody>
               {% for form_input in formset %}
-                <tr>{{ form_input.id }}
+                <tr>
                   <td>{{ form_input.console_channel }}</td>
                   <td>{{ form_input.stage_input }}</td>
                   <td>{{ form_input.instrument }}</td>
@@ -111,14 +111,15 @@
                   <td>{{ form_input.musician }}</td>
                   <td>{{ form_input.notes }}</td>
                   <td>
-                    <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form_input.instance.pk }}">Update</button>                 
+                    <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form_input.instance.pk }}">Update</button>
                   </td>
                 </tr>
               {% endfor %}
-            </form>
             </tbody>
           </table>
         </form>
+        
+
         
           
 
