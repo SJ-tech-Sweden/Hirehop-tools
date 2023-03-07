@@ -184,6 +184,7 @@ def edit_channellist(request):
             messages.error(request, channel_list_input_obj.__dict__)
             #form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
             form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj, prefix="form-{}".format(pk))
+            messages.info(request, pk)
             messages.error(request, form_input)
             messages.error(request, request.POST)
             messages.error(request, 'Formset: {}'.format(formset))
