@@ -164,9 +164,9 @@ def edit_channellist(request):
 
     channel_list_inputs = channel_list_input.objects.filter(channel_list=channel_list_ID).order_by('console_channel')
 
-    #ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0)
-    #formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
-    formset = ChannelListInputForm(request.POST or None, job_nr=job, channel_list_ID=channel_list_ID)
+    ChannelListInputFormSet = forms.modelformset_factory(channel_list_input, form=ChannelListInputForm, extra=0, can_delete=True)
+    formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+    #formset = ChannelListInputForm(request.POST or None, job_nr=job, channel_list_ID=channel_list_ID)
     form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
 
 
@@ -179,6 +179,7 @@ def edit_channellist(request):
 
         if 'submit_channel_list_input_pk' in request.POST:
             pk = request.POST['submit_channel_list_input_pk']
+            formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
             channel_list_input_obj = get_object_or_404(channel_list_input, ID=pk)
             messages.error(request, channel_list_input_obj.__dict__)
             form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
