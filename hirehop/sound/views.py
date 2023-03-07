@@ -183,6 +183,8 @@ def edit_channellist(request):
             form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
             messages.error(request, form_input)
             messages.error(request, request.POST)
+            messages.error(request, 'Formset: {}'.format(formset))
+
             messages.info(request, 'Updating Channellist input')
             
             
