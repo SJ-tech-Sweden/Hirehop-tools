@@ -184,6 +184,8 @@ def edit_channellist(request):
             messages.error(request, form_input)
             messages.error(request, request.POST)
             messages.error(request, 'Formset: {}'.format(formset))
+            for formset_item in formset:
+                messages.error(request, 'Form: {} --- {}'.format(formset_item, formset_item.instance))
 
             messages.info(request, 'Updating Channellist input')
             
