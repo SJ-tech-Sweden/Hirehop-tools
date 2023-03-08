@@ -173,7 +173,7 @@ def edit_channellist(request):
 
     # set prefix for each form in the queryset
     for i, channel_list_input_obj in enumerate(channel_list_inputs):
-        channel_list_inputs[i].prefix = "form-{}".format(channel_list_input_obj.ID)
+        channel_list_inputs[i].prefix = "{}".format(channel_list_input_obj.pk)
 
     formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
     #formset = ChannelListInputForm(request.POST or None, job_nr=job, channel_list_ID=channel_list_ID)
