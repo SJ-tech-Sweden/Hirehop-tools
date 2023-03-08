@@ -241,21 +241,3 @@ def edit_channellist(request):
 
     return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset': formset, 'channel_list': channel_list_ID})
 
-
-
-@login_required
-def channel_list_input_update(request, pk):
-    job_nr = request.GET.get('job', '')
-    channel_list_ID = request.GET.get('channel_list', '')
-    channel_list_input_obj = get_object_or_404(channel_list_input, pk=pk)
-    if request.method == 'POST':
-        form = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
-        if form.is_valid():
-            form.save()
-            return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
-    else:
-        form = ChannelListInputForm(instance=channel_list_input_obj)
-        messages.warning(request, 'Request type not POST')
-    return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
-
-
