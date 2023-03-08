@@ -103,14 +103,20 @@
             <tbody>
               {% for form_input in formset %}
                 <tr>
-                  <td>{{ form_input.console_channel }}</td>
-                  <td>{{ form_input.stage_input }}</td>
-                  <td>{{ form_input.instrument }}</td>
-                  <td>{{ form_input.mic_di }}</td>
-                  <td>{{ form_input.phantom_power }}</td>
-                  <td>{{ form_input.musician }}</td>
-                  <td>{{ form_input.notes }}</td>
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-console_channel" value="{{ form_input.console_channel.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-stage_input" value="{{ form_input.stage_input.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-instrument" value="{{ form_input.instrument.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-mic_di" value="{{ form_input.mic_di.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-phantom_power" value="{{ form_input.phantom_power.value }}" class="form-control"></td>
+                  
                   <td><input type="text" name="form-{{form_input.instance.pk}}-musician" value="{{ form_input.musician.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-notes" value="{{ form_input.notes.value }}" class="form-control"></td>
+                  
                   <td>
                     <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form_input.instance.pk }}">Update</button>
                   </td>
