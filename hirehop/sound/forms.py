@@ -142,7 +142,7 @@ class ChannelListInputForm(forms.ModelForm):
     stage_input = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
-    channel_list = forms.CharField(widget=forms.HiddenInput)
+    #channel_list = forms.CharField(widget=forms.HiddenInput)
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
     phantom_power = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     

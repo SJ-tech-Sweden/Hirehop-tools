@@ -104,7 +104,7 @@
               {% for form_input in formset %}
                 <tr>
 
-                  <input type="hidden" name="form-{{form_input.instance.pk}}-channel_list" value="{{ form_input.channel_list.id }}">
+                  <!--<input type="hidden" name="form-{{form_input.instance.pk}}-channel_list" value="{{ form_input.channel_list.id }}"> -->
                   <td><input type="text" name="form-{{form_input.instance.pk}}-console_channel" value="{{ form_input.console_channel.value }}" class="form-control"></td>
                   
                   <td><input type="text" name="form-{{form_input.instance.pk}}-stage_input" value="{{ form_input.stage_input.value }}" class="form-control"></td>
