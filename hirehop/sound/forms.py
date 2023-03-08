@@ -144,7 +144,7 @@ class ChannelListInputForm(forms.ModelForm):
     mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     #channel_list = forms.CharField(widget=forms.HiddenInput)
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    phantom_power = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
+    phantom_power = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     
 
     class Meta:
