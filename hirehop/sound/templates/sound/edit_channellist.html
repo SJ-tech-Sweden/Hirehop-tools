@@ -120,8 +120,9 @@
                   </td>
                   
                   <td>
+                    {{ form_input.phantom_power }}
                     <div class="form-check form-switch">
-                      {{ form_input.phantom_power }}
+                      
                       <input type="checkbox" role="switch" name="form-{{form_input.instance.pk}}-phantom_power" value="{{ form_input.phantom_power.value }}" class="form-check-input">
                     </div>
                   </td>
