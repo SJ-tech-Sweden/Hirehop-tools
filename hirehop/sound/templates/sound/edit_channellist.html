@@ -116,7 +116,7 @@
                     <select name="form-{{form_input.instance.pk}}-mic_di" class="form-select">
                       <option>Mic/DI</option>
                       {% for choice in form_input.mic_di.field.choices %}
-                        <option value="{{ choice.0 }}" {% if choice.0 == form_input.mic_di.value %}selected{% endif %}>{{ choice.1 }}</option>
+                        <option value="{{ choice.0 }}" {% if choice.0 == form_input.mic_di.value %}selected{% endif %}>{% if choice.0 == form_input.mic_di.value %}selected{% endif %}{{ choice.1 }}</option>
                       {% endfor %}
                     </select>
                   </td>
