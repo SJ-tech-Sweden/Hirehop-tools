@@ -122,7 +122,7 @@
                   <td>
                     <div class="form-check form-switch">
                       
-                      <input type="checkbox" role="switch" name="form-{{form_input.instance.pk}}-phantom_power" class="form-check-input" {% if form_input.phantom_power.value  %}checked{% endif %}>
+                      <input type="checkbox" role="switch" name="form-{{form_input.instance.pk}}-phantom_power" class="form-check-input" aria-label="Phantom power on or off" {% if form_input.phantom_power.value  %}checked{% endif %}>
                     </div>
                   </td>
                   
