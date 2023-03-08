@@ -258,27 +258,4 @@ def channel_list_input_update(request, pk):
         messages.warning(request, 'Request type not POST')
     return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
 
-@csrf_exempt
-def update_record(request, record_id):
-  record = get_object_or_404(channel_list_input, pk=record_id)
 
-  if request.method == 'POST':
-    form = ChannelListInputForm(request.POST, instance=record)
-
-    if form.is_valid():
-      form.save()
-
-      # Return the updated record data (in HTML format)
-      return JsonResponse({
-        'console_channel': record.console_channel,
-        'stage_input': record.stage_input,
-        'instrument': record.instrument,
-        'mic_di': record.mic_di,
-        'musician': record.musician,
-        'notes': record.notes
-      })
-
-  # Return an error response if the form is not valid
-  return JsonResponse({
-    'error': 'Invalid form data'
-  })
