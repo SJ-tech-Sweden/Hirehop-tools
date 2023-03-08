@@ -201,13 +201,14 @@ def edit_channellist(request):
             #for formset_item in formset:
             #    messages.error(request, 'Form: {} --- {}'.format(formset_item, formset_item.instance))
 
-            messages.info(request, 'Updating Channellist input')
+            
             
             
             
 
             if form_input.is_valid():
                 form_input.save()
+                messages.success(request, 'Updating Channellist input')
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             
             else:
