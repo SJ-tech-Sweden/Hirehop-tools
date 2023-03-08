@@ -191,15 +191,15 @@ def edit_channellist(request):
             pk = request.POST['submit_channel_list_input_pk']
             formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
             channel_list_input_obj = get_object_or_404(channel_list_input, ID=pk)
-            messages.error(request, channel_list_input_obj.__dict__)
+            #messages.error(request, channel_list_input_obj.__dict__)
             #form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
             form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj, prefix="form-{}".format(pk))
-            messages.info(request, pk)
-            messages.error(request, form_input)
-            messages.error(request, request.POST)
-            messages.error(request, 'Formset: {}'.format(formset))
-            for formset_item in formset:
-                messages.error(request, 'Form: {} --- {}'.format(formset_item, formset_item.instance))
+            #messages.info(request, pk)
+            #messages.error(request, form_input)
+            #messages.error(request, request.POST)
+            #messages.error(request, 'Formset: {}'.format(formset))
+            #for formset_item in formset:
+            #    messages.error(request, 'Form: {} --- {}'.format(formset_item, formset_item.instance))
 
             messages.info(request, 'Updating Channellist input')
             
