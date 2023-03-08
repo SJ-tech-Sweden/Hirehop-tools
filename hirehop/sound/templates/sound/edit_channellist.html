@@ -112,7 +112,9 @@
                   
                   <td>
                     <select name="form-{{form_input.instance.pk}}-mic_di" value="{{ form_input.mic_di.value }}" class="form-select">
-                      <option value="171">C451EB - kondensator</option>
+                      {% for choice in form_input.mic_di.choices %}
+                        <option value="{{ choice.0 }}" {% if choice.0 == form_input.mic_di.value %}selected{% endif %}>{{ choice.1 }}</option>
+                      {% endfor %}
                     </select>
                   </td>
                   
