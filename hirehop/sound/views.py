@@ -240,3 +240,44 @@ def edit_channellist(request):
 
     return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset': formset, 'channel_list': channel_list_ID})
 
+
+
+@login_required
+def channel_list_input_update(request, pk):
+    job_nr = request.GET.get('job', '')
+    channel_list_ID = request.GET.get('channel_list', '')
+    channel_list_input_obj = get_object_or_404(channel_list_input, pk=pk)
+    if request.method == 'POST':
+        form = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
+        if form.is_valid():
+            form.save()
+            return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
+    else:
+        form = ChannelListInputForm(instance=channel_list_input_obj)
+        messages.warning(request, 'Request type not POST')
+    return redirect('/sound/channellist?channel_list={}&action=edit&job={}'.format(channel_list_ID, job_nr))
+
+@csrf_exempt
+def update_record(request, record_id):
+  record = get_object_or_404(channel_list_input, pk=record_id)
+
+  if request.method == 'POST':
+    form = ChannelListInputForm(request.POST, instance=record)
+
+    if form.is_valid():
+      form.save()
+
+      # Return the updated record data (in HTML format)
+      return JsonResponse({
+        'console_channel': record.console_channel,
+        'stage_input': record.stage_input,
+        'instrument': record.instrument,
+        'mic_di': record.mic_di,
+        'musician': record.musician,
+        'notes': record.notes
+      })
+
+  # Return an error response if the form is not valid
+  return JsonResponse({
+    'error': 'Invalid form data'
+  })
