@@ -62,6 +62,10 @@ def get_mics():
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
+    mic_default = [(0, "Mic/DI")]
+
+    result = mic_default
+
     mics = {}
 
     try:
@@ -74,6 +78,8 @@ def get_mics():
 
 
     mics_result = [(item['id'], item['cell']['TITLE']) for item in mics]
+
+    result += mics_result
 
     url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, di_category)
 
@@ -95,16 +101,12 @@ def get_mics():
 
     di_result = [(item['id'], item['cell']['TITLE']) for item in di]
 
-    
-
-
-
-    mics_result += di_result
+    result += di_result
 
     logging.info('--- Result ---')
-    logging.info(mics_result)
+    logging.info(result)
 
-    return mics_result
+    return result
 
 class ChannelListsForm(ModelForm):
     #ChannelListForm = forms.BooleanField(widget=forms.HiddenInput, initial=True)
