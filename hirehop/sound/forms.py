@@ -156,6 +156,5 @@ class ChannelListInputForm(forms.ModelForm):
             "mic_di",
             "musician",
             "notes",
-            "channel_list",
             "phantom_power",
         ]
