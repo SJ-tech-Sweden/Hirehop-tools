@@ -111,7 +111,9 @@
                   <td><input type="text" name="form-{{form_input.instance.pk}}-instrument" value="{{ form_input.instrument.value }}" class="form-control"></td>
                   
                   <td>
-                    <select name="form-{{form_input.instance.pk}}-mic_di" value="{{ form_input.mic_di.value }}" class="form-select">
+                    {{ form_input.mic_di.value }}
+                    {{ form_input.mic_di.field.choices }}
+                    <select name="form-{{form_input.instance.pk}}-mic_di" class="form-select">
                       <option>Mic/DI</option>
                       {% for choice in form_input.mic_di.field.choices %}
                         <option value="{{ choice.0 }}" {% if choice.0 == form_input.mic_di.value %}selected{% endif %}>{{ choice.1 }}</option>
