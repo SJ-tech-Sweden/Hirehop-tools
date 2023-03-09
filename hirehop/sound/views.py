@@ -210,6 +210,7 @@ def edit_channellist(request):
                 cd = form_input.cleaned_data
                 messages.info(request, job_nr)
                 messages.info(request, cd)
+                messages.info(request, channel_list_input_obj)
                 if cd.get("mic_di") != 0:
                     #add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
                     messages.info(request, "Add mic to hirehop")
