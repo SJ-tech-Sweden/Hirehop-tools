@@ -207,6 +207,10 @@ def edit_channellist(request):
             
 
             if form_input.is_valid():
+                cd = form_input.cleaned_data
+                messages.info(request, cd.get('projectID'))
+                messages.info(request, cd)
+                #add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
                 form_input.save()
                 messages.success(request, 'Updating Channellist input')
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
