@@ -213,7 +213,10 @@ def edit_channellist(request):
                 messages.info(request, channel_list_input_obj.__dict__)
                 messages.info(request, channel_list_input_obj.mic_di)
                 messages.info(request, cd.get("mic_di"))
-                if cd.get("mic_di") != 0 and not channel_list_input_obj.mic_di == cd.get("mic_di"):
+                mic_di = cd.get("mic_di")
+                if not isinstance(mic_di, type(channel_list_input_obj.mic_di)):
+                    mic_di = type(channel_list_input_obj.mic_di)(mic_di)
+                if cd.get("mic_di") != 0 and not channel_list_input_obj.mic_di == mic_di:
                     #add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
                     messages.info(request, channel_list_input_obj.mic_di)
                     messages.info(request, cd.get("mic_di"))
