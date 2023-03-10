@@ -109,7 +109,7 @@
               {% for form_input in formset_input %}
                 <tr>
 
-                  <td><input type="number" name="form-{{form_input.instance.pk}}-console_channel" value="{{ form_input.console_channel.value }}" class="form-control"></td>
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-console_channel" value="{{ form_input.console_channel.value }}" class="form-control"></td>
                   
                   <td><input type="text" name="form-{{form_input.instance.pk}}-stage_input" value="{{ form_input.stage_input.value }}" class="form-control"></td>
                   
@@ -167,7 +167,7 @@
               {% for form_output in formset_output %}
                 <tr>
 
-                  <td><input type="number" name="form-{{form_output.instance.pk}}-console_output" value="{{ form_output.console_output.value }}" class="form-control"></td>
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-console_output" value="{{ form_output.console_output.value }}" class="form-control"></td>
                   
                   <td><input type="text" name="form-{{form_output.instance.pk}}-stage_patch" value="{{ form_output.stage_patch.value }}" class="form-control"></td>
                   
