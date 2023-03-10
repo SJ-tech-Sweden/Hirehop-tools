@@ -26,6 +26,7 @@ USER appuser
 
 
 RUN chmod -R 777 logs/
+RUN chmod -R 777 data/
 
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
