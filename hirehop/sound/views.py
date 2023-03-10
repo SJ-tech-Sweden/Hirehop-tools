@@ -249,8 +249,8 @@ def edit_channellist(request):
                         #messages.info(request, "{}: {}".format(field, error))
         
         elif 'submit_channel_list_output_pk' in request.POST:
-            pk = request.POST['submit_channel_list_input_pk']
-            formset_input = ChannelListOutputFormSet(queryset=channel_list_outputs, data=request.POST or None)
+            pk = request.POST['submit_channel_list_output_pk']
+            formset_output = ChannelListOutputFormSet(queryset=channel_list_outputs, data=request.POST or None)
             channel_list_output_obj = get_object_or_404(channel_list_output, ID=pk)
             #messages.error(request, channel_list_input_obj.__dict__)
             #form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
@@ -269,7 +269,7 @@ def edit_channellist(request):
 
             if form_output.is_valid():
                 cd = form_output.cleaned_data
-                input = channel_list_output.objects.get(ID=pk)
+                output = channel_list_output.objects.get(ID=pk)
                 #messages.info(request, job_nr)
                 #messages.info(request, "Form content - {}".format(cd))
                 #messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))

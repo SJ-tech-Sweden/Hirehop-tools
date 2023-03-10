@@ -179,7 +179,7 @@
                   
                   <td>
                     <select name="form-{{form_output.instance.pk}}-output_type" class="form-select">
-                      {% for choice in form_output.output_types.field.choices %}
+                      {% for choice in form_output.output_type.field.choices %}
                         <option value="{{ choice.0 }}" {% if choice.0|slugify == form_output.output_type.value|slugify %}selected{% endif %}>{{ choice.1 }}</option>
                       {% endfor %}
                     </select>
