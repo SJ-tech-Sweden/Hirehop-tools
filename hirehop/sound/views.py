@@ -190,7 +190,7 @@ def edit_channellist(request):
 
     formset_input = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
 
-    formset_output = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+    formset_output = ChannelListOutputFormSet(queryset=channel_list_outputs, data=request.POST or None)
     #formset = ChannelListInputForm(request.POST or None, job_nr=job, channel_list_ID=channel_list_ID)
     form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
 
