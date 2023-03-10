@@ -72,6 +72,7 @@ class channel_list_output(models.Model):
     channel_list = models.ForeignKey(channel_lists, on_delete=models.CASCADE, default="0")
     created = models.DateTimeField(default=timezone.now, editable=False)
     mix = models.TextField(max_length=100, blank=True, null=True)
+    stage_patch = models.TextField(max_length=100, blank=True, null=True)
 
     class Meta:
         pass
