@@ -252,15 +252,9 @@ def edit_channellist(request):
             pk = request.POST['submit_channel_list_output_pk']
             formset_output = ChannelListOutputFormSet(queryset=channel_list_outputs, data=request.POST or None)
             channel_list_output_obj = get_object_or_404(channel_list_output, ID=pk)
-            #messages.error(request, channel_list_input_obj.__dict__)
-            #form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
+
             form_output = ChannelListOutputForm(request.POST, instance=channel_list_output_obj, prefix="form-{}".format(pk))
-            #messages.info(request, pk)
-            #messages.error(request, form_input)
-            #messages.error(request, request.POST)
-            #messages.error(request, 'Formset: {}'.format(formset))
-            #for formset_item in formset:
-            #    messages.error(request, 'Form: {} --- {}'.format(formset_item, formset_item.instance))
+
 
             
             
@@ -270,11 +264,6 @@ def edit_channellist(request):
             if form_output.is_valid():
                 cd = form_output.cleaned_data
                 output = channel_list_output.objects.get(ID=pk)
-                #messages.info(request, job_nr)
-                #messages.info(request, "Form content - {}".format(cd))
-                #messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))
-                #messages.info(request, "Input - {}".format(input.__dict__))
-                #messages.info(request, cd.get("mic_di"))
                 
                 form_output.save()
                 messages.success(request, 'Updating Channellist output')
@@ -282,14 +271,11 @@ def edit_channellist(request):
             
             else:
                 messages.error(request, 'Form data is not valid.')
-                #messages.error(request, formset.data)
-                #messages.error(request, form_input.data)
+
                 messages.error(request, formset_output.errors)
                 messages.error(request, form_output.errors)
                 messages.error(request, form.errors)
-                #for field, errors in formset.errors.items():
-                    #for error in errors:
-                        #messages.info(request, "{}: {}".format(field, error))
+
 
 
         else:
