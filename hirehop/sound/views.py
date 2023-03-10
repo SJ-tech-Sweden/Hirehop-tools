@@ -230,7 +230,7 @@ def edit_channellist(request):
                 #messages.info(request, "Input - {}".format(input.__dict__))
                 #messages.info(request, cd.get("mic_di"))
                 
-                if cd.get("mic_di") != 0 and not input.mic_di == cd.get("mic_di"):
+                if cd.get("mic_di") != "0" and not input.mic_di == cd.get("mic_di"):
                     add_equipment(request, job_nr, cd.get('mic_di'))
                     messages.info(request, "Add mic to hirehop, if you changed from another mic please delete the old microphone from hirehop")
                 form_input.save()
