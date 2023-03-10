@@ -6,9 +6,9 @@
 
 
 
-  {% if formset.errors %}
-    {{ formset.errors }}
-    <!--{{ formset.non_field_errors }} -->
+  {% if formset_input.errors %}
+    {{ formset_input.errors }}
+    <!--{{ formset_input.non_field_errors }} -->
   {% endif %}
   {% if form.errors %}
     {{ form.errors }}
@@ -106,7 +106,7 @@
             </thead>
             <!-- table body -->
             <tbody>
-              {% for form_input in formset %}
+              {% for form_input in formset_input %}
                 <tr>
 
                   <!--<input type="hidden" name="form-{{form_input.instance.pk}}-channel_list" value="{{ form_input.channel_list.id }}"> -->
@@ -165,37 +165,32 @@
             </thead>
             <!-- table body -->
             <tbody>
-              {% for form_input in formset %}
+              {% for form_output in formset_output %}
                 <tr>
 
-                  <!--<input type="hidden" name="form-{{form_input.instance.pk}}-channel_list" value="{{ form_input.channel_list.id }}"> -->
-                  <td><input type="text" name="form-{{form_input.instance.pk}}-console_channel" value="{{ form_input.console_channel.value }}" class="form-control"></td>
+                  <!--<input type="hidden" name="form-{{form_output.instance.pk}}-channel_list" value="{{ form_output.channel_list.id }}"> -->
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-console_output" value="{{ form_output.console_output.value }}" class="form-control"></td>
                   
-                  <td><input type="text" name="form-{{form_input.instance.pk}}-stage_input" value="{{ form_input.stage_input.value }}" class="form-control"></td>
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-stage_patch" value="{{ form_output.stage_patch.value }}" class="form-control"></td>
                   
-                  <td><input type="text" name="form-{{form_input.instance.pk}}-instrument" value="{{ form_input.instrument.value }}" class="form-control"></td>
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-instrument" value="{{ form_output.instrument.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-person" value="{{ form_output.person.value }}" class="form-control"></td>
                   
                   <td>
-                    <select name="form-{{form_input.instance.pk}}-mic_di" class="form-select">
-                      {% for choice in form_input.mic_di.field.choices %}
-                        <option value="{{ choice.0 }}" {% if choice.0|slugify == form_input.mic_di.value|slugify %}selected{% endif %}>{{ choice.1 }}</option>
+                    <select name="form-{{form_output.instance.pk}}-output_type" class="form-select">
+                      {% for choice in form_output.output_types.field.choices %}
+                        <option value="{{ choice.0 }}" {% if choice.0|slugify == form_output.output_type.value|slugify %}selected{% endif %}>{{ choice.1 }}</option>
                       {% endfor %}
                     </select>
                   </td>
                   
-                  <td>
-                    <div class="form-check form-switch">
-                      
-                      <input type="checkbox" role="switch" name="form-{{form_input.instance.pk}}-phantom_power" class="form-check-input" aria-label="Phantom power on or off" {% if form_input.phantom_power.value  %}checked{% endif %}>
-                    </div>
-                  </td>
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-mix" value="{{ form_output.mix.value }}" class="form-control"></td>
                   
-                  <td><input type="text" name="form-{{form_input.instance.pk}}-musician" value="{{ form_input.musician.value }}" class="form-control"></td>
-                  
-                  <td><input type="text" name="form-{{form_input.instance.pk}}-notes" value="{{ form_input.notes.value }}" class="form-control"></td>
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-notes" value="{{ form_output.notes.value }}" class="form-control"></td>
                   
                   <td>
-                    <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form_input.instance.pk }}">Update</button>
+                    <button type="submit" class="btn btn-primary" name="submit_channel_list_output_pk" value="{{ form_output.instance.pk }}">Update</button>
                   </td>
                 </tr>
               {% endfor %}

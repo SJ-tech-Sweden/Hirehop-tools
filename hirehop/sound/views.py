@@ -15,7 +15,7 @@ import requests
 from urllib.parse import urlencode
 
 from .models import channel_lists, channel_list_input, channel_list_output
-from .forms import ChannelListsForm, ChannelListInputForm
+from .forms import ChannelListsForm, ChannelListInputForm, ChannelListOutputForm
 
 #Logging to a speciefied file
 import logging
@@ -173,11 +173,24 @@ def edit_channellist(request):
         can_delete=True
     )
 
+    ChannelListOutputFormSet = forms.modelformset_factory(
+        channel_list_output,
+        form=ChannelListOutputForm,
+        extra=0,
+        can_delete=True
+    )
+
     # set prefix for each form in the queryset
     for i, channel_list_input_obj in enumerate(channel_list_inputs):
         channel_list_inputs[i].prefix = "{}".format(channel_list_input_obj.pk)
 
-    formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+    # set prefix for each form in the queryset
+    for i, channel_list_output_obj in enumerate(channel_list_outputs):
+        channel_list_outputs[i].prefix = "{}".format(channel_list_output_obj.pk)
+
+    formset_input = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+
+    formset_output = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
     #formset = ChannelListInputForm(request.POST or None, job_nr=job, channel_list_ID=channel_list_ID)
     form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
 
@@ -191,7 +204,7 @@ def edit_channellist(request):
 
         if 'submit_channel_list_input_pk' in request.POST:
             pk = request.POST['submit_channel_list_input_pk']
-            formset = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
+            formset_input = ChannelListInputFormSet(queryset=channel_list_inputs, data=request.POST or None)
             channel_list_input_obj = get_object_or_404(channel_list_input, ID=pk)
             #messages.error(request, channel_list_input_obj.__dict__)
             #form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
@@ -228,12 +241,57 @@ def edit_channellist(request):
                 messages.error(request, 'Form data is not valid.')
                 #messages.error(request, formset.data)
                 #messages.error(request, form_input.data)
-                messages.error(request, formset.errors)
+                messages.error(request, formset_input.errors)
                 messages.error(request, form_input.errors)
                 messages.error(request, form.errors)
                 #for field, errors in formset.errors.items():
                     #for error in errors:
                         #messages.info(request, "{}: {}".format(field, error))
+        
+        elif 'submit_channel_list_output_pk' in request.POST:
+            pk = request.POST['submit_channel_list_input_pk']
+            formset_input = ChannelListOutputFormSet(queryset=channel_list_outputs, data=request.POST or None)
+            channel_list_output_obj = get_object_or_404(channel_list_output, ID=pk)
+            #messages.error(request, channel_list_input_obj.__dict__)
+            #form_input = ChannelListInputForm(request.POST, instance=channel_list_input_obj)
+            form_output = ChannelListOutputForm(request.POST, instance=channel_list_output_obj, prefix="form-{}".format(pk))
+            #messages.info(request, pk)
+            #messages.error(request, form_input)
+            #messages.error(request, request.POST)
+            #messages.error(request, 'Formset: {}'.format(formset))
+            #for formset_item in formset:
+            #    messages.error(request, 'Form: {} --- {}'.format(formset_item, formset_item.instance))
+
+            
+            
+            
+            
+
+            if form_output.is_valid():
+                cd = form_output.cleaned_data
+                input = channel_list_output.objects.get(ID=pk)
+                #messages.info(request, job_nr)
+                #messages.info(request, "Form content - {}".format(cd))
+                #messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))
+                #messages.info(request, "Input - {}".format(input.__dict__))
+                #messages.info(request, cd.get("mic_di"))
+                
+                form_output.save()
+                messages.success(request, 'Updating Channellist output')
+                return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
+            
+            else:
+                messages.error(request, 'Form data is not valid.')
+                #messages.error(request, formset.data)
+                #messages.error(request, form_input.data)
+                messages.error(request, formset_output.errors)
+                messages.error(request, form_output.errors)
+                messages.error(request, form.errors)
+                #for field, errors in formset.errors.items():
+                    #for error in errors:
+                        #messages.info(request, "{}: {}".format(field, error))
+
+
         else:
             # Update channel_lists data
             messages.info(request, 'Updating Channellist data')
@@ -252,5 +310,5 @@ def edit_channellist(request):
         form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
 
 
-    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset': formset, 'channel_list': channel_list_ID})
+    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset_input': formset_input, 'formset_output': formset_output, 'channel_list': channel_list_ID})
 
