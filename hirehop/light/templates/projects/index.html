@@ -1,49 +1,6 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
-{% if jobs %}
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Name</th>
-                    <th>Check out</th>
-                    <th>Check in</th>
-                    <th>Sound</th>
-                    <th>Light</th>
-                    <th>Video</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in jobs %}
-                <tr>
-                    <td>{{ job.cell.NUMBER }}</td>
-                    <td>{{ job.cell.JOB_NAME }}</td>
-                    <td>
-                        <a class="btn btn-primary" href="/scanning/checkout/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
-                            role="button">Check out</a>
-                        </td>
-                    <td>
-                        <a class="btn btn-primary" href="/scanning/checkin/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
-                        role="button">Check in</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="/sound/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
-                        role="button">Sound</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="/light/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
-                        role="button">Light</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary" href="/video/?job={{ job.cell.NUMBER }}&job_name={{ job.cell.JOB_NAME }}"
-                        role="button">Video</a>
-                    </td>
 
-                </tr>
-                {% endfor %}
-            </tbody>
-
-        </table>
     {% endif %}
 
 {% endblock %}

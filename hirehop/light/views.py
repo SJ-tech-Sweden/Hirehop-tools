@@ -22,4 +22,4 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'sound/index.html', {'job': job_nr})
+    return render(request, 'light/index.html', {'job': job_nr})
