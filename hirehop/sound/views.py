@@ -209,16 +209,14 @@ def edit_channellist(request):
             if form_input.is_valid():
                 cd = form_input.cleaned_data
                 input = channel_list_input.objects.get(ID=pk)
-                messages.info(request, job_nr)
-                messages.info(request, "Form content - {}".format(cd))
-                messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))
-                messages.info(request, "Input - {}".format(input.__dict__))
-                messages.info(request, cd.get("mic_di"))
+                #messages.info(request, job_nr)
+                #messages.info(request, "Form content - {}".format(cd))
+                #messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))
+                #messages.info(request, "Input - {}".format(input.__dict__))
+                #messages.info(request, cd.get("mic_di"))
                 
                 if cd.get("mic_di") != 0 and not input.mic_di == cd.get("mic_di"):
-                    #add_equipment(request, cd.get('projectID'), cd.get('mixerID'))
-                    messages.info(request, input.mic_di)
-                    messages.info(request, cd.get("mic_di"))
+                    add_equipment(request, job_nr, cd.get('mic_di'))
                     messages.info(request, "Add mic to hirehop")
                 form_input.save()
                 messages.success(request, 'Updating Channellist input')
