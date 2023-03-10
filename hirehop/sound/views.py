@@ -212,7 +212,7 @@ def edit_channellist(request):
                 messages.info(request, job_nr)
                 messages.info(request, "Form content - {}".format(cd))
                 messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))
-                messages.info(request, "Input - {}".format(input))
+                messages.info(request, "Input - {}".format(input.__dict__))
                 messages.info(request, cd.get("mic_di"))
                 
                 if cd.get("mic_di") != 0 and not channel_list_input_obj.mic_di == cd.get("mic_di"):
