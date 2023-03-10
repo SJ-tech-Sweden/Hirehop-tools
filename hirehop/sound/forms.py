@@ -136,15 +136,12 @@ class ChannelListsForm(ModelForm):
 
 
 class ChannelListInputForm(forms.ModelForm):
-    #form_identifier = forms.CharField(widget=forms.HiddenInput(), initial="ChannelListInputForm")
-    #ChannelListInputForm = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     musician = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     stage_input = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
-    #channel_list = forms.CharField(widget=forms.HiddenInput)
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
     phantom_power = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     
@@ -159,4 +156,36 @@ class ChannelListInputForm(forms.ModelForm):
             "musician",
             "notes",
             "phantom_power",
+        ]
+
+
+class ChannelListOutputForm(forms.ModelForm):
+    output_type_choices = [
+        ('main', 'Main'),
+        ('aux', 'Aux'),
+        ('group', 'Group'),
+        ('matrix', 'Matrix'),
+
+    ]
+
+    person = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    stage_patch = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    console_output = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    output_type = forms.ChoiceField(choices=(output_type_choices), label='', widget=forms.Select(attrs={'class': 'form-select'}))
+    ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    mix = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    
+
+    class Meta:
+        model = channel_list_output
+        fields = [
+            "console_output",
+            "stage_patch",
+            "instrument",
+            "output_type",
+            "person",
+            "notes",
+            "mix",
         ]
