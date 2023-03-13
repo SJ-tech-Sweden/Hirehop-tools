@@ -5,15 +5,15 @@
         {{ form.errors }}
         {{ form.non_field_errors }}
         <div class="container">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                     <legend>
                         <h1>Upload patch file</h1>
                     </legend>
                     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Patch file</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="patch_file" class="form-label">Patch file</label>
+                        <input class="form-control" type="file" id="patch_file">
                       </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary" id=btnSubmit>
