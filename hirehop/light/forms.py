@@ -8,5 +8,5 @@ class lightUploadFile(forms.Form):
     patch_file = forms.FileField(required=False)
 
 class fixture_patch(forms.Form):
-    fixture = forms.CharField()
-    patch = forms.Charfield()
+    fixture = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    patch = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
