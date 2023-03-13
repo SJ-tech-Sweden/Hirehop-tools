@@ -35,6 +35,8 @@ def handle_uploaded_file(f, file_path):
 def index(request):
     job_nr = request.GET.get('job', '')
 
+    fixture_list = []
+
     form = lightUploadFile()
 
     table_sent = False
