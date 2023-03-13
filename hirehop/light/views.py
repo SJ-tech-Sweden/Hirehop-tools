@@ -43,12 +43,16 @@ def index(request):
                     os.mkdir(os.path.join(light_file_upload_path, job_nr))
                 except:
                     pass
-                
-                with open(path_url, 'r') as file:
-                    reader = csv.reader(file)
-                    for row in reader:
-                        # Do something with each row of the CSV file
-                        messages.success(request, row)
+
+                file_name, file_extension = os.path.splitext(request_file.name)
+                if file_extension.lower() == '.csv':
+                    with open(path_url, 'r') as file:
+                        reader = csv.reader(file)
+                        for row in reader:
+                            # Do something with each row of the CSV file
+                            messages.success(request, row)
+                elif file_extension.lower() == '.show.gz':
+                    pass
                 messages.success(request, 'File uploaded')
 
 
