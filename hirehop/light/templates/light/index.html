@@ -40,7 +40,7 @@
                                     <td>{{ fixture.Fixture }}</td>
                                     <td>{{ fixture.Patch }}</td>
                                     <td>
-                                        <input type="text" list="my-datalist" name="hirehop_fixture">
+                                        <input type="text" list="my-datalist" name="hirehop_fixture" value="{{ fixture.Fixture }}">
                                         <datalist id="my-datalist">
                                           {% for light in hirehop_lights %}
                                             <option value="{{ light.value }}">{{ light.display }}</option>
