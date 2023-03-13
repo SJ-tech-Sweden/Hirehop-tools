@@ -15,6 +15,11 @@ import csv
 import json
 import requests
 
+#Logging to a speciefied file
+import logging
+logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
+                    filename='/app/logs/light.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
+
 
 #Open configuration file
 with open('/app/hirehopScanning/config.yaml') as f:
@@ -22,6 +27,7 @@ with open('/app/hirehopScanning/config.yaml') as f:
 
 api_token = config['hirehop']['api_token']
 light_file_upload_path = config['files']['light_path']
+light_category = config['hirehop']['categories']['lights']
 
 
 def handle_uploaded_file(f, file_path):
@@ -29,6 +35,32 @@ def handle_uploaded_file(f, file_path):
         for chunk in f.chunks():
             destination.write(chunk)
 
+def get_lights():
+    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, light_category)
+
+    payload={}
+    headers={}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    lights = {}
+
+    try:
+        lights = json.loads(response.text)['rows']
+    except:
+        lights = {}
+
+    logging.info(lights)
+    logging.info('---------------')
+
+
+    lights_result = [{"display": item['cell']['TITLE'], "value": item['id']} for item in lights]
+
+
+    logging.info('--- Result ---')
+    logging.info(lights_result)
+
+    return lights_result
 
 
 @login_required
@@ -36,6 +68,7 @@ def index(request):
     job_nr = request.GET.get('job', '')
 
     fixture_list = []
+    hirehop_lights = []
 
     form = lightUploadFile()
 
@@ -43,6 +76,7 @@ def index(request):
 
     if request.method == 'POST':
         form = lightUploadFile(request.POST)
+
         if form.is_valid():
             request_file = request.FILES['patch_file'] if 'patch_file' in request.FILES else None
             cd = form.cleaned_data
@@ -77,4 +111,4 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'light/index.html', {'form': form, 'job': job_nr, 'table_sent': table_sent, 'fixtures_list': fixture_list})
+    return render(request, 'light/index.html', {'form': form, 'job': job_nr, 'table_sent': table_sent, 'fixtures_list': fixture_list, 'hirehop_lights': hirehop_lights})
