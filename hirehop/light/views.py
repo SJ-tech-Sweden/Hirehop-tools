@@ -101,7 +101,7 @@ def index(request):
                         fixture_list = []
                         for row in reader:
                             fixture_list.append(row)
-                    messages.success(request, fixture_list)
+                    #messages.success(request, fixture_list)
 
 
                     
@@ -110,6 +110,8 @@ def index(request):
                     pass
                 messages.success(request, 'File uploaded')
                 table_sent = True
+
+        messages.info(request, request.POST.__dict__)
 
 
     #Render index page
