@@ -1,0 +1,22 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+    {{ formset.errors }}
+        {{ formset.non_field_errors }}
+        {{ form.errors }}
+        {{ form.non_field_errors }}
+        <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                    <legend>
+                        <h1>Edit patch and add to hirehop</h1>
+                    </legend>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary" id=btnSubmit>
+                            Upload
+                        </button>
+                    </div>
+
+            </form>
+        </div>
+{% endblock %}
