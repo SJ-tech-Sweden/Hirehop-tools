@@ -85,6 +85,8 @@ def index(request):
 
                 path_url = "{}/{}/{}".format(light_file_upload_path, job_nr, request.FILES['patch_file'].name)
 
+                hirehop_lights = get_lights()
+
                 try:
                     os.mkdir(os.path.join(light_file_upload_path, job_nr))
                 except:
