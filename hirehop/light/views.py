@@ -9,6 +9,7 @@ from .forms import lightUploadFile
 import os
 
 import yaml
+import csv
 import json
 import requests
 
@@ -42,6 +43,13 @@ def index(request):
                     os.mkdir(os.path.join(light_file_upload_path, job_nr))
                 except:
                     pass
+                
+                with open(path_url, 'r') as file:
+                    reader = csv.reader(file)
+                    for row in reader:
+                        # Do something with each row of the CSV file
+                        messages.success(request, row)
+                messages.success(request, 'File uploaded')
 
 
     #Render index page
