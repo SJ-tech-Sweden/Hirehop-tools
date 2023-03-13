@@ -56,11 +56,13 @@ def index(request):
 
                 file_name, file_extension = os.path.splitext(request_file.name)
                 if file_extension.lower() == '.csv':
-                    with open(path_url, 'r') as file:
-                        reader = csv.reader(file)
+                    with open(path_url, 'r') as csvfile:
+                        reader = csv.DictReader(csvfile)
+                        fixture_list = []
                         for row in reader:
-                            # Do something with each row of the CSV file
-                            messages.success(request, row)
+                            fixture_list.append(row)
+                        messages.success(request, fixture_list)
+                        
                 elif file_extension.lower() == '.show.gz':
                     pass
                 messages.success(request, 'File uploaded')
