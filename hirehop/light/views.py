@@ -6,7 +6,7 @@ from django.core.files.storage import FileSystemStorage
 
 from .forms import lightUploadFile
 
-from sound import add_equipment
+#from sound import add_equipment
 
 import os
 
