@@ -57,4 +57,4 @@ def index(request):
 
 
     #Render index page
-    return render(request, 'light/index.html', {'job': job_nr})
+    return render(request, 'light/index.html', {'form': form, 'job': job_nr})
