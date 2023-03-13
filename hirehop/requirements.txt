@@ -21,7 +21,7 @@ requests-toolbelt==0.10.1
 Office365-REST-Python-Client
 soupsieve==2.4
 sqlparse==0.4.3
-urllib3==1.26.14
+urllib3==1.26.15
 django-crispy-forms
 crispy-bootstrap5
 pandas
