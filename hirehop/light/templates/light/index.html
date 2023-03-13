@@ -22,5 +22,33 @@
                     </div>
 
             </form>
+            {% if table_sent %}
+            <div>
+                <form method="post">
+                    {% csrf_token %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fixture</th>
+                                <th>Patch</th>
+                                <th>Hirehop fixture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for fixture in fixtures_list %}
+                                <tr>
+                                    <td>{{ fixture.Fixture }}</td>
+                                    <td>{{ fixture.Patch }}</td>
+                                    <td></td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <button type="submit">Submit</button>
+                </form>
+                
+            </div>
+            {% endif %}
         </div>
 {% endblock %}

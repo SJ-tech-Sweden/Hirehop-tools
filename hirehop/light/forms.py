@@ -6,3 +6,7 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 
 class lightUploadFile(forms.Form):
     patch_file = forms.FileField(required=False)
+
+class fixture_patch(forms.Form):
+    fixture = forms.CharField()
+    patch = forms.Charfield()

@@ -37,6 +37,8 @@ def index(request):
 
     form = lightUploadFile()
 
+    table_sent = False
+
     if request.method == 'POST':
         form = lightUploadFile(request.POST)
         if form.is_valid():
@@ -61,12 +63,16 @@ def index(request):
                         fixture_list = []
                         for row in reader:
                             fixture_list.append(row)
-                        messages.success(request, fixture_list)
+                    messages.success(request, fixture_list)
+
+
+                    
                         
                 elif file_extension.lower() == '.show.gz':
                     pass
                 messages.success(request, 'File uploaded')
+                table_sent = True
 
 
     #Render index page
-    return render(request, 'light/index.html', {'form': form, 'job': job_nr})
+    return render(request, 'light/index.html', {'form': form, 'job': job_nr, 'table_sent': table_sent, 'fixtures_list': fixture_list})
