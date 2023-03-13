@@ -24,6 +24,12 @@ api_token = config['hirehop']['api_token']
 light_file_upload_path = config['files']['light_path']
 
 
+def handle_uploaded_file(f, file_path):
+    with open(file_path, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
 
 @login_required
 def index(request):
@@ -45,6 +51,8 @@ def index(request):
                     os.mkdir(os.path.join(light_file_upload_path, job_nr))
                 except:
                     pass
+
+                handle_uploaded_file(request.FILES['patch_file'], path_url)
 
                 file_name, file_extension = os.path.splitext(request_file.name)
                 if file_extension.lower() == '.csv':
