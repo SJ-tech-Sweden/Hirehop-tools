@@ -24,7 +24,7 @@
             </form>
             {% if table_sent %}
             <div>
-                <form method="post">
+                <form method="post" name="fixtures_form">
                     {% csrf_token %}
                     <table class="table table-striped table-hover caption-top">
                         <thead>
@@ -63,7 +63,7 @@
         </div>
 
         <script>
-            const form = document.querySelector('form');
+            const form = document.querySelector('fixtures_form');
             const input = form.querySelector('input');
             const datalist = form.querySelector('#my-datalist');
             
