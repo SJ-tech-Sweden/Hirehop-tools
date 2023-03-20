@@ -62,20 +62,5 @@
             {% endif %}
         </div>
 
-        <script>
-            const form = document.querySelector('fixtures_form');
-            const input = form.querySelector('input');
-            const datalist = form.querySelector('#my-datalist');
-            
-            form.addEventListener('submit', (event) => {
-              const inputValue = input.value;
-              const optionExists = Array.from(datalist.options).some((option) => option.value === inputValue);
-              
-              if (!optionExists) {
-                event.preventDefault();
-                alert('Please select a valid option.');
-              }
-            });
-          </script>
-
+        
 {% endblock %}
