@@ -72,7 +72,7 @@ def delete_equipment(request, job_nr, id):
     for item in list_items:
         if item['LIST_ID'] == id:
             item_id = item['ID']
-    #messages.info(request, item_id)
+    messages.info(request, item_id)
 
 
     try:
