@@ -113,7 +113,7 @@ def index(request):
                     table_sent = True
 
         elif "submit_fixture_list" in request.POST:
-            messages.info(request, request.POST)
+            messages.info(request, request.POST['form-fixture'])
 
 
 
