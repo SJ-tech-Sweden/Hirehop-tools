@@ -116,7 +116,6 @@ def index(request):
             messages.info(request, request.POST)
 
 
-            messages.info(request, request.POST.__dict__)
 
 
     #Render index page
