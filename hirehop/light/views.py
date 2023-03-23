@@ -117,7 +117,7 @@ def index(request):
             fixture_list_to_hirehop = request.POST.getlist('form-fixture')
             messages.info(request, fixture_list_to_hirehop)
             for fixture in fixture_list_to_hirehop:
-                if fixture != 0:
+                if fixture != "0":
                     messages.info(request, fixture)
                     add_equipment(request, job_nr, fixture)
 
