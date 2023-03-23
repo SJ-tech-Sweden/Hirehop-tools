@@ -114,7 +114,7 @@ def index(request):
 
         elif "submit_fixture_list" in request.POST:
             
-            fixture_list_to_hirehop = request.POST.get_list('form-fixture')
+            fixture_list_to_hirehop = request.POST.getlist('form-fixture')
             messages.info(request, fixture_list_to_hirehop)
             for fixture in fixture_list_to_hirehop:
                 if fixture != 0:
