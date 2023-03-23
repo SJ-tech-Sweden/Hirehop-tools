@@ -47,6 +47,16 @@
                                           {% endfor %}
                                     </td>
 
+                                    <script>
+                                        const input = document.querySelector('input');
+                                        const datalist = document.querySelector('#my-datalist');
+                                        const optionToSelect = Array.from(datalist.options).find((option) => option.value === '{{ fixture.Fixture }}');
+                                      
+                                        if (optionToSelect) {
+                                          input.value = optionToSelect.value;
+                                        }
+                                      </script>
+
                                 </tr>
                             {% endfor %}
                         </tbody>
