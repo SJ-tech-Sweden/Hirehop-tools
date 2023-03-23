@@ -77,7 +77,7 @@ def delete_equipment(request, job_nr, id):
 
     payload = {
         'job': job_nr,
-        "ids": {"c{}".format(item_id):1}
+        "ids": "c{}".format(item_id)
     }
 
     payload = json.dumps(payload)
