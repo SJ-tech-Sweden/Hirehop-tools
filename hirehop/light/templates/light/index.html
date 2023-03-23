@@ -16,7 +16,7 @@
                         <input class="form-control" type="file" name="patch_file" id="patch_file" accept=".csv,.gz">
                       </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary" id=btnSubmit>
+                        <button type="submit" class="btn btn-primary" id=btnSubmit name="submit_upload">
                             Upload
                         </button>
                     </div>
@@ -32,7 +32,6 @@
                                 <th>Fixture</th>
                                 <th>Patch</th>
                                 <th>Hirehop fixture</th>
-                                <th>Hirehop fixture list</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,13 +40,6 @@
                                     <td>{{ fixture.Fixture }}</td>
                                     <td>{{ fixture.Patch }}</td>
                                     <td>
-                                        <input type="text" list="my-datalist" name="hirehop_fixture">
-                                        <datalist id="my-datalist">
-                                          {% for light in hirehop_lights %}
-                                            <option value="{{ light.value }}">{{ light.display }}</option>
-                                          {% endfor %}
-                                    </td>
-                                    <td>
                                         <select name="form-{{form_input.instance.pk}}-fixture" class="form-select">
                                             {% for light in hirehop_lights %}
                                               <option value="{{ light.value }}" {% if light.display|slugify == fixture.Fixture|slugify %}selected{% endif %}>{{ light.display }}</option>
@@ -55,22 +47,12 @@
                                           </select>
                                     </td>
 
-                                    <script>
-                                        const input = document.querySelector('input');
-                                        const datalist = document.querySelector('#my-datalist');
-                                        const optionToSelect = Array.from(datalist.options).find((option) => option.value === '{{ fixture.Fixture }}');
-                                      
-                                        if (optionToSelect) {
-                                          input.value = optionToSelect.value;
-                                        }
-                                      </script>
-
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary" id=btnSubmit>
+                        <button type="submit" class="btn btn-primary" id=btnSubmit name="submit_fixture_list">
                             Submit
                         </button>
                     </div>

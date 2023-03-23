@@ -77,41 +77,45 @@ def index(request):
     if request.method == 'POST':
         form = lightUploadFile(request.POST)
 
-        if form.is_valid():
-            request_file = request.FILES['patch_file'] if 'patch_file' in request.FILES else None
-            cd = form.cleaned_data
-            if request_file:
-                fs = FileSystemStorage()
+        if "submit_upload" in request.POST:
+            if form.is_valid():
+                request_file = request.FILES['patch_file'] if 'patch_file' in request.FILES else None
+                cd = form.cleaned_data
+                if request_file:
+                    fs = FileSystemStorage()
 
-                path_url = "{}/{}/{}".format(light_file_upload_path, job_nr, request.FILES['patch_file'].name)
+                    path_url = "{}/{}/{}".format(light_file_upload_path, job_nr, request.FILES['patch_file'].name)
 
-                hirehop_lights = get_lights()
+                    hirehop_lights = get_lights()
 
-                try:
-                    os.mkdir(os.path.join(light_file_upload_path, job_nr))
-                except:
-                    pass
+                    try:
+                        os.mkdir(os.path.join(light_file_upload_path, job_nr))
+                    except:
+                        pass
 
-                handle_uploaded_file(request.FILES['patch_file'], path_url)
+                    handle_uploaded_file(request.FILES['patch_file'], path_url)
 
-                file_name, file_extension = os.path.splitext(request_file.name)
-                if file_extension.lower() == '.csv':
-                    with open(path_url, 'r') as csvfile:
-                        reader = csv.DictReader(csvfile)
-                        fixture_list = []
-                        for row in reader:
-                            fixture_list.append(row)
-                    #messages.success(request, fixture_list)
+                    file_name, file_extension = os.path.splitext(request_file.name)
+                    if file_extension.lower() == '.csv':
+                        with open(path_url, 'r') as csvfile:
+                            reader = csv.DictReader(csvfile)
+                            fixture_list = []
+                            for row in reader:
+                                fixture_list.append(row)
+                        #messages.success(request, fixture_list)
 
 
-                    
                         
-                elif file_extension.lower() == '.show.gz':
-                    pass
-                messages.success(request, 'File uploaded')
-                table_sent = True
+                            
+                    elif file_extension.lower() == '.show.gz':
+                        pass
+                    messages.success(request, 'File uploaded')
+                    table_sent = True
 
-        messages.info(request, request.POST.__dict__)
+        else:
+
+
+            messages.info(request, request.POST.__dict__)
 
 
     #Render index page
