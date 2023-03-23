@@ -65,7 +65,9 @@ def delete_equipment(request, job_nr, id):
 
     json_items = json.loads(response_items.text)
 
-    messages.info(request, json_items)
+    list_items = json_items['items']
+
+    messages.info(request, list_items)
 
 
     payload = {
