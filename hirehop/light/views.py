@@ -112,7 +112,8 @@ def index(request):
                     messages.success(request, 'File uploaded')
                     table_sent = True
 
-        else:
+        elif "submit_fixture_list" in request.POST:
+            messages.info(request, request.POST)
 
 
             messages.info(request, request.POST.__dict__)
