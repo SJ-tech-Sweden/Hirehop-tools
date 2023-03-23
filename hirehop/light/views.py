@@ -113,7 +113,13 @@ def index(request):
                     table_sent = True
 
         elif "submit_fixture_list" in request.POST:
-            messages.info(request, request.POST['form-fixture'])
+            
+            fixture_list_to_hirehop = request.POST.get_list('form-fixture')
+            messages.info(request, fixture_list_to_hirehop)
+            for fixture in fixture_list_to_hirehop:
+                if fixture != 0:
+                    messages.info(request, fixture)
+                    #add_equipment(request, job_nr, fixture)
 
 
 

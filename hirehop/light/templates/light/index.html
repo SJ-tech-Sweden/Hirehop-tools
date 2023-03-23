@@ -41,6 +41,7 @@
                                     <td>{{ fixture.Patch }}</td>
                                     <td>
                                         <select name="form-fixture" class="form-select">
+                                            <option value="0">Other</option> 
                                             {% for light in hirehop_lights %}
                                               <option value="{{ light.value }}" {% if light.display|slugify == fixture.Fixture|slugify %}selected{% endif %}>{{ light.display }}</option>
                                             {% endfor %}
