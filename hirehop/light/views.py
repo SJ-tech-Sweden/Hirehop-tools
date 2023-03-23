@@ -6,7 +6,7 @@ from django.core.files.storage import FileSystemStorage
 
 from .forms import lightUploadFile
 
-#from sound import add_equipment
+from sound.views import add_equipment
 
 import os
 
@@ -119,7 +119,7 @@ def index(request):
             for fixture in fixture_list_to_hirehop:
                 if fixture != 0:
                     messages.info(request, fixture)
-                    #add_equipment(request, job_nr, fixture)
+                    add_equipment(request, job_nr, fixture)
 
 
 
