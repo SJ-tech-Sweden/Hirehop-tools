@@ -69,6 +69,11 @@ def delete_equipment(request, job_nr, id):
 
     messages.info(request, list_items)
 
+    for item in list_items:
+        if item['LIST_ID'] == id:
+            item_id = item['ID']
+    messages.info(request, item_id)
+
 
     payload = {
         'job': job_nr,
