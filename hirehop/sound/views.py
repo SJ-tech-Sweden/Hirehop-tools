@@ -75,21 +75,24 @@ def delete_equipment(request, job_nr, id):
     #messages.info(request, item_id)
 
 
-    payload = {
-        'job': job_nr,
-        "ids": "c{}".format(item_id)
-    }
+    try:
+        payload = {
+            'job': job_nr,
+            "ids": "c{}".format(item_id)
+        }
 
-    payload = json.dumps(payload)
+        payload = json.dumps(payload)
 
 
-    headers = {}
+        headers = {}
 
-    response = requests.request("POST", url_delete, headers=headers, data=payload)
+        response = requests.request("POST", url_delete, headers=headers, data=payload)
 
-    logging.debug(response.text)
+        logging.debug(response.text)
 
-    messages.info(request, response.text)
+        messages.info(request, response.text)
+    except:
+        logging.error("Problem deleting last microphone, it is probably already deleted from hirehop")
 
     #device = json.loads(response.text)['items']['itms']
 
