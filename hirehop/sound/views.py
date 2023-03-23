@@ -77,7 +77,7 @@ def delete_equipment(request, job_nr, id):
 
     payload = {
         'job': job_nr,
-        "items": {"c{}".format(id):1}
+        "items": {"c{}".format(item_id):1}
     }
 
     payload = json.dumps(payload)
@@ -89,7 +89,7 @@ def delete_equipment(request, job_nr, id):
 
     logging.debug(response.text)
 
-    #messages.info(request, response.text)
+    messages.info(request, response.text)
 
     #device = json.loads(response.text)['items']['itms']
 
