@@ -52,6 +52,42 @@ def add_equipment(request, job_nr, id):
 
     return device
 
+def delete_equipment(request, job_nr, id):
+    url_delete = "https://myhirehop.com/php_functions/items_delete.php?token={}".format(api_token)
+
+    #Get id from job
+    url_get_items = "https://myhirehop.com/frames/items_to_supply_list.php?token={}&job={}".format(api_token, job_nr)
+
+    payload={}
+    headers={}
+
+    response_items = requests.request("GET", url_get_items, headers=headers, data=payload)
+
+    json_items = json.loads(response_items.text)
+
+    messages.info(request, json_items)
+
+
+    payload = {
+        'job': job_nr,
+        "items": {"c{}".format(id):1}
+    }
+
+    payload = json.dumps(payload)
+
+
+    headers = {}
+
+    response = requests.request("POST", url_delete, headers=headers, data=payload)
+
+    logging.debug(response.text)
+
+    #messages.info(request, response.text)
+
+    #device = json.loads(response.text)['items']['itms']
+
+    return "deleted"
+
 def get_job_data(request, job_nr):
     url = "https://myhirehop.com/api/job_data.php?token={}&job={}".format(api_token, job_nr)
 
@@ -234,6 +270,9 @@ def edit_channellist(request):
                 
                 if cd.get("mic_di") != "0" and not input.mic_di == cd.get("mic_di"):
                     add_equipment(request, job_nr, cd.get('mic_di'))
+                    if input.mic_di != "0":
+                        messages.info(request, "Delete the old microphone from hirehop")
+                        delete_equipment(request, job_nr, input.mic_di)
                     messages.info(request, "Add mic to hirehop, if you changed from another mic please delete the old microphone from hirehop")
                 form_input.save()
                 messages.success(request, 'Updating Channellist input')
