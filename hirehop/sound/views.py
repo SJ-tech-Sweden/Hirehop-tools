@@ -46,7 +46,7 @@ def add_equipment(request, job_nr, id):
 
     logging.debug(response.text)
 
-    messages.info(request, response.text)
+    #messages.info(request, response.text)
 
     device = json.loads(response.text)['items']['itms']
 
