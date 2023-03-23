@@ -67,17 +67,17 @@ def delete_equipment(request, job_nr, id):
 
     list_items = json_items['items']
 
-    messages.info(request, list_items)
+    #messages.info(request, list_items)
 
     for item in list_items:
         if item['LIST_ID'] == id:
             item_id = item['ID']
-    messages.info(request, item_id)
+    #messages.info(request, item_id)
 
 
     payload = {
         'job': job_nr,
-        "items": {"c{}".format(item_id):1}
+        "ids": {"c{}".format(item_id):1}
     }
 
     payload = json.dumps(payload)
