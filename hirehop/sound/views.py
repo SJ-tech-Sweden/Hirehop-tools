@@ -72,7 +72,7 @@ def delete_equipment(request, job_nr, id):
     for item in list_items:
         if item['LIST_ID'] == id:
             item_id = item['ID']
-    messages.info(request, item_id)
+    #messages.info(request, item_id)
 
 
     try:
@@ -90,7 +90,8 @@ def delete_equipment(request, job_nr, id):
 
         logging.debug(response.text)
 
-        messages.info(request, response.text)
+        if "success" in response.text:
+            messages.success(request, "Deleted old microphone")
     except:
         logging.error("Problem deleting last microphone, it is probably already deleted from hirehop")
 
@@ -283,7 +284,7 @@ def edit_channellist(request):
                     if input.mic_di != "0":
                         messages.info(request, "Delete the old microphone from hirehop")
                         delete_equipment(request, job_nr, input.mic_di)
-                    messages.info(request, "Add mic to hirehop, if you changed from another mic please delete the old microphone from hirehop")
+                    messages.info(request, "Add mic to hirehop")
                 form_input.save()
                 messages.success(request, 'Updating Channellist input')
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
