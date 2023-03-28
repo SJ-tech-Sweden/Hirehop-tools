@@ -187,7 +187,7 @@ class ChannelListInputForm(forms.ModelForm):
             "stage_input",
             "instrument",
             "mic_di",
-            "stand"
+            "stand",
             "musician",
             "notes",
             "phantom_power",
