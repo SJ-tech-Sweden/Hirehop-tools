@@ -286,6 +286,13 @@ def edit_channellist(request):
                         delete_equipment(request, job_nr, input.mic_di)
                     messages.info(request, "Add mic to hirehop")
                 form_input.save()
+                if cd.get("stand") != "0" and not input.stand == cd.get("stand"):
+                    add_equipment(request, job_nr, cd.get('stand'))
+                    if input.stand != "0":
+                        messages.info(request, "Delete the old microphone from hirehop")
+                        delete_equipment(request, job_nr, input.stand)
+                    messages.info(request, "Add stand to hirehop")
+                form_input.save()
                 messages.success(request, 'Updating Channellist input')
                 return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             
