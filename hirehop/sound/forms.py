@@ -23,6 +23,7 @@ api_token = config['hirehop']['api_token']
 mixer_category = config['hirehop']['categories']['mixers']
 mic_category = config['hirehop']['categories']['microphones']
 di_category = config['hirehop']['categories']['di']
+stand_category = config['hirehop']['categories']['stands']
 
 def get_mixers():
     url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, mixer_category)
@@ -102,6 +103,38 @@ def get_mics():
     di_result = [(item['id'], item['cell']['TITLE']) for item in di]
 
     result += di_result
+
+    logging.info('--- Result ---')
+    logging.info(result)
+
+    return result
+
+def get_stands():
+    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, stand_category)
+
+    payload={}
+    headers={}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    stand_default = [(0, "Stand")]
+
+    result = stand_default
+
+    stands = {}
+
+    try:
+        stands = json.loads(response.text)['rows']
+    except:
+        stands = {}
+
+    logging.info(stands)
+    logging.info('---------------')
+
+
+    stands_result = [(item['id'], item['cell']['TITLE']) for item in stands]
+
+    result += stands_result
 
     logging.info('--- Result ---')
     logging.info(result)
