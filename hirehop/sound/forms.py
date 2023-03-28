@@ -175,6 +175,7 @@ class ChannelListInputForm(forms.ModelForm):
     stage_input = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
+    stand = forms.ChoiceField(choices=(get_stands()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
     phantom_power = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
     
@@ -186,6 +187,7 @@ class ChannelListInputForm(forms.ModelForm):
             "stage_input",
             "instrument",
             "mic_di",
+            "stand"
             "musician",
             "notes",
             "phantom_power",
