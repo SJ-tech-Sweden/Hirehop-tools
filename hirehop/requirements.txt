@@ -3,7 +3,7 @@ backports.zoneinfo==0.2.1
 beautifulsoup4==4.12.2
 certifi==2023.5.7
 cffi==1.15.1
-charset-normalizer==3.1.0
+charset-normalizer==3.2.0
 cryptography==41.0.1
 Django==4.2.3
 django-bootstrap-v5==1.0.11
