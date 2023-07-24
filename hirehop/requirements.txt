@@ -14,7 +14,7 @@ lxml==4.9.3
 ntlm-auth==1.5.0
 psycopg2-binary==2.9.6
 pycparser==2.21
-PyYAML==6.0
+PyYAML==6.0.1
 requests==2.31.0
 requests-ntlm==1.2.0
 requests-toolbelt==1.0.0
