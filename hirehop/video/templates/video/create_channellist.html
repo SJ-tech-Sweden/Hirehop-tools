@@ -1,0 +1,47 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+    {{ formset.errors }}
+    {{ formset.non_field_errors }}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <div class="container">
+        <fieldset class="form-group">
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="d-none">{{ form.projectID }}</div>
+              <legend class="text-center">
+                <h1>Create channellist</h1>
+              </legend>
+              {% if error_message %}
+              <p class="text-danger text-center">{{ error_message }}</p>
+              {% endif %}
+              <div class="row mb-3">
+                <div class="form-check">
+                    <label for="{{ form.Name.id_for_label }}" class="col-sm-6">Channellist name:</label>
+                    <div class="col-sm-10">
+                        {{ form.Name | as_crispy_field }}
+                    </div>
+                    
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="form-check">
+                    <label for="{{ form.mixerID.id_for_label }}" class="col-sm-6">Mixer:</label>
+                    <div class="col-sm-10">
+                        {{ form.mixerID | as_crispy_field }}
+                    </div>
+                    
+                </div>
+              </div>
+                <button type="submit" class="btn btn-primary" id="btnSubmit">Create</button>
+            </fieldset>
+            </form>
+          </div>
+          
+    </div>
+        
+
+{% endblock %}

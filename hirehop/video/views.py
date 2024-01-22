@@ -91,9 +91,9 @@ def delete_equipment(request, job_nr, id):
         logging.debug(response.text)
 
         if "success" in response.text:
-            messages.success(request, "Deleted old microphone")
+            messages.success(request, "Deleted old camera")
     except:
-        logging.error("Problem deleting last microphone, it is probably already deleted from hirehop")
+        logging.error("Problem deleting last camera, it is probably already deleted from hirehop")
 
     #device = json.loads(response.text)['items']['itms']
 
@@ -122,16 +122,14 @@ def create_channellist_function(request, channellist_name, project_id, mixer_id,
 
     # create channel_list_inputs
     for i in range(inputs):
-        channel_list_input_1 = channel_list_input.objects.create(channel_list=channel_list, musician="Musician", 
-                                                                notes="", instrument="Instrument",
-                                                                stage_input="{}".format(i+1), console_channel=i+1, 
-                                                                mic_di="", phantom_power=False)
+        channel_list_input_1 = channel_list_input.objects.create(channel_list=channel_list, 
+                                                                notes="", console_channel=i+1, 
+                                                                camera="")
 
     # create channel_list_outputs
     for i in range(outputs):
-        channel_list_output_1 = channel_list_output.objects.create(channel_list=channel_list, instrument="Instrument",
-                                                                person="Person", output_type="Output Type",
-                                                                console_output=i+1, notes="Output notes", mix="Mix {}".format(i+1))
+        channel_list_output_1 = channel_list_output.objects.create(channel_list=channel_list, output_type="Output Type",
+                                                                console_output=i+1, notes="Output notes")
 
 
 
@@ -156,14 +154,14 @@ def index(request):
 
         parameters = {'job': job_nr}
         # build the URL with the parameters and redirect
-        url = '/sound/create_channellist?' + urlencode(parameters)
+        url = '/video/create_channellist?' + urlencode(parameters)
         return redirect(url)
 
     logging.info(log_message)
 
 
     #Render index page
-    return render(request, 'sound/index.html', {'channel_lists': channel_lists_list, 'job': job_nr})
+    return render(request, 'video/index.html', {'channel_lists': channel_lists_list, 'job': job_nr})
 
 @login_required
 def create_channellist(request):
@@ -191,7 +189,7 @@ def create_channellist(request):
             #Update the page
             parameters = {'job': job_nr}
             # build the URL with the parameters and redirect
-            url = '/sound/?' + urlencode(parameters)
+            url = '/video/?' + urlencode(parameters)
             return redirect(url)
         else:
             #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
@@ -199,7 +197,7 @@ def create_channellist(request):
     #Before any POST-action render the page from this template
 
     #Render index page
-    return render(request, 'sound/create_channellist.html', {'job': job_nr, 'form': form})
+    return render(request, 'video/create_channellist.html', {'job': job_nr, 'form': form})
 
 
 @login_required
@@ -277,14 +275,14 @@ def edit_channellist(request):
                 #messages.info(request, "Form content - {}".format(cd))
                 #messages.info(request, "Channel-list_input_obj - {}".format(channel_list_input_obj.__dict__))
                 #messages.info(request, "Input - {}".format(input.__dict__))
-                #messages.info(request, cd.get("mic_di"))
+                #messages.info(request, cd.get("camera"))
                 
-                if cd.get("mic_di") != "0" and not input.mic_di == cd.get("mic_di"):
-                    add_equipment(request, job_nr, cd.get('mic_di'))
-                    if input.mic_di != "0":
-                        messages.info(request, "Delete the old microphone from hirehop")
-                        delete_equipment(request, job_nr, input.mic_di)
-                    messages.info(request, "Add mic to hirehop")
+                if cd.get("camera") != "0" and not input.camera == cd.get("camera"):
+                    add_equipment(request, job_nr, cd.get('camera'))
+                    if input.camera != "0":
+                        messages.info(request, "Delete the old camera from hirehop")
+                        delete_equipment(request, job_nr, input.camera)
+                    messages.info(request, "Add camera to hirehop")
                 form_input.save()
                 if cd.get("stand") != "0" and not input.stand == cd.get("stand"):
                     add_equipment(request, job_nr, cd.get('stand'))
@@ -294,7 +292,7 @@ def edit_channellist(request):
                     messages.info(request, "Add stand to hirehop")
                 form_input.save()
                 messages.success(request, 'Updating Channellist input')
-                return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
+                return redirect('/video/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             
             else:
                 messages.error(request, 'Form data is not valid.')
@@ -326,7 +324,7 @@ def edit_channellist(request):
                 
                 form_output.save()
                 messages.success(request, 'Updating Channellist output')
-                return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
+                return redirect('/video/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             
             else:
                 messages.error(request, 'Form data is not valid.')
@@ -345,7 +343,7 @@ def edit_channellist(request):
             if form.is_valid():
                 form.save()
 
-                return redirect('/sound/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
+                return redirect('/video/channellist?channel_list={}&job={}'.format(channel_list_ID, job_nr))
             else:
                 messages.error(request, 'Form data is not valid.')
                 messages.error(request, form.data)
@@ -355,5 +353,5 @@ def edit_channellist(request):
         form = ChannelListsForm(instance=channel_lists_obj, initial={'job': job_nr, 'channel_list': channel_list_ID})
 
 
-    return render(request, 'sound/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset_input': formset_input, 'formset_output': formset_output, 'channel_list': channel_list_ID})
+    return render(request, 'video/edit_channellist.html', {'job': job_nr, 'form': form, 'job_data': job, 'formset_input': formset_input, 'formset_output': formset_output, 'channel_list': channel_list_ID})
 

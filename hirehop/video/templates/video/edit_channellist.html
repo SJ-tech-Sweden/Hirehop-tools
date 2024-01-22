@@ -1,0 +1,217 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+
+
+  {% load crispy_forms_tags %}
+
+
+
+  {% if formset_input.errors %}
+    {{ formset_input.errors }}
+    <!--{{ formset_input.non_field_errors }} -->
+  {% endif %}
+  {% if form.errors %}
+    {{ form.errors }}
+  {% endif %}
+    <!--{{ form.non_field_errors }} -->
+
+    <div class="container">
+        <legend class="text-center">
+            <h1>Edit channellist</h1>
+          </legend>
+        <div class="row">
+            <div class="col-sm-6">
+                <fieldset class="form-group">
+                    <form action="" method="post">
+
+                      {% csrf_token %}
+                      {{ form.projectID }}
+                      {{ form.ID }}
+                      {{ form_input.ChannelListForm }}
+                      {% if error_message %}
+                      <p class="text-danger text-center">{{ error_message }}</p>
+                      {% endif %}
+                      <div class="row mb-3">
+                        <div class="form-check">
+                            <label for="{{ form.Name.id_for_label }}" class="col-sm-4">Channellist name:</label>
+                            <div class="col-sm-20">
+                                {{ form.Name | as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="form-check">
+                            <label for="{{ form.mixerID.id_for_label }}" class="col-sm-4">Mixer:</label>
+                            <div class="col-sm-20">
+                                {{ form.mixerID | as_crispy_field }}
+                            </div>
+                            
+                        </div>
+                      </div>
+                        <button type="submit" name="submit_channel_list" class="btn btn-primary" id="btnSubmit">Update</button>
+                    </fieldset>
+                    </form>
+              </div>
+              
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="text-center">Job information</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        Job name: {{ job_data.JOB_NAME }}
+                      </li>
+                      <li class="list-group-item">
+                        Address: {{ job_data.ADDRESS }}
+                      </li>
+                      <li class="list-group-item">
+                        Customer: {{ job_data.COMPANY }}
+                      </li>
+                      <li class="list-group-item">
+                        Start date: {{ job_data.JOB_DATE}}
+                      </li>
+                      <li class="list-group-item">
+                          End date: {{ job_data.JOB_END}}
+                      </li>
+                      <li class="list-group-item">
+                          Venue: {{ job_data.VENUE}}
+                      </li>
+      
+                    </ul>
+                  </div>
+            </div>
+        </div>
+
+        
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="job_nr" value="{{ job }}">
+          <input type="hidden" name="channel_list_ID" value="{{ channel_list }}">
+          <table class="table table-striped table-hover caption-top">
+            <caption>Inputs</caption>
+            <!-- table header -->
+            <thead>
+              <tr>
+                <th>Console Channel</th>
+                <th>Stage Input</th>
+                <th>Instrument</th>
+                <th>Mic/DI</th>
+                <th>Stand</th>
+                <th>48V</th>
+                <th>Person</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <!-- table body -->
+            <tbody>
+              {% for form_input in formset_input %}
+                <tr>
+
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-console_channel" value="{{ form_input.console_channel.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-stage_input" value="{{ form_input.stage_input.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-instrument" value="{{ form_input.instrument.value }}" class="form-control"></td>
+                  
+                  <td>
+                    <select name="form-{{form_input.instance.pk}}-mic_di" class="form-select">
+                      {% for choice in form_input.mic_di.field.choices %}
+                        <option value="{{ choice.0 }}" {% if choice.0|slugify == form_input.mic_di.value|slugify %}selected{% endif %}>{{ choice.1 }}</option>
+                      {% endfor %}
+                    </select>
+                  </td>
+                  <td>
+                    <select name="form-{{form_input.instance.pk}}-stand" class="form-select">
+                      {% for choice in form_input.stand.field.choices %}
+                        <option value="{{ choice.0 }}" {% if choice.0|slugify == form_input.stand.value|slugify %}selected{% endif %}>{{ choice.1 }}</option>
+                      {% endfor %}
+                    </select>
+                  </td>
+                  
+                  <td>
+                    <div class="form-check form-switch">
+                      
+                      <input type="checkbox" role="switch" name="form-{{form_input.instance.pk}}-phantom_power" class="form-check-input" aria-label="Phantom power on or off" {% if form_input.phantom_power.value  %}checked{% endif %}>
+                    </div>
+                  </td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-musician" value="{{ form_input.musician.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_input.instance.pk}}-notes" value="{{ form_input.notes.value }}" class="form-control"></td>
+                  
+                  <td>
+                    <button type="submit" class="btn btn-primary" name="submit_channel_list_input_pk" value="{{ form_input.instance.pk }}">Update</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="job_nr" value="{{ job }}">
+          <input type="hidden" name="channel_list_ID" value="{{ channel_list }}">
+          <table class="table table-striped table-hover caption-top">
+            <caption>Outputs</caption>
+            <!-- table header -->
+            <thead>
+              <tr>
+                <th>Console Output</th>
+                <th>Stage patch</th>
+                <th>Instrument</th>
+                <th>Person</th>
+                <th>Output type</th>
+                <th>Mix</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <!-- table body -->
+            <tbody>
+              {% for form_output in formset_output %}
+                <tr>
+
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-console_output" value="{{ form_output.console_output.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-stage_patch" value="{{ form_output.stage_patch.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-instrument" value="{{ form_output.instrument.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-person" value="{{ form_output.person.value }}" class="form-control"></td>
+                  
+                  <td>
+                    <select name="form-{{form_output.instance.pk}}-output_type" class="form-select">
+                      {% for choice in form_output.output_type.field.choices %}
+                        <option value="{{ choice.0 }}" {% if choice.0|slugify == form_output.output_type.value|slugify %}selected{% endif %}>{{ choice.1 }}</option>
+                      {% endfor %}
+                    </select>
+                  </td>
+                  
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-mix" value="{{ form_output.mix.value }}" class="form-control"></td>
+                  
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-notes" value="{{ form_output.notes.value }}" class="form-control"></td>
+                  
+                  <td>
+                    <button type="submit" class="btn btn-primary" name="submit_channel_list_output_pk" value="{{ form_output.instance.pk }}">Update</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </form>
+        
+
+        
+          
+
+        
+
+    </div>
+        
+
+
+{% endblock %}

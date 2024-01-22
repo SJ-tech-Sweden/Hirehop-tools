@@ -13,16 +13,15 @@ from .models import channel_lists, channel_list_input, channel_list_output
 #Logging to a speciefied file
 import logging
 logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s',
-                    filename='/app/logs/sound.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
+                    filename='/app/logs/video.log', level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
 #Open configuration file
 with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
 
 api_token = config['hirehop']['api_token']
-mixer_category = config['hirehop']['categories']['mixers']
-mic_category = config['hirehop']['categories']['microphones']
-di_category = config['hirehop']['categories']['di']
+mixer_category = config['hirehop']['categories']['video_mixers']
+camera_category = config['hirehop']['categories']['cameras']
 stand_category = config['hirehop']['categories']['stands']
 
 def get_mixers():
@@ -55,32 +54,32 @@ def get_mixers():
     return mixers_result
 
 
-def get_mics():
-    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, mic_category)
+def get_cameras():
+    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, camera_category)
 
     payload={}
     headers={}
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    mic_default = [(0, "Mic/DI")]
+    camera_default = [(0, "Camera")]
 
-    result = mic_default
+    result = camera_default
 
-    mics = {}
+    cameras = {}
 
     try:
-        mics = json.loads(response.text)['rows']
+        cameras = json.loads(response.text)['rows']
     except:
-        mics = {}
+        cameras = {}
 
-    logging.info(mics)
+    logging.info(cameras)
     logging.info('---------------')
 
 
-    mics_result = [(item['id'], item['cell']['TITLE']) for item in mics]
+    cameras_result = [(item['id'], item['cell']['TITLE']) for item in cameras]
 
-    result += mics_result
+    result += cameras_result
 
     url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, di_category)
 
@@ -169,28 +168,19 @@ class ChannelListsForm(ModelForm):
 
 
 class ChannelListInputForm(forms.ModelForm):
-    musician = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    stage_input = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    mic_di = forms.ChoiceField(choices=(get_mics()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
+    camera = forms.ChoiceField(choices=(get_cameras()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     stand = forms.ChoiceField(choices=(get_stands()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    phantom_power = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
-    
 
     class Meta:
         model = channel_list_input
         fields = [
             "console_channel",
-            "stage_input",
-            "instrument",
-            "mic_di",
+            "camera",
             "stand",
-            "musician",
             "notes",
-            "phantom_power",
         ]
 
 
@@ -203,24 +193,15 @@ class ChannelListOutputForm(forms.ModelForm):
 
     ]
 
-    person = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    instrument = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    stage_patch = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     console_output = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     output_type = forms.ChoiceField(choices=(output_type_choices), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    mix = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    
 
     class Meta:
         model = channel_list_output
         fields = [
             "console_output",
-            "stage_patch",
-            "instrument",
             "output_type",
-            "person",
             "notes",
-            "mix",
         ]
