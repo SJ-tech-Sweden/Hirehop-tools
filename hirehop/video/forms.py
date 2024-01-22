@@ -81,27 +81,6 @@ def get_cameras():
 
     result += cameras_result
 
-    url = "https://myhirehop.com/modules/stock/list.php?rows=400&page=1&token={}&_search=true&head={}".format(api_token, di_category)
-
-    payload={}
-    headers={}
-
-    response = requests.request("GET", url, headers=headers, data=payload)
-
-    di = {}
-
-    try:
-        di = json.loads(response.text)['rows']
-    except:
-        di = {}
-
-    logging.info(di)
-    logging.info('---------------')
-
-
-    di_result = [(item['id'], item['cell']['TITLE']) for item in di]
-
-    result += di_result
 
     logging.info('--- Result ---')
     logging.info(result)
