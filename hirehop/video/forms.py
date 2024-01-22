@@ -147,7 +147,7 @@ class ChannelListsForm(ModelForm):
 
 
 class ChannelListInputForm(forms.ModelForm):
-    notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     console_channel = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     camera = forms.ChoiceField(choices=(get_cameras()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     stand = forms.ChoiceField(choices=(get_stands()), label='', widget=forms.Select(attrs={'class': 'form-select'}))
@@ -169,7 +169,7 @@ class ChannelListOutputForm(forms.ModelForm):
         ('aux', 'Aux')
     ]
 
-    notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
     console_output = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
     output_type = forms.ChoiceField(choices=(output_type_choices), label='', widget=forms.Select(attrs={'class': 'form-select'}))
     ID = forms.IntegerField(widget=forms.HiddenInput, required=False)
