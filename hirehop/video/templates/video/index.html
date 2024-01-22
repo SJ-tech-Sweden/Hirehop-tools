@@ -1,0 +1,43 @@
+{% extends "base_logged_in.html" %}
+{% block content %}
+{% if channel_lists %}
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for channel_list in channel_lists %}
+                <tr>
+                    <td>{{ channel_list.Name }}</td>
+                    <td class="text-end">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <a class="btn btn-primary" href="/video/channellist?channel_list={{ channel_list.ID }}&action=edit&job={{ job }}"
+                                    role="button">Edit <i class="fa-regular fa-pen-to-square"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn btn-danger" href="/video/?channel_list={{ channel_list.ID }}&action=delete&job={{ job }}"
+                                    role="button">Delete <i class="fa-regular fa-trash-can"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        <div>
+            <a class="btn btn-primary" href="/video/?action=new&job={{ job }}"
+                        role="button">New</a>
+        </div>
+        
+   
+    {% endif %}
+
+    
+
+{% endblock %}
