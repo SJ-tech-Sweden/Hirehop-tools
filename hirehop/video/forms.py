@@ -165,11 +165,8 @@ class ChannelListInputForm(forms.ModelForm):
 
 class ChannelListOutputForm(forms.ModelForm):
     output_type_choices = [
-        ('main', 'Main'),
-        ('aux', 'Aux'),
-        ('group', 'Group'),
-        ('matrix', 'Matrix'),
-
+        ('main', 'PGM'),
+        ('aux', 'Aux')
     ]
 
     notes = forms.CharField(max_length=100, label='', widget=forms.TextInput(attrs={'class': 'form-control'}))
