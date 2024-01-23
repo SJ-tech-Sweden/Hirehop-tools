@@ -15,10 +15,10 @@ with open('/app/hirehopScanning/config.yaml') as f:
 
 class SettingsForm(forms.Form):
     api_token = forms.CharField(max_length=1024)
-    category_mixers = forms.NumberInput()
-    category_microphones = forms.NumberInput()
-    category_di = forms.NumberInput()
-    category_stands = forms.NumberInput()
-    category_video_mixers = forms.NumberInput()
-    category_cameras = forms.NumberInput()
-    category_lights = forms.NumberInput()
+    category_mixers = forms.IntegerField()
+    category_microphones = forms.IntegerField()
+    category_di = forms.IntegerField()
+    category_stands = forms.IntegerField()
+    category_video_mixers = forms.IntegerField()
+    category_cameras = forms.IntegerField()
+    category_lights = forms.IntegerField()
