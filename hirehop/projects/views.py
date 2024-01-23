@@ -31,6 +31,7 @@ def index(request):
     response = requests.request("GET", url, headers=headers, data=payload)
 
     jobs = {}
+    messages.info(request, response)
 
     try:
         jobs = json.loads(response.text)['rows']
