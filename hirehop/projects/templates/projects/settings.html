@@ -17,43 +17,48 @@
                     <div class="card-header">
                       Hirehop
                     </div>
-                    <div class="mb-3">
-                        <label for="api_token" class="form-label">API-token:</label>
-                        {{ form.api_token | as_crispy_field}}
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="api_token" class="form-label">API-token:</label>
+                            {{ form.api_token | as_crispy_field}}
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                              Categories
+                            </div>
+                            <div class"card-body">
+                                <div class="mb-3">
+                                    <label for={{ form.category_mixers.id_for_label }} class="form-label">Mixers:</label>
+                                    {{ form.category_mixers | as_crispy_field }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_microphones" class="form-label">Microphones:</label>
+                                    {{ form.category_microphones | as_crispy_field }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_di" class="form-label">DI:</label>
+                                    {{ form.category_di | as_crispy_field }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_stands" class="form-label">Stands:</label>
+                                    {{ form.category_stands | as_crispy_field }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_video_mixers" class="form-label">Video-mixers:</label>
+                                    {{ form.category_video_mixers | as_crispy_field }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_cameras" class="form-label">Cameras:</label>
+                                    {{ form.category_cameras | as_crispy_field }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category_lights" class="form-label">Lights:</label>
+                                    {{ form.category_lights | as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-header">
-                          Categories
-                        </div>
-                        <div class="mb-3">
-                            <label for={{ form.category_mixers.id_for_label }} class="form-label">Mixers:</label>
-                            {{ form.category_mixers | as_crispy_field }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="category_microphones" class="form-label">Microphones:</label>
-                            {{ form.category_microphones | as_crispy_field }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="category_di" class="form-label">DI:</label>
-                            {{ form.category_di | as_crispy_field }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="category_stands" class="form-label">Stands:</label>
-                            {{ form.category_stands | as_crispy_field }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="category_video_mixers" class="form-label">Video-mixers:</label>
-                            {{ form.category_video_mixers | as_crispy_field }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="category_cameras" class="form-label">Cameras:</label>
-                            {{ form.category_cameras | as_crispy_field }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="category_lights" class="form-label">Lights:</label>
-                            {{ form.category_lights | as_crispy_field }}
-                        </div>
-                    </div>
+                    
                     
                 </div>
                 <div class="mb-3">
