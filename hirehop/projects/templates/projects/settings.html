@@ -1,5 +1,30 @@
 {% extends "base_logged_in.html" %}
 {% block content %}
 {{ config }}
+{% load crispy_forms_tags %}
+
+    {{ formset.errors }}
+    {{ formset.non_field_errors }}
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+                <legend>
+                    <h1>Settings</h1>
+                </legend>
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <div class="mb-3">
+                    <label for="api_token" class="form-label">API-token:</label>
+                    {{ form.api_token | as_crispy_field}}
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id=btnSubmit>
+                        Update
+                    </button>
+                </div>
+
+        </form>
+    </div>
 
 {% endblock %}

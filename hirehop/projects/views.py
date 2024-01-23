@@ -7,6 +7,8 @@ import yaml
 import json
 import requests
 
+from .forms import SettingsForm
+
 #Open configuration file
 with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
@@ -37,6 +39,21 @@ def index(request):
 
 @login_required
 def settings(request):
+    form = SettingsForm()
+
+    #If there is a POST-request
+    if request.method == 'POST':
+        form = SettingsForm(request.POST)
+        #Check if the form is valid
+        if form.is_valid():
+            cd = form.cleaned_data
+            
+            
+            #Update the page
+            return render(request, 'projects/settings.html', {'config': config, 'form':form })
+        else:
+            #If the form data is corupt it will show a message but since the form is only a optinon list and the options are always valid it shouldn´t happen
+            messages.error(request, 'This shouldnt be able to happen...')
 
     #Render index page
-    return render(request, 'projects/settings.html', {'config': config})
+    return render(request, 'projects/settings.html', {'config': config, 'form':form })
