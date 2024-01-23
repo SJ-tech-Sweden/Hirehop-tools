@@ -51,6 +51,20 @@ def settings(request):
                 old_config = yaml.load(f, Loader=yaml.FullLoader)
             messages.info(request, cd)
             messages.info(request, old_config)
+            #Change the firmware versions for the different AP-models, add new AP-models here
+            old_config['hirehop']['api_token'] = cd['api_token']
+            old_config['hirehop']['categories']['mixers'] = cd['category_mixers']
+            old_config['hirehop']['categories']['microphones'] = cd['category_microphones']
+            old_config['hirehop']['categories']['di'] = cd['category_di']
+            old_config['hirehop']['categories']['stands'] = cd['category_stands']
+            old_config['hirehop']['categories']['video_mixers'] = cd['category_video_mixers']
+            old_config['hirehop']['categories']['cameras'] = cd['category_cameras']
+            old_config['hirehop']['categories']['lights'] = cd['category_lights']
+            messages.info(request, old_config)
+            #Save config.yaml with new configuration
+            with open('/app/hirehopScanning/config.yaml', 'w') as f:
+                old_config = yaml.dump(old_config, f,
+                                default_flow_style=False, sort_keys=False)
             
             
             #Update the page
