@@ -14,9 +14,48 @@
                     <h1>Settings</h1>
                 </legend>
                 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-                <div class="mb-3">
-                    <label for="api_token" class="form-label">API-token:</label>
-                    {{ form.api_token | as_crispy_field}}
+                <div class="card">
+                    <div class="card-header">
+                      Hirehop
+                    </div>
+                    <div class="mb-3">
+                        <label for="api_token" class="form-label">API-token:</label>
+                        {{ form.api_token | as_crispy_field}}
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                          Categories
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_mixers" class="form-label">API-token:</label>
+                            {{ form.category_mixers | as_crispy_field}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_microphones" class="form-label">API-token:</label>
+                            {{ form.category_microphones | as_crispy_field}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_di" class="form-label">API-token:</label>
+                            {{ form.category_di | as_crispy_field}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_stands" class="form-label">API-token:</label>
+                            {{ form.category_stands | as_crispy_field}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_video_mixers" class="form-label">API-token:</label>
+                            {{ form.category_video_mixers | as_crispy_field}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_cameras" class="form-label">API-token:</label>
+                            {{ form.category_cameras | as_crispy_field}}
+                        </div>
+                        <div class="mb-3">
+                            <label for="category_lights" class="form-label">API-token:</label>
+                            {{ form.category_lights | as_crispy_field}}
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary" id=btnSubmit>
