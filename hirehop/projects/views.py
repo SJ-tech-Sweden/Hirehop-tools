@@ -31,7 +31,7 @@ def index(request):
         messages.info(request, response.text)
 
         try:
-            jobs = {[json.loads(response.text)]}
+            jobs = [json.loads(response.text)]
         except:
             jobs = {}
     else:
