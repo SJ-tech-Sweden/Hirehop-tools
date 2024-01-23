@@ -28,7 +28,6 @@ def index(request):
         response = requests.request("GET", url, headers=headers, data=payload)
 
         jobs = {}
-        messages.info(request, response.text)
 
         try:
             jobs = [
@@ -58,7 +57,6 @@ def index(request):
         except:
             jobs = []
 
-    messages.info(request, jobs)
 
     
 
