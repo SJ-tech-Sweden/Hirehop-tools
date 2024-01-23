@@ -14,7 +14,7 @@ with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
 
 class SettingsForm(forms.Form):
-    api_token = forms.CharField(max_length=1024, label='', initial=config['hirehop']['api_token'])
+    api_token = forms.CharField(max_length=1024, label='', initial=config['hirehop']['api_token'], widget=forms.Textarea(attrs={"rows":"3"}))
     category_mixers = forms.IntegerField(label='', initial=config['hirehop']['categories']['mixers'])
     category_microphones = forms.IntegerField(label='', initial=config['hirehop']['categories']['microphones'])
     category_di = forms.IntegerField(label='', initial=config['hirehop']['categories']['di'])
