@@ -34,3 +34,9 @@ def index(request):
 
     #Render index page
     return render(request, 'projects/index.html', {'jobs': jobs})
+
+@login_required
+def settings(request):
+
+    #Render index page
+    return render(request, 'projects/settings.html', {'config': config})
