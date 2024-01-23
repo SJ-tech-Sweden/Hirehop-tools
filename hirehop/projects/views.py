@@ -49,7 +49,7 @@ def index(request):
         except:
             jobs = {}
 
-    messages.info(request, response.text)
+    messages.info(request, jobs)
 
     
 
