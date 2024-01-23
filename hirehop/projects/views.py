@@ -41,7 +41,7 @@ def index(request):
         
         for job in jobs:
             if 'NUMBER' not in job['cell']:
-                job['cell']['NUMBER'] = job.get('ID', None)
+                job['cell']['NUMBER'] = job['cell']['ID']
 
     else:
         url = f"https://myhirehop.com/frames/search_field_results.php?status=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&rows=500&page=1&token={api_token}"
