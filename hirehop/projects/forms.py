@@ -14,7 +14,7 @@ with open('/app/hirehopScanning/config.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
 
 class SettingsForm(forms.Form):
-    api_token = forms.CharField(max_length=1024)
+    api_token = forms.CharField(max_length=1024, label='')
     category_mixers = forms.IntegerField(label='')
     category_microphones = forms.IntegerField(label='')
     category_di = forms.IntegerField(label='')
