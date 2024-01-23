@@ -48,9 +48,9 @@ def settings(request):
         if form.is_valid():
             cd = form.cleaned_data
             with open('/app/hirehopScanning/config.yaml') as f:
-                config = yaml.load(f, Loader=yaml.FullLoader)
+                old_config = yaml.load(f, Loader=yaml.FullLoader)
             messages.info(request, cd)
-            messages.info(request, config)
+            messages.info(request, old_config)
             
             
             #Update the page
