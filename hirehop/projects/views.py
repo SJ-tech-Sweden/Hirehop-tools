@@ -47,6 +47,10 @@ def settings(request):
         #Check if the form is valid
         if form.is_valid():
             cd = form.cleaned_data
+            with open('/app/hirehopScanning/config.yaml') as f:
+                config = yaml.load(f, Loader=yaml.FullLoader)
+            messages.info(request, cd)
+            messages.info(request, config)
             
             
             #Update the page
