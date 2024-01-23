@@ -144,8 +144,8 @@
             <!-- table header -->
             <thead>
               <tr>
-                <th>Console Output</th>
                 <th>Output type</th>
+                <th>Console Output</th>
                 <th>Notes</th>
                 <th>Actions</th>
               </tr>
@@ -162,7 +162,7 @@
                       {% endfor %}
                     </select>
                   </td>
-
+                  <td><input type="text" name="form-{{form_output.instance.pk}}-console_output" value="{{ form_output.console_output.value }}" class="form-control"></td>
                   <td><input type="text" name="form-{{form_output.instance.pk}}-notes" value="{{ form_output.notes.value }}" class="form-control"></td>
                   
                   <td>
