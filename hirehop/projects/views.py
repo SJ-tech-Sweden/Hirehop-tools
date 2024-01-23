@@ -22,21 +22,34 @@ def index(request):
     job_nr = request.GET.get('job', '')
     if(job_nr):
         url = f"https://myhirehop.com/api/job_data.php?job={job_nr}&token={api_token}"
+        payload={}
+        headers={}
+
+        response = requests.request("GET", url, headers=headers, data=payload)
+
+        jobs = {}
+        messages.info(request, response.text)
+
+        try:
+            jobs = {[json.loads(response.text)]}
+        except:
+            jobs = {}
     else:
         url = f"https://myhirehop.com/frames/search_field_results.php?status=0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8&rows=500&page=1&token={api_token}"
+        payload={}
+        headers={}
 
-    payload={}
-    headers={}
+        response = requests.request("GET", url, headers=headers, data=payload)
 
-    response = requests.request("GET", url, headers=headers, data=payload)
-
-    jobs = {}
-    messages.info(request, response.text)
-
-    try:
-        jobs = json.loads(response.text)['rows']
-    except:
         jobs = {}
+        messages.info(request, response.text)
+
+        try:
+            jobs = json.loads(response.text)['rows']
+        except:
+            jobs = {}
+
+    
 
 
     #Render index page
