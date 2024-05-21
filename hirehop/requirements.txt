@@ -15,7 +15,7 @@ ntlm-auth==1.5.0
 psycopg2-binary==2.9.9
 pycparser==2.22
 PyYAML==6.0.1
-requests==2.31.0
+requests==2.32.0
 requests-ntlm==1.2.0
 requests-toolbelt==1.0.0
 Office365-REST-Python-Client
