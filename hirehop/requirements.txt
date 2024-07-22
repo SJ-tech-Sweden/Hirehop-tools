@@ -25,5 +25,5 @@ urllib3==2.2.2
 django-crispy-forms
 crispy-bootstrap5
 pandas
-fontawesomefree==6.5.1
+fontawesomefree==6.6.0
 django-widget-tweaks
