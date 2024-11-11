@@ -1,4 +1,4 @@
- 
+# I have stopped using hirehop and started using eventory.se instead, so I won't redo this to work with the newer categories and I won't continue to develop it. If nobody else wan't to continue this project I will archive it in a few months. 
 # Hirehop-tools 
 This project is for extending hirehop, I start with a new interface that works great to scan for check out on phones.
 I will also add functionality to check in equipment and add other features.
